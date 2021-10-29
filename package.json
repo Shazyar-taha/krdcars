@@ -1,0 +1,30 @@
+{
+  "name": "krdcars",
+  "version": "1.0.0",
+  "description": "krdcars website for cars info and service in Kurdistan",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "nodemon backend/server.js",
+    "dev": "concurrently -n SERVER,CLIENT -c green,blue \"cd backend && npm run dev\" \"cd frontend && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shazyar-taha/krdcars.git"
+  },
+  "keywords": [
+    "krdcars",
+    "mern"
+  ],
+  "author": "Shazyar-taha <p.shazyar108@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shazyar-taha/krdcars/issues"
+  },
+  "homepage": "https://github.com/Shazyar-taha/krdcars#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.14"
+  }
+}
