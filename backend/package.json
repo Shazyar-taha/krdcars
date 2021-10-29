@@ -1,0 +1,28 @@
+{
+  "name": "krdcars-backend",
+  "version": "1.0.0",
+  "description": "krdcars - backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "prebuild": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shazyar-taha/krdcars.git"
+  },
+  "keywords": [
+    "krdcars",
+    "mern"
+  ],
+  "author": "Shazyar-taha <p.shazyar108@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shazyar-taha/krdcars/issues"
+  },
+  "homepage": "https://github.com/Shazyar-taha/krdcars#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
