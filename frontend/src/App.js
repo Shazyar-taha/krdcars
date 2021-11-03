@@ -1,11 +1,16 @@
 import React from 'react';
 
-function App() {
+import './components/partials/designs/stylesheets/main.scss'
+
+
+
+/**
+ *  @return {Element} : app frontend
+ */
+export default function App() {
   return (
-    <div className="App">
-      KRDCARS react frontend
-    </div>
+    <>
+      <h1>react app</h1>
+    </>
   );
 }
-
-export default App;
