@@ -1,0 +1,31 @@
+/**
+ default colors
+*/
+
+// base colors
+:root {
+    // base colors
+    --white-color: #fff;
+    --black-color: #000;
+    --main-red-color: #d01320;
+}
+
+// lightmode colors
+:root {
+    --body-bg-color: #fcfcfc; // document background color
+    --body-oposite-color: #000; // oposite of body background color
+
+    --head-text-color: #000; // heading text color
+    --body-text-color: #000000c0; // body text color
+    --oposite-text-color: #fff; // text color matching with background color
+}
+
+// darkmode colors
+[theme-color="dark"] {
+    --body-bg-color: #303030; // document background color
+    --body-oposite-color: #fff; // oposite of body background color
+
+    --head-text-color: #fff; // heading text color
+    --body-text-color: #fcfcfc; // body text color
+    --oposite-text-color: #000; // text color matching with background color
+}

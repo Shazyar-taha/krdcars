@@ -1,0 +1,76 @@
+/**
+default document styles
+*/
+
+// elements defaults
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    // correct line height for all browsers
+    line-height: 1.15;
+    // Prevent adjustments of font size after orientation changes in iOS.
+    -webkit-text-size-adjust: 100%;
+
+    // transition animation on theme color change
+    transition: background 0.6s, background-color 0.6s, color 0.6s ease;
+}
+
+// setting body defaults
+body {
+    // remove underlines of texts
+    a {
+        text-decoration: none;
+    }
+
+    // preventing color transition when the page loads
+    &.preload {
+        * {
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -ms-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+// Remove the inner border and padding in Firefox.
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+// Correct the padding in Firefox.
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+}
+
+// removing outline for inputs
+input {
+    outline: none;
+}
+
+// removing number arrows
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+// kurdish texts class
+.kurdish-text {
+    font-family: var(--kurdish-font-family) !important;
+}
+
+// margin auto class
+.margin-auto {
+    margin: auto !important;
+}

@@ -1,0 +1,17 @@
+/**
+Typography styles
+*/
+
+// importing kurdish font
+@font-face {
+    src: url(../fonts/speda-bold.ttf);
+    font-family: "speda";
+}
+
+// base typography styles
+:root {
+    --kurdish-font-family: "speda", sans-serif; // kurdish font family
+
+    --element-vertical-spacing: 5rem; // vertical margin or padding spacing between elements
+    --header-height: var(--element-vertical-spacing); // height of the header element
+}
