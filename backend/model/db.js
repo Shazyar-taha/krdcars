@@ -10,7 +10,7 @@ const config = {
     database: 'krdcars',
 }
 
-// make connection pool
+// create connection pool
 const pool = mysql.createPool(config);
 
 // connect to db
