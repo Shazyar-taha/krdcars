@@ -1,11 +1,17 @@
 import React from 'react';
+import { CssBaseline } from '@mui/material'
 
-function App() {
-  return (
-    <div className="App">
-      KRDCARS react frontend
-    </div>
-  );
+import './components/partials/designs/stylesheets/main.scss'
+
+
+
+/**
+ *  @return {Element} : app frontend
+ */
+export default function App() {
+    return (
+        <>
+            <CssBaseline />
+        </>
+    );
 }
-
-export default App;
