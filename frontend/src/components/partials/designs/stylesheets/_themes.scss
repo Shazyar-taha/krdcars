@@ -1,3 +1,8 @@
 /**
 default theme settings
 */
+
+:root {
+    --element-vertical-spacing: 5rem; // vertical margin or padding spacing between elements
+    --header-height: var(--element-vertical-spacing); // height of the header element
+}
