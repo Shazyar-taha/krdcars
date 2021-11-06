@@ -13,6 +13,7 @@
 // lightmode colors
 :root {
     --body-bg-color: #fcfcfc; // document background color
+    --nav-bg-color: #fcfcfc90; // navigation drawer background color
     --body-oposite-color: #000; // oposite of body background color
 
     --head-text-color: #000; // heading text color
@@ -22,10 +23,11 @@
 
 // darkmode colors
 [theme-color="dark"] {
-    --body-bg-color: #303030; // document background color
-    --body-oposite-color: #fff; // oposite of body background color
+    --body-bg-color: #303030;
+    --nav-bg-color: #30303090;
+    --body-oposite-color: #fff;
 
-    --head-text-color: #fff; // heading text color
-    --body-text-color: #fcfcfc; // body text color
-    --oposite-text-color: #000; // text color matching with background color
+    --head-text-color: #fff;
+    --body-text-color: #fcfcfc;
+    --oposite-text-color: #000;
 }
