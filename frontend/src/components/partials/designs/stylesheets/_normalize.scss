@@ -26,6 +26,11 @@ body {
         text-decoration: none;
     }
 
+    // removing unordered list dots
+    ul {
+        list-style: none;
+    }
+
     // preventing color transition when the page loads
     &.preload {
         * {
@@ -35,6 +40,10 @@ body {
             -o-transition: none !important;
             transition: none !important;
         }
+    }
+
+    &.kurdish {
+        font-family: var(--kurdish-font-family) !important;
     }
 }
 

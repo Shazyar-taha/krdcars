@@ -15,3 +15,24 @@ Typography styles
 :root {
     --kurdish-font-family: "speda", sans-serif; // kurdish font family
 }
+
+// font sizes
+:root {
+    --nav-link-font-size: 1rem; // font size of the navigation links == 20px
+
+    // general font sizes
+    --xx-huge-font-size: 3rem; // 48px
+    --x-huge-font-size: 2.75rem; // 44px
+    --huge-font-size: 2.5rem; // 40px
+
+    --xxx-large-font-size: 2.25rem; // 36px
+    --xx-large-font-size: 2rem; // 32px
+    --x-large-font-size: 1.75rem; // 28px
+    --large-font-size: 1.5rem; // 24px
+
+    --medium-font-size: 1.25rem; // 20px
+
+    --small-font-size: 1.125rem; // 18px
+    --x-small-font-size: 1rem; // 16px
+    --xx-small-font-size: 0.75rem; // 12px, this will stay as it's size because it is so small
+}
