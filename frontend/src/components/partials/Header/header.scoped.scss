@@ -1,0 +1,187 @@
+/* Header stylings */
+
+// header
+.header {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+
+    // navigation
+    .nav {
+        padding: 2rem 0 1rem;
+        position: relative;
+        width: 100%;
+        height: var(--header-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+
+        // brand logo link
+        .nav-brand {
+            display: flex;
+        }
+
+        // navigation burger
+        .nav-burger {
+            display: none;
+            z-index: 2;
+            position: relative; // using relative position to reposition the burger lines easily
+            width: calc(var(--nav-link-font-size) + 4px);
+            height: var(--nav-link-font-size);
+
+            // each burgerline
+            .burger-line {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                height: 3px;
+                background-color: var(--body-oposite-color);
+                border-radius: 5px;
+                transition: width 0.6s, transform 0.6s, top 0.6s, bottom 0.6s, left 0.6s, opacity 0.6s ease;
+
+                // first line
+                &:first-child {
+                    top: 0;
+                }
+                // second line
+                &:nth-child(2) {
+                    width: 70%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+                // last line
+                &:last-child {
+                    bottom: 0;
+                }
+            }
+
+            // opening drawer burger
+            &.nav-burger-open {
+                .burger-line {
+                    &:first-child {
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%) rotate(45deg);
+                    }
+                    &:nth-child(2) {
+                        width: 0;
+                    }
+                    &:last-child {
+                        left: 50%;
+                        bottom: 50%;
+                        transform: translate(-50%, 50%) rotate(-45deg);
+                    }
+                }
+            }
+        }
+
+        // navigation links
+        .nav-links,
+        .drawer-links {
+            display: flex;
+            justify-content: space-between;
+
+            // each list item
+            li {
+                margin: 0.6rem;
+
+                // each link
+                .link {
+                    font-size: var(--nav-link-font-size);
+                    color: var(--body-oposite-color);
+
+                    // active navlink
+                    &.active {
+                        color: var(--main-red-color);
+                    }
+                }
+            }
+        }
+
+        // each nav button
+        .nav-buttons,
+        .drawer-buttons {
+            display: flex;
+
+            .button {
+                margin: 0 0.6rem;
+                font-size: var(--nav-link-font-size);
+                color: var(--body-oposite-color);
+
+                // removing margin left from first link
+                &:first-child {
+                    margin-left: 0;
+                }
+                // removing margin right from first link
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        // navigation drawer
+        .nav-drawer {
+            display: none; // hiding the navigation drawer
+            padding: var(--header-height) 1rem;
+            position: fixed;
+            flex-direction: column;
+            justify-content: space-between;
+            top: -100vh;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            background-color: var(--nav-bg-color);
+            z-index: 1;
+            transition: top 0.6s ease;
+
+            // navigation links
+            .drawer-links {
+                flex-direction: column;
+                justify-content: unset;
+                flex: 1;
+                li {
+                    margin: 1rem;
+
+                    // increasing drawer links font size
+                    .link {
+                        font-size: calc(var(--nav-link-font-size) + 0.2rem);
+                    }
+                }
+            }
+
+            // each nav button
+            .drawer-buttons {
+                display: flex;
+                justify-content: center;
+            }
+
+            // opening drawer
+            &.nav-drawer-open {
+                top: 0;
+            }
+        }
+    }
+}
+
+// responsive breakpoints
+@media screen and (max-width: 900px) {
+    .header {
+        .nav {
+            // unhiding navigation burger
+            .nav-burger {
+                display: block;
+            }
+            // hiding computer navigation
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+            // unhiding navigation drawer
+            .nav-drawer {
+                display: flex;
+            }
+        }
+    }
+}
