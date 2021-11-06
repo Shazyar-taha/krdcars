@@ -15,7 +15,7 @@ import './brand.scoped.scss'
 export default function Brand(props) {
     return (
         <div className="brand" style={{ ...props.style }}>
-            <svg id="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.73 21.2">
+            <svg id="brand-logo" style={{ height: '100%' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.73 21.2">
                 <g id="krd" data-name="krd" style={{ fill: props?.krdColor ? props.krdColor : "#000" }}>
                     <path d="M9.84,9.4h7.68L14,18.92,27.28,9.4h8.56L22,20l7.68,10.6H21.12l-7.84-9.52L9.8,30.6H2.12Z" transform="translate(-2.12 -9.4)" />
                     <path d="M37.76,9.4H55.6a3.78,3.78,0,0,1,2.22.6,4.25,4.25,0,0,1,1.34,1.52,6.63,6.63,0,0,1,.66,2,12.25,12.25,0,0,1,.18,2,5.39,5.39,0,0,1-1,3.36A7.37,7.37,0,0,1,56.5,21a12,12,0,0,1-3.32,1.12,30.52,30.52,0,0,1-3.42.46l7.84,8H49L40.8,23l-.44.32L37.72,30.6H30Zm14.48,6.12a1.13,1.13,0,0,0-.12-.54c-.08-.15-.28-.22-.6-.22h-8L41.2,21l3.52-3.56h6.4A.88.88,0,0,0,52,16.9a2.27,2.27,0,0,0,.26-.94Z" transform="translate(-2.12 -9.4)" />
