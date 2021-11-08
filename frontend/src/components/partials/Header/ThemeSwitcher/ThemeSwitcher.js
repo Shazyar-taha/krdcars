@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Brightness4Outlined from '@mui/icons-material/Brightness4Outlined'
 
-import './theme-switcher.scss'
+import './theme-switcher.scoped.scss'
 
 
 
