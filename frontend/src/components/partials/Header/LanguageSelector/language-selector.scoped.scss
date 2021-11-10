@@ -1,0 +1,63 @@
+/* language selector */
+
+.language-selector {
+    position: relative;
+    cursor: pointer;
+    transition: all 0s ease;
+
+    * {
+        transition: all 0s ease;
+    }
+
+    // languages select list
+    .languages-list {
+        display: none;
+        padding: 2px;
+        position: absolute;
+        top: inherit;
+        right: 0;
+        background-color: var(--oposite-text-color);
+        border-radius: calc(var(--x-small-font-size) / 2);
+
+        // each language
+        .language {
+            margin: 2px 0;
+            padding: calc(var(--x-small-font-size) / 2);
+            text-align: center;
+            background-color: var(--body-bg-color);
+
+            // fisrt language child
+            &:first-child {
+                margin-top: 0;
+                border-top-left-radius: calc(var(--x-small-font-size) / 2);
+                border-top-right-radius: calc(var(--x-small-font-size) / 2);
+            }
+            // last language child
+            &:last-child {
+                margin-bottom: 0;
+                border-bottom-left-radius: calc(var(--x-small-font-size) / 2);
+                border-bottom-right-radius: calc(var(--x-small-font-size) / 2);
+            }
+        }
+    }
+
+    // showing the language list when the component is focused
+    &.show-list {
+        .languages-list {
+            display: block;
+        }
+    }
+}
+
+// responsive breakpoints
+@media screen and (max-width: 900px) {
+    .language-selector {
+        .languages-list {
+            // repositioning the language selector
+            bottom: calc(var(--x-small-font-size) * 2);
+            .language {
+                font-size: calc(var(--x-small-font-size) + 0.1rem);
+            }
+        }
+    }
+}
