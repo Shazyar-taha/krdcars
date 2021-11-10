@@ -3,6 +3,7 @@ import { CssBaseline } from '@mui/material'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import './components/partials/designs/stylesheets/main.scss'
+import Language from './components/partials/helpers/Language'
 import Header from './components/partials/Header/Header';
 
 
@@ -11,6 +12,9 @@ import Header from './components/partials/Header/Header';
  *  @return {Element} : app frontend
  */
 export default function App() {
+
+    // initiating language helper cookie check constructor
+    new Language()
 
     // removing the preload class from the body when the page is ready
     // preload class prevent anything to animate before the whole page is ready
