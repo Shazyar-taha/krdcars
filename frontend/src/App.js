@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './components/partials/Header/Header';
 import './components/partials/designs/stylesheets/main.scss'
+import Header from './components/partials/Header/Header';
 
 
 
