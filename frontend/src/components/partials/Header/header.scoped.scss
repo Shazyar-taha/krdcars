@@ -27,8 +27,8 @@
             display: none;
             z-index: 2;
             position: relative; // using relative position to reposition the burger lines easily
-            width: calc(var(--nav-link-font-size) + 4px);
-            height: var(--nav-link-font-size);
+            width: calc(var(--x-small-font-size) + 4px);
+            height: var(--x-small-font-size);
 
             // each burgerline
             .burger-line {
@@ -88,7 +88,7 @@
 
                 // each link
                 .link {
-                    font-size: var(--nav-link-font-size);
+                    font-size: var(--x-small-font-size);
                     color: var(--body-oposite-color);
 
                     // active navlink
@@ -106,7 +106,7 @@
 
             .button {
                 margin: 0 0.6rem;
-                font-size: var(--nav-link-font-size);
+                font-size: var(--x-small-font-size);
                 color: var(--body-oposite-color);
 
                 // removing margin left from first link
@@ -146,7 +146,7 @@
 
                     // increasing drawer links font size
                     .link {
-                        font-size: calc(var(--nav-link-font-size) + 0.2rem);
+                        font-size: calc(var(--x-small-font-size) + 0.2rem);
                     }
                 }
             }

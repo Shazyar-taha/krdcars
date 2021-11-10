@@ -2,27 +2,26 @@ import React, { useState } from 'react'
 import { Container } from '@mui/material'
 import { NavLink, Link } from 'react-router-dom'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import Brightness4OutlinedIcon from '@mui/icons-material/Brightness4Outlined';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import classNames from 'classnames';
 
-import Brand from '../Brand/Brand'
 import './header.scoped.scss'
+import Language from '../helpers/Language';
+import Brand from '../Brand/Brand'
+import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
+import LanguageSelector from './LanguageSelector/LanguageSelector';
 
 
 // component content
 let componentContent = {
-    kr: {
-        navLinks: [
-            { name: 'سەرەتا', url: '/' },
-            { name: 'دەربارە', url: '/about' },
-            { name: 'زانیاریەکان', url: '/info' },
-            { name: 'بەشەکان', url: '/info/parts' },
-            { name: 'سەرپێچی', url: '/violation' },
-            { name: 'کڕین و فرۆشتن', url: '/store' },
-        ]
-    }
+    navLinks: [
+        { name: { en: 'Home', kr: 'سەرەتا' }, url: '/' },
+        { name: { en: 'Informations', kr: 'زانیاریەکان' }, url: '/info' },
+        { name: { en: 'Vehicle Parts', kr: 'پارچەکان' }, url: '/info/parts' },
+        { name: { en: 'Violation', kr: 'سەرپێچی' }, url: '/violation' },
+        { name: { en: 'Store', kr: 'کڕین و فرۆشتن' }, url: '/store' },
+        { name: { en: 'About', kr: 'دەربارە' }, url: '/about' },
+    ]
 }
 
 
@@ -40,6 +39,10 @@ export default function Header() {
         setDrawerState(!drawerState)
     }
 
+    function closeDrawer() {
+        setDrawerState(false)
+    }
+
 
     return (
         <div className="header">
@@ -53,7 +56,7 @@ export default function Header() {
                     {/* header brand */}
                     <div className="nav-brand">
                         <Link to="/">
-                            <Brand style={{ height: "var(--nav-link-font-size)" }} />
+                            <Brand style={{ height: "var(--x-small-font-size)" }} />
                         </Link>
                     </div>
 
@@ -65,12 +68,14 @@ export default function Header() {
                     </div>
 
                     {/* navigation links */}
-                    <ul className="nav-links" style={{ flexDirection: "row-reverse" }}>
+                    <ul className={classNames("nav-links", Language.getClassName())}
+                        style={Language.getLanguage() === 'kr' ? { flexDirection: "row-reverse" } : {}}
+                    >
                         {
-                            componentContent.kr.navLinks.map((link, i) => (
+                            componentContent.navLinks.map((link, i) => (
                                 <li key={i}>
                                     <NavLink to={link.url} className="link" onClick={toggleDrawer}>
-                                        {link.name}
+                                        {link.name[Language.getLanguage()]}
                                     </NavLink>
                                 </li>
                             ))
@@ -79,31 +84,32 @@ export default function Header() {
 
                     {/* navigation buttons */}
                     <div className="nav-buttons">
-                        <Link to="/" className="button">
-                            <SearchOutlinedIcon onClick={toggleDrawer} />
+                        <Link to="/search" className="button">
+                            <SearchOutlinedIcon />
                         </Link>
-                        <Link to="/" className="button">
-                            <LanguageOutlinedIcon />
-                        </Link>
-                        <Link to="/" className="button">
-                            <Brightness4OutlinedIcon />
-                        </Link>
-                        <Link to="/" className="button">
+                        <div className="button">
+                            <LanguageSelector />
+                        </div>
+                        <div className="button">
+                            <ThemeSwitcher />
+                        </div>
+                        <Link to="/sign-up" className="button" onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>
+
 
 
                     {/* navigation drawer */}
                     <div className={classNames("nav-drawer", { 'nav-drawer-open': drawerState })}>
 
                         {/* drawer links */}
-                        <ul className="drawer-links" >
+                        <ul className={classNames("drawer-links", Language.getClassName())}>
                             {
-                                componentContent.kr.navLinks.map((link, i) => (
+                                componentContent.navLinks.map((link, i) => (
                                     <li key={i}>
-                                        <NavLink to={link.url} className="link" onClick={() => setDrawerState(false)}>
-                                            {link.name}
+                                        <NavLink to={link.url} className="link" onClick={toggleDrawer}>
+                                            {link.name[Language.getLanguage()]}
                                         </NavLink>
                                     </li>
                                 ))
@@ -112,23 +118,22 @@ export default function Header() {
 
                         {/* drawer buttons */}
                         <div className="drawer-buttons">
-                            <Link to="/" className="button">
+                            <Link to="/search" className="button">
                                 <SearchOutlinedIcon />
                             </Link>
-                            <Link to="/" className="button">
-                                <LanguageOutlinedIcon />
-                            </Link>
-                            <Link to="/" className="button">
-                                <Brightness4OutlinedIcon />
-                            </Link>
-                            <Link to="/" className="button" onClick={() => setDrawerState(false)}>
+                            <div className="button">
+                                <LanguageSelector />
+                            </div>
+                            <div className="button">
+                                <ThemeSwitcher />
+                            </div>
+                            <Link to="/sign-up" className="button" onClick={closeDrawer}>
                                 <AccountCircleOutlinedIcon />
                             </Link>
                         </div>
                     </div>
 
                 </nav>
-
             </Container>
         </div>
     )
