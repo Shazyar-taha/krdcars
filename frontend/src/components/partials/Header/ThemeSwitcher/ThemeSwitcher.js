@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Brightness4Outlined from '@mui/icons-material/Brightness4Outlined'
 
 import './theme-switcher.scoped.scss'
@@ -18,11 +18,14 @@ export default function ThemeSwitcher() {
         setThemeState('light')
     }
 
-    // adding theme color property to the HTML document
-    document.documentElement.setAttribute('theme-color', themeState)
+    // storing the theme only on its change
+    useEffect(() => {
+        // adding theme color property to the HTML document
+        document.documentElement.setAttribute('theme-color', themeState)
 
-    // saving the user theme changes
-    localStorage.setItem('theme-color', themeState)
+        // saving the user theme changes
+        localStorage.setItem('theme-color', themeState)
+    }, [themeState])
 
 
     // theme switch toogle
