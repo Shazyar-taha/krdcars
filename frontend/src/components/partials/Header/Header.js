@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@mui/material'
+import { useLocation } from 'react-router';
 import { NavLink, Link } from 'react-router-dom'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -31,6 +32,9 @@ let componentContent = {
  */
 export default function Header() {
 
+    // getting curent location
+    const thisPath = useLocation().pathname
+
     // drawer state
     const [drawerState, setDrawerState] = useState(false)
 
@@ -56,7 +60,7 @@ export default function Header() {
                     {/* header brand */}
                     <div className="nav-brand">
                         <Link to="/">
-                            <Brand style={{ height: "var(--x-small-font-size)" }} />
+                            <Brand krdColor={thisPath === '/' ? 'var(--white-color)' : ''} style={{ height: "var(--x-small-font-size)" }} />
                         </Link>
                     </div>
 
@@ -74,7 +78,7 @@ export default function Header() {
                         {
                             componentContent.navLinks.map((link, i) => (
                                 <li key={i}>
-                                    <NavLink to={link.url} className="link" onClick={toggleDrawer}>
+                                    <NavLink to={link.url} className={classNames("link", { 'white-only': thisPath === '/' })} onClick={toggleDrawer}>
                                         {link.name[Language.getLanguage()]}
                                     </NavLink>
                                 </li>
@@ -84,16 +88,16 @@ export default function Header() {
 
                     {/* navigation buttons */}
                     <div className="nav-buttons">
-                        <Link to="/search" className="button">
+                        <Link to="/search" className={classNames("button", { 'white-only': thisPath === '/' })}>
                             <SearchOutlinedIcon />
                         </Link>
-                        <div className="button">
+                        <div className={classNames("button", { 'white-only': thisPath === '/' })}>
                             <LanguageSelector />
                         </div>
-                        <div className="button">
+                        <div className={classNames("button", { 'white-only': thisPath === '/' })}>
                             <ThemeSwitcher />
                         </div>
-                        <Link to="/sign-up" className="button" onClick={closeDrawer}>
+                        <Link to="/sign-up" className={classNames("button", { 'white-only': thisPath === '/' })} onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>

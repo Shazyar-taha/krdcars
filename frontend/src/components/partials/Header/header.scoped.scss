@@ -91,6 +91,11 @@
                     font-size: var(--x-small-font-size);
                     color: var(--body-oposite-color);
 
+                    // white only links
+                    &.white-only {
+                        color: var(--white-color);
+                    }
+
                     // active navlink
                     &.active {
                         color: var(--main-red-color);
@@ -116,6 +121,11 @@
                 // removing margin right from first link
                 &:last-child {
                     margin-right: 0;
+                }
+
+                // white only buttons
+                &.white-only {
+                    color: var(--white-color);
                 }
             }
         }
