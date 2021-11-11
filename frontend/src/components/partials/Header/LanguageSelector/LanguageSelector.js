@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import { useLocation } from 'react-router';
 import classNames from 'classnames';
 
 import './language-selector.scoped.scss'
 import Language from '../../helpers/Language';
-import { useLocation } from 'react-router';
 
 // component content
 let componentContent = [
