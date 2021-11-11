@@ -13,7 +13,7 @@
 // lightmode colors
 :root {
     --body-bg-color: #fcfcfc; // document background color
-    --nav-bg-color: #fcfcfc90; // navigation drawer background color
+    --nav-bg-color-rgb: 252, 252, 252; // navigation drawer background color
     --body-oposite-color: #000; // oposite of body background color
 
     --head-text-color: #000; // heading text color
@@ -24,7 +24,7 @@
 // darkmode colors
 [theme-color="dark"] {
     --body-bg-color: #303030;
-    --nav-bg-color: #30303090;
+    --nav-bg-color-rgb: 48, 48, 48;
     --body-oposite-color: #fff;
 
     --head-text-color: #fff;

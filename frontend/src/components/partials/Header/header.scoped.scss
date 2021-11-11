@@ -142,7 +142,7 @@
             width: 100vw;
             height: 100vh;
             text-align: center;
-            background-color: var(--nav-bg-color);
+            background-color: rgba(var(--nav-bg-color-rgb), 0.95);
             z-index: 1;
             transition: top 0.6s ease;
 
