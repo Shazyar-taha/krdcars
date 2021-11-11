@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import './components/partials/designs/stylesheets/main.scss'
 import Language from './components/partials/helpers/Language'
@@ -31,6 +31,12 @@ export default function App() {
 
             {/* header of the document */}
             <Header />
+
+            {/* routes switch */}
+            <Switch>
+
+            </Switch>
+
         </Router>
     );
 }
