@@ -6,12 +6,13 @@
   "scripts": {
     "start": "npm run backend",
     "backend": "node backend/server.js",
-    "server-prebuild": "cd backend && npm run prebuild",
+    "backend-prebuild": "cd backend && npm run prebuild",
     "frontend": "cd frontend && npm start",
     "frontend-prebuild": "cd frontend && npm run prebuild",
     "frontend-build": "cd frontend && npm run build",
     "dev": "concurrently -n SERVER,CLIENT -c green,blue \"cd backend && npm run dev\" \"cd frontend && npm start\"",
-    "pre-build": "npm run server-prebuild & npm run frontend-build"
+    "pre-build": "npm run backend-prebuild & npm run frontend-build",
+    "heroku-prebuild": "npm run pre-build"
   },
   "repository": {
     "type": "git",
