@@ -21,14 +21,14 @@ export default function HomeMain() {
             <Container className="main-container">
 
                 {/* main section title */}
-                <div className="main-title">
+                <div className="main-title" data-aos="fade-up" data-aos-duration="1500">
                     <h1 dir="auto">زانیاری و ڕێنمایی دەربارەی ئوتومبێلەکان</h1>
                 </div>
             </Container>
 
 
             {/*  pointing down arrow */}
-            <div className="arrow-down">
+            <div className="arrow-down" data-aos="fade-up" data-aos-offset="0" data-aos-duration="1500">
                 <KeyboardArrowDownIcon />
                 <KeyboardArrowDownIcon />
             </div>
