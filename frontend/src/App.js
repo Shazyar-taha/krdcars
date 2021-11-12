@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './components/partials/designs/stylesheets/main.scss'
 import Language from './components/partials/helpers/Language'
 import Header from './components/partials/Header/Header';
+import Home from './components/pages/Home/Home';
 
 
 
@@ -34,6 +35,11 @@ export default function App() {
 
             {/* routes switch */}
             <Switch>
+
+                {/* home page */}
+                <Route path='/' exact>
+                    <Home />
+                </Route>
 
             </Switch>
 
