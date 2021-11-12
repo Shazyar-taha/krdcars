@@ -1,0 +1,84 @@
+/* home page main section */
+
+.home-main {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    // main section background image
+    .main-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // main section container
+    .main-container {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+
+    // main section  title
+    .main-title {
+        position: relative;
+
+        h1 {
+            position: absolute;
+            top: 30vh;
+            right: 0;
+            width: 30rem;
+            color: var(--white-color);
+            line-height: 3rem;
+        }
+    }
+
+    // pointing down arrow
+    .arrow-down {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+
+        // svg arrow
+        svg {
+            color: var(--white-color);
+            font-size: var(--xx-large-font-size);
+
+            // getting first arrow a littile down
+            &:first-child {
+                margin-bottom: calc(0px - var(--xx-large-font-size) / 1.5);
+            }
+        }
+    }
+}
+
+// responsive breakpoints
+@media screen and (max-width: 500px) {
+    .home-main {
+        .main-title {
+            h1 {
+                position: absolute;
+                top: 20vh;
+                right: 0;
+                width: 100%;
+                color: var(--white-color);
+                line-height: 3rem;
+            }
+        }
+        .arrow-down {
+            bottom: 4.5rem;
+            svg {
+                font-size: var(--xxx-large-font-size);
+                &:first-child {
+                    margin-bottom: calc(0px - var(--xxx-large-font-size) / 1.5);
+                }
+            }
+        }
+    }
+}
