@@ -20,6 +20,7 @@ default document styles
 // setting body defaults
 body {
     background-color: var(--body-bg-color) !important;
+    overflow-x: hidden !important;
 
     // remove underlines of texts
     a {
