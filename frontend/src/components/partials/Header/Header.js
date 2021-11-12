@@ -66,9 +66,9 @@ export default function Header() {
 
                     {/* navbar hamburger */}
                     <div className={classNames("nav-burger", { 'nav-burger-open': drawerState })} onClick={toggleDrawer}>
-                        <span className="burger-line"></span>
-                        <span className="burger-line"></span>
-                        <span className="burger-line"></span>
+                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
+                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
+                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
                     </div>
 
                     {/* navigation links */}
@@ -78,7 +78,12 @@ export default function Header() {
                         {
                             componentContent.navLinks.map((link, i) => (
                                 <li key={i}>
-                                    <NavLink to={link.url} className={classNames("link", { 'white-only': thisPath === '/' })} onClick={toggleDrawer}>
+                                    <NavLink
+                                        to={link.url}
+                                        className={classNames("link", { 'white-only': thisPath === '/' })}
+                                        onClick={toggleDrawer}
+                                        exact
+                                    >
                                         {link.name[Language.getLanguage()]}
                                     </NavLink>
                                 </li>
@@ -112,7 +117,7 @@ export default function Header() {
                             {
                                 componentContent.navLinks.map((link, i) => (
                                     <li key={i}>
-                                        <NavLink to={link.url} className="link" onClick={toggleDrawer}>
+                                        <NavLink to={link.url} className="link" onClick={toggleDrawer} exact>
                                             {link.name[Language.getLanguage()]}
                                         </NavLink>
                                     </li>
