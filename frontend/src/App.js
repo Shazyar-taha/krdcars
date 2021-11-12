@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Aos from 'aos'
+import 'aos/dist/aos.css';
 
 import './components/partials/designs/stylesheets/main.scss'
 import Language from './components/partials/helpers/Language'
@@ -17,10 +19,14 @@ export default function App() {
     // initiating language helper cookie check constructor
     new Language()
 
-    // removing the preload class from the body when the page is ready
-    // preload class prevent anything to animate before the whole page is ready
+
     useEffect(() => {
+        // removing the preload class from the body when the page is ready
+        // preload class prevent anything to animate before the whole page is ready
         document.getElementsByTagName('body')[0].classList.remove('preload')
+
+        // initiating AOS library
+        Aos.init({})
     }, [])
 
 
@@ -42,6 +48,8 @@ export default function App() {
                 </Route>
 
             </Switch>
+
+            <div style={{ position: 'absolute', top: '2000px' }}>hello</div>
 
         </Router>
     );
