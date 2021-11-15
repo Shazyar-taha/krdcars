@@ -6,3 +6,20 @@ default theme settings
     --element-vertical-spacing: 5rem; // vertical margin or padding spacing between elements
     --header-height: var(--element-vertical-spacing); // height of the header element
 }
+
+// margin auto class
+.margin-auto {
+    margin: auto !important;
+}
+
+// main red outlined buttons
+.red-btn-outline {
+    border-color: var(--main-red-color) !important;
+    color: var(--main-red-color) !important;
+}
+
+// main red contained buttons
+.red-btn-contained {
+    background-color: var(--main-red-color) !important;
+    color: var(--white-color) !important;
+}
