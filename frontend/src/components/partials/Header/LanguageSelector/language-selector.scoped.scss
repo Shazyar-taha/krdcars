@@ -16,7 +16,7 @@
         position: absolute;
         top: inherit;
         right: 0;
-        background-color: var(--oposite-text-color);
+        background-color: var(--oposite-text-color) !important;
         border-radius: calc(var(--x-small-font-size) / 2);
 
         // each language
@@ -25,6 +25,7 @@
             padding: calc(var(--x-small-font-size) / 2);
             text-align: center;
             background-color: var(--body-bg-color);
+            color: var(--head-text-color);
 
             // fisrt language child
             &:first-child {
