@@ -14,8 +14,12 @@ default theme settings
 
 // main red outlined buttons
 .red-btn-outline {
-    border-color: var(--main-red-color) !important;
+    border: 1px solid var(--main-red-color) !important;
     color: var(--main-red-color) !important;
+
+    &:hover {
+        background-color: 1px solid var(--main-red-color) !important;
+    }
 }
 
 // main red contained buttons
