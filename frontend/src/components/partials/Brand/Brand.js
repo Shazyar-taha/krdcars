@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 
 import './brand.scoped.scss'
 
@@ -14,7 +15,7 @@ import './brand.scoped.scss'
  */
 export default function Brand(props) {
     return (
-        <div className="brand" style={{ ...props.style }}>
+        <div className={classNames("brand", props.className)} style={{ ...props.style }}>
             <svg id="brand-logo" style={{ height: '100%' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.73 21.2">
                 <g id="krd" data-name="krd" style={{ fill: props?.krdColor ? props.krdColor : "var(--body-oposite-color)" }}>
                     <path d="M9.84,9.4h7.68L14,18.92,27.28,9.4h8.56L22,20l7.68,10.6H21.12l-7.84-9.52L9.8,30.6H2.12Z" transform="translate(-2.12 -9.4)" />
