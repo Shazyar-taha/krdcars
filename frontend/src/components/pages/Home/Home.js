@@ -2,6 +2,7 @@ import React from 'react'
 
 import './home.scoped.scss'
 import HomeMain from './HomeMain/HomeMain'
+import AdSection from './AdSection/AdSection'
 
 
 
@@ -14,6 +15,9 @@ export default function Home() {
 
             {/* main section of homepage */}
             <HomeMain />
+
+            {/* ad section */}
+            <AdSection />
 
         </div>
     )
