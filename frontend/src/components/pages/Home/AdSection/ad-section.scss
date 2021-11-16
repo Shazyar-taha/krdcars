@@ -1,7 +1,7 @@
 /* ad section */
 
 .ad-section {
-    padding: var(--element-vertical-spacing);
+    margin-top: var(--element-vertical-spacing);
 
     // adding a little padding underneath carousel to prevent overflow issues
     .ads-carousel {
@@ -46,7 +46,6 @@
 // responsive breakpoints
 @media screen and (max-width: 900px) {
     .ad-section {
-        padding: var(--element-vertical-spacing) 0;
         .carousel-item {
             &.intro {
                 .carousel-item-description {
