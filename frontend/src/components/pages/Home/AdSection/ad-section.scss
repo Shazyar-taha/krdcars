@@ -3,6 +3,11 @@
 .ad-section {
     padding: var(--element-vertical-spacing);
 
+    // adding a little padding underneath carousel to prevent overflow issues
+    .ads-carousel {
+        padding-bottom: 2rem;
+    }
+
     // each item in the carousel
     .carousel-item {
         // intro item in the carousel
