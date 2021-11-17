@@ -5,9 +5,9 @@ const config = {
     connectionLimit: 10,
     port: 3325,
     hostname: 'localhost',
-    username: 'root',
+    user: 'root',
     password: 'root',
-    database: 'krdcars',
+    database: 'krdcars'
 }
 
 // create connection pool
