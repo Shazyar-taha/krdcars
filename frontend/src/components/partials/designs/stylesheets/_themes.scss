@@ -12,6 +12,10 @@ default theme settings
     margin: auto !important;
 }
 
+/* Buttons */
+
+// red buttons
+
 // main red outlined buttons
 .red-btn-outline {
     border: 1px solid var(--main-red-color) !important;
@@ -25,5 +29,23 @@ default theme settings
 // main red contained buttons
 .red-btn-contained {
     background-color: var(--main-red-color) !important;
+    color: var(--white-color) !important;
+}
+
+// white buttons
+
+// white outlined buttons
+.white-btn-outline {
+    border: 1px solid var(--white-color) !important;
+    color: var(--white-color) !important;
+
+    &:hover {
+        background-color: 1px solid var(--white-color) !important;
+    }
+}
+
+// white contained buttons
+.white-btn-contained {
+    background-color: var(--white-color) !important;
     color: var(--white-color) !important;
 }
