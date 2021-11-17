@@ -57,7 +57,7 @@ export default function VehicleParts() {
                     </Typography>
 
                     {/* read more button */}
-                    <Link to="/about">
+                    <Link to="/info/parts">
                         <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", Language.getClassName())}>
                             {componentContent.button[Language.getLanguage()]}
                         </Button>
