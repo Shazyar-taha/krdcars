@@ -17,9 +17,9 @@ INNER JOIN
 WHERE 
 	ads.end_date >= curdate()`;
 
-    db.query(sql, (err, rows) => {
+    db.query(sql, async (err, rows) => {
         if (err) throw err;
-        cb(rows);
+        await cb(rows);
     });
 
 }

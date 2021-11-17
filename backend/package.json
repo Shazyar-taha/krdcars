@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Shazyar-taha/krdcars#readme",
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.15"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
