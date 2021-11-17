@@ -4,6 +4,7 @@ import './home.scoped.scss'
 import HomeMain from './HomeMain/HomeMain'
 import AdSection from './AdSection/AdSection'
 import VehicleParts from './VehicleParts/VehicleParts'
+import Store from './Store/Store'
 
 
 
@@ -22,6 +23,9 @@ export default function Home() {
 
             {/* vehicle parts */}
             <VehicleParts />
+
+            {/* home page store section */}
+            <Store />
 
         </div>
     )
