@@ -3,6 +3,7 @@ import React from 'react'
 import './home.scoped.scss'
 import HomeMain from './HomeMain/HomeMain'
 import AdSection from './AdSection/AdSection'
+import VehicleParts from './VehicleParts/VehicleParts'
 
 
 
@@ -18,6 +19,9 @@ export default function Home() {
 
             {/* ad section */}
             <AdSection />
+
+            {/* vehicle parts */}
+            <VehicleParts />
 
         </div>
     )
