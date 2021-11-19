@@ -1,14 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({
-    limit: '10mb',
-    extended: false
+app.use(express.json({
+    limit: '10mb'
 }));
 
+
+// route midllwares
 app.use(routes);
 
 
