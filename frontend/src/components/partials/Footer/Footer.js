@@ -29,9 +29,9 @@ let componentContent = {
         {
             title: { en: 'Contact', kr: 'پەیوەندی کردن' },
             links: [
-                { en: 'Feedback', kr: 'سەرەکی', url: '/contact/feedback' },
-                { en: 'Add Informations', kr: 'زانیاریەکان', url: '/contact/add-info' },
-                { en: 'Create ad', kr: 'پارچەکان', url: '/contact/create-ad' }
+                { en: 'Feedback', kr: 'فیدباک', url: '/contact/feedback' },
+                { en: 'Add Informations', kr: 'زیادکردنی زانیاری', url: '/contact/add-info' },
+                { en: 'Create ad', kr: 'بڵاوکردنەوەی ڕیکلام', url: '/contact/create-ad' }
             ]
         },
         {
