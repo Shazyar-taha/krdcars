@@ -1,7 +1,8 @@
+const router = require('express').Router()
 const adsModel = require('../model/ads');
 
 // get ads
-exports.getAds = (req, res) => {
+router.get('/', (req, res) => {
     let info = [];
     let imgs = [];
     let adsId = 0;
@@ -39,6 +40,8 @@ exports.getAds = (req, res) => {
 
 
         res.send(ads);
-    });
+    })
+})
 
-}
+
+module.exports = router;
