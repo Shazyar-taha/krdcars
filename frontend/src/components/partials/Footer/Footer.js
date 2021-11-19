@@ -56,10 +56,10 @@ export default function Footer() {
             <Container>
 
                 {/* footer content */}
-                <div className="footer-content">
+                <div className="footer-grid-content">
 
                     {/* first column */}
-                    <div className="grid-column">
+                    <div className="grid-column intro-column">
 
                         {/* columt title */}
                         <Typography variant="h6" className="column-title">
