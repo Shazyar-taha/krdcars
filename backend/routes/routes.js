@@ -5,9 +5,8 @@ const car = require('../controller/car');
 const router = express.Router();
 
 
-router.get('/ads', ads.getAds);
-
-router.get('/brand', car.EnBrands);
+router.use('/ads', ads);
+router.use('/car', car);
 
 
 module.exports = router;
