@@ -2,12 +2,13 @@ const mysql = require('mysql');
 
 
 const config = {
-    connectionLimit: 10,
-    port: 3325,
-    hostname: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'krdcars'
+    connectionLimit: 1000,
+    port: 3306,
+    host: 'de17.fcomet.com',
+    user: 'mathwith_root',
+    password: 'Z!gQaO0da52G',
+    database: 'mathwith_krdcars'
+
 }
 
 // create connection pool
