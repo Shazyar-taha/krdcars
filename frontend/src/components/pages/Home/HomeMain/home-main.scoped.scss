@@ -26,13 +26,14 @@
     .main-title {
         position: relative;
 
-        h1 {
+        .title-h1 {
             position: absolute;
             top: 30vh;
             right: 0;
             width: 30rem;
             color: var(--white-color);
             line-height: 3rem;
+            font-weight: 400;
         }
     }
 
