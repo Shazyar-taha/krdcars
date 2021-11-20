@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const carModel = require('../model/car');
-const router = require('../routes/routes');
+
 
 
 // get car brand
 router.get('/brand', (req, res) => {
+    console.log('hello');
     carModel.brands(1, (rows) => {
+        console.log(rows);
         res.send(rows);
     });
 })
