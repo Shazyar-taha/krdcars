@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 
 import './components/partials/designs/stylesheets/main.scss'
 import Language from './components/partials/helpers/Language'
+import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
@@ -36,6 +37,9 @@ export default function App() {
 
             {/* material ui css baselines */}
             <CssBaseline />
+
+            {/* scroll to top on route change */}
+            <ScrollToTop />
 
             {/* header of the document */}
             <Header />
