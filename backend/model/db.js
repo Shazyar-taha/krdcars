@@ -1,13 +1,16 @@
 const mysql = require('mysql');
-
+require('dotenv').config({
+    path: './../.env'
+});
 
 const config = {
-    connectionLimit: 10,
-    port: 3325,
-    hostname: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'krdcars'
+    connectionLimit: 1000,
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+
 }
 
 // create connection pool

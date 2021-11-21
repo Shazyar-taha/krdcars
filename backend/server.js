@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes/routes');
 
+
 const app = express();
 
 app.use(express.json({
@@ -11,6 +12,9 @@ app.use(express.json({
 // route midllwares
 app.use(routes);
 
+app.use((req, res, next) => {
+    res.status(404).send('Not Found');
+});
 
 // running server
 app.listen(process.env.PORT || 5000, () => {

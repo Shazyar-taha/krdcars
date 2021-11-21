@@ -6,6 +6,7 @@ const router = express.Router();
 
 
 router.use('/ads', ads);
+
 router.use('/car', car);
 
 
