@@ -1,5 +1,7 @@
 const mysql = require('mysql');
-require('dotenv').config();
+require('dotenv').config({
+    path: './../.env'
+});
 
 const config = {
     connectionLimit: 1000,
