@@ -63,13 +63,14 @@
 @media screen and (max-width: 500px) {
     .home-main {
         .main-title {
-            h1 {
+            .title-h1 {
                 position: absolute;
                 top: 20vh;
                 right: 0;
                 width: 100%;
                 color: var(--white-color);
                 line-height: 3rem;
+                text-align: right;
             }
         }
         .arrow-down {
