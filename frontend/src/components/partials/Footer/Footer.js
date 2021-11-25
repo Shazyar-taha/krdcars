@@ -20,9 +20,9 @@ let componentContent = {
         {
             title: { en: 'Website routes', kr: 'بەشەکانی وێبسایتەکە' },
             links: [
-                { en: 'Home', kr: 'سەرەکی', url: '/' },
-                { en: 'Infos', kr: 'زانیاریەکان', url: '/infos' },
-                { en: 'parts', kr: 'پارچەکان', url: '/infos/parts' },
+                { en: 'Informations', kr: 'زانیاریەکان', url: '/info' },
+                { en: 'Cars', kr: 'ئوتومبێلەکان', url: '/info/brands' },
+                { en: 'parts', kr: 'پارچەکان', url: '/info/parts' },
                 { en: 'About', kr: 'دەربارە', url: '/about' }
             ]
         },
