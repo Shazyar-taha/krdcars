@@ -16,9 +16,25 @@ import LanguageSelector from './LanguageSelector/LanguageSelector';
 // component content
 let componentContent = {
     navLinks: [
-        { name: { en: 'Home', kr: 'سەرەتا' }, url: '/' },
-        { name: { en: 'Informations', kr: 'زانیاریەکان' }, url: '/info' },
-        { name: { en: 'Vehicle Parts', kr: 'پارچەکان' }, url: '/info/parts' },
+        { name: { en: 'Home', kr: 'سەرەتا' }, url: '/', options: { exact: true } },
+        {
+            name: { en: 'Informations', kr: 'زانیاریەکان' }, url: '/info',
+            options: {
+                isActive: (match, location) => {
+                    // set active only if pathname not started with info/parts
+                    return !location.pathname.startsWith('/info/parts') ? true : false
+                }
+            }
+        },
+        {
+            name: { en: 'Vehicle Parts', kr: 'پارچەکان' }, url: '/info/parts',
+            options: {
+                isActive: (match, location) => {
+                    // set active only if pathname started with info/parts
+                    return location.pathname.startsWith('/info/parts') ? true : false
+                }
+            }
+        },
         { name: { en: 'Violation', kr: 'سەرپێچی' }, url: '/violation' },
         { name: { en: 'Store', kr: 'کڕین و فرۆشتن' }, url: '/store' },
         { name: { en: 'About', kr: 'دەربارە' }, url: '/about' },
@@ -82,7 +98,7 @@ export default function Header() {
                                         to={link.url}
                                         className={classNames("link", { 'white-only': thisPath === '/' })}
                                         onClick={toggleDrawer}
-                                        exact
+                                        {...link.options}
                                     >
                                         {link.name[Language.getLanguage()]}
                                     </NavLink>
