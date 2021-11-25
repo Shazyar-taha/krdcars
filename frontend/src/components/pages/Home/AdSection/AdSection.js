@@ -23,11 +23,9 @@ let componentContent = {
         button: { en: 'Read More', kr: 'زیاتر بخوێنەرەوە' }
     },
     ads: [
-        { name: 'link1' },
-        { name: 'link2' },
-        { name: 'link3' },
-        { name: 'link4' },
-        { name: 'link5' },
+        /**
+         * @TODO : ad
+         */
     ]
 }
 
