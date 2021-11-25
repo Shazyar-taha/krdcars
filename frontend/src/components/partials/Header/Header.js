@@ -21,8 +21,17 @@ let componentContent = {
             name: { en: 'Informations', kr: 'زانیاریەکان' }, url: '/info',
             options: {
                 isActive: (match, location) => {
-                    // set active only if pathname not started with info/parts
-                    return !location.pathname.startsWith('/info/parts') ? true : false
+                    // set active only if pathname not started with info/parts or info/brands
+                    return !location.pathname.startsWith('/info/parts') && !location.pathname.startsWith('/info/brands') ? true : false
+                }
+            }
+        },
+        {
+            name: { en: 'Cars', kr: 'ئوتومبێلەکان' }, url: '/info/brands',
+            options: {
+                isActive: (match, location) => {
+                    // set active only if pathname not started with info/brands
+                    return location.pathname.startsWith('/info/brands') ? true : false
                 }
             }
         },
