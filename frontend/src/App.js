@@ -10,7 +10,7 @@ import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
-import Info from './components/pages/Info/InfoIndex/InfoIndex';
+import InfoIndex from './components/pages/Info/InfoIndex/InfoIndex';
 
 
 
@@ -31,7 +31,6 @@ export default function App() {
         // initiating AOS library
         Aos.init({})
     }, [])
-
 
     return (
         <Router>
@@ -55,7 +54,7 @@ export default function App() {
 
                 {/* info page */}
                 <Route path='/info' exact>
-                    <Info />
+                    <InfoIndex />
                 </Route>
 
             </Switch>
