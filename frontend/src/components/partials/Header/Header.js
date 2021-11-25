@@ -22,7 +22,10 @@ let componentContent = {
             options: {
                 isActive: (match, location) => {
                     // set active only if pathname not started with info/parts or info/brands
-                    return !location.pathname.startsWith('/info/parts') && !location.pathname.startsWith('/info/brands') ? true : false
+                    return (location.pathname.startsWith('/info') &&
+                        !location.pathname.startsWith('/info/parts') &&
+                        !location.pathname.startsWith('/info/brands')
+                        ? true : false)
                 }
             }
         },
