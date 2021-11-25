@@ -1,0 +1,58 @@
+/* info route */
+
+.info {
+    margin: var(--element-vertical-spacing) 0;
+
+    // info page title
+    .info-title {
+        .title-h1 {
+            color: var(--head-text-color);
+            font-size: var(--xx-huge-font-size);
+        }
+    }
+
+    // info grid
+    .info-grid {
+        margin-top: 1rem;
+
+        // each grid card
+        .grid-card {
+            background-color: var(--body-bg-color);
+            border: 2px solid var(--body-oposite-color);
+            box-shadow: 4px 6px 24px 1px rgba(#000, 0.15);
+            transition: transform 0.2s ease;
+
+            // card title
+            .card-title {
+                margin-bottom: 1rem;
+                color: var(--head-text-color);
+                font-weight: 400;
+            }
+
+            // card description
+            .card-description {
+                margin-bottom: -0.5rem;
+                color: var(--body-text-color);
+            }
+
+            // grid card hover
+            &:hover {
+                transform: scale(1.05); // scalling it to make it larger
+            }
+        }
+    }
+}
+
+// responsive breakpoints
+
+@media screen and (max-width: 1000px) {
+    .info {
+        .info-grid {
+            .grid-card {
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+        }
+    }
+}
