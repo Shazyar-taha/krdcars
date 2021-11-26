@@ -1,0 +1,46 @@
+/* info brand page */
+
+.info-brand {
+    margin: var(--element-vertical-spacing) 0;
+    min-height: var(--element-min-height);
+
+    // info brand page title
+    .info-brand-title {
+        .title-h1 {
+            color: var(--head-text-color);
+            font-size: var(--huge-font-size);
+        }
+    }
+
+    // info brand grid
+    .info-brand-grid {
+        margin: 0;
+        margin-top: 5rem;
+        width: 100%;
+
+        // each grid item
+        .grid-item {
+            padding: 0.5rem;
+            background-color: var(--body-bg-color);
+            transition: transform 0.2s ease;
+            text-align: center;
+
+            // grid item image
+            .item-image {
+                margin: auto;
+                height: 6rem;
+            }
+
+            // item title
+            .item-title {
+                margin-top: 1.5rem;
+                color: var(--body-text-color);
+            }
+
+            // grid item hover
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}

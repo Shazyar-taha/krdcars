@@ -11,6 +11,8 @@ import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import InfoIndex from './components/pages/Info/InfoIndex/InfoIndex';
+import InfoBrands from './components/pages/Info/InfoBrands/InfoBrands';
+
 
 
 
@@ -55,6 +57,10 @@ export default function App() {
                 {/* info page */}
                 <Route path='/info' exact>
                     <InfoIndex />
+                </Route>
+                {/* info/brands page */}
+                <Route path='/info/brands' exact>
+                    <InfoBrands />
                 </Route>
 
             </Switch>
