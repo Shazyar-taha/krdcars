@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { CardContent, Card, Container, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 
-import './info-index.scoped.scss'
+import '../info.scoped.scss'
 import Language from '../../../partials/helpers/Language'
 
 
@@ -67,7 +67,7 @@ export default function Info() {
                 </div>
 
                 {/* info grid */}
-                <Grid container className="info-grid" spacing={4}>
+                <Grid container className="info-outlined-grid" spacing={4}>
 
                     {/* grid card */}
                     {componentContent.infos.map((info, i) => (
