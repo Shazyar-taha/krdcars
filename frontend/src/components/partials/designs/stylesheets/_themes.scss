@@ -5,6 +5,7 @@ default theme settings
 :root {
     --element-vertical-spacing: 5rem; // vertical margin or padding spacing between elements
     --header-height: var(--element-vertical-spacing); // height of the header element
+    --element-min-height: 60vh; // min height of elements
 }
 
 // margin auto class
