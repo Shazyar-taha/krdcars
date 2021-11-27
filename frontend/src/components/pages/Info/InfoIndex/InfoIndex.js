@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import { CardContent, Card, Container, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 
@@ -9,6 +10,16 @@ import Language from '../../../partials/helpers/Language'
 
 // component content
 let componentContent = {
+    head: {
+        title: {
+            en: 'Informations',
+            kr: 'زانیاریەکان'
+        },
+        description: {
+            en: 'Informations list provided by KrdCars',
+            kr: 'لیستی زانیاریەکان'
+        }
+    },
     title: {
         en: 'Informations',
         kr: 'زانیاریەکان'
@@ -56,49 +67,64 @@ let componentContent = {
  */
 export default function Info() {
     return (
-        <div className="info" dir="auto">
-            <Container>
+        <>
+            {/* overriding document head */}
+            <Helmet>
+                <title>{componentContent.head.title[Language.getLanguage()]} | KrdCars</title>
+                <meta name="description" content={componentContent.head.description[Language.getLanguage()]} />
 
-                {/* info title */}
-                <div className="info-title">
-                    <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                        {componentContent.title[Language.getLanguage()]}
-                    </Typography>
-                </div>
+                <meta property="og:title" content={`${componentContent.head.title[Language.getLanguage()]} | KrdCars`} />
+                <meta property="og:description" content={componentContent.head.description[Language.getLanguage()]} />
 
-                {/* info grid */}
-                <Grid container className="info-outlined-grid" spacing={4}>
-
-                    {/* grid card */}
-                    {componentContent.infos.map((info, i) => (
-                        <Grid key={i} item xs={12} md={6} lg={4}>
-                            <Link to={`/info/${info.url}`}>
-                                <Card className="grid-card">
-                                    <CardContent>
-
-                                        {/* card title */}
-                                        <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                            {info.title[Language.getLanguage()]}
-                                        </Typography>
-
-                                        {/* card description */}
-                                        <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                            {info.description[Language.getLanguage()]}
-                                        </Typography>
-
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </Grid>
-                    ))}
-                </Grid>
+                <meta name="keywords" content="KrdCars, cars, car pars, car shop, kurdstan cars" />
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
 
 
-                {/**
+            <div className="info" dir="auto">
+                <Container>
+
+                    {/* info title */}
+                    <div className="info-title">
+                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
+                            {componentContent.title[Language.getLanguage()]}
+                        </Typography>
+                    </div>
+
+                    {/* info grid */}
+                    <Grid container className="info-outlined-grid" spacing={4}>
+
+                        {/* grid card */}
+                        {componentContent.infos.map((info, i) => (
+                            <Grid key={i} item xs={12} md={6} lg={4}>
+                                <Link to={`/info/${info.url}`}>
+                                    <Card className="grid-card">
+                                        <CardContent>
+
+                                            {/* card title */}
+                                            <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
+                                                {info.title[Language.getLanguage()]}
+                                            </Typography>
+
+                                            {/* card description */}
+                                            <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
+                                                {info.description[Language.getLanguage()]}
+                                            </Typography>
+
+                                        </CardContent>
+                                    </Card>
+                                </Link>
+                            </Grid>
+                        ))}
+                    </Grid>
+
+
+                    {/**
                 * @TODO : ad
                 */}
 
-            </Container>
-        </div>
+                </Container>
+            </div>
+        </>
     )
 }

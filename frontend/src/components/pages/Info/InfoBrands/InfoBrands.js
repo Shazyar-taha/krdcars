@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import { Container, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 import kebabCase from 'lodash/kebabCase'
 
 import '../info.scoped.scss'
 import Language from '../../../partials/helpers/Language'
-import { Link } from 'react-router-dom'
 
 
 
 // component content
 let componentContent = {
+    head: {
+        title: {
+            en: 'Brands',
+            kr: 'براندەکان'
+        },
+        description: {
+            en: 'Brands list',
+            kr: 'لیستی براندەکان'
+        }
+    },
     title: {
-        en: 'Car Production Companies',
+        en: 'Car Brands',
         kr: 'کۆمپانیاکانی بەرهەمهێنانی ئوتومبێل'
     },
 }
@@ -47,40 +58,54 @@ export default function InfoBrands() {
     }, [])
 
 
-
     return (
-        <div className="info info-brands" dir="auto">
-            <Container>
+        <>
+            {/* overriding document head */}
+            <Helmet>
+                <title>{componentContent.head.title[Language.getLanguage()]} | KrdCars</title>
+                <meta name="description" content={componentContent.head.description[Language.getLanguage()]} />
 
-                {/* info title */}
-                <div className="info-title">
-                    <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                        {componentContent.title[Language.getLanguage()]}
-                    </Typography>
-                </div>
+                <meta property="og:title" content={`${componentContent.head.title[Language.getLanguage()]} | KrdCars`} />
+                <meta property="og:description" content={componentContent.head.description[Language.getLanguage()]} />
 
-                {/* brand list */}
-                <Grid container className="info-brands-grid" spacing={4}>
+                <meta name="keywords" content="KrdCars, cars, car pars, car shop, kurdstan cars" />
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
 
-                    {/* grid item */}
-                    {brands.map((brand, index) => (
-                        <Grid key={index} item xs={6} sm={4} md={3} className="grid-item">
-                            <Link to={`/info/brands/${kebabCase(brand.name.en)}`}>
 
-                                {/* item image */}
-                                <img src={brand.image} alt={brand[Language.getLanguage()]} className="item-image" />
+            <div className="info info-brands" dir="auto">
+                <Container>
 
-                                {/* item title */}
-                                <Typography variant="h5" className={classNames("item-title", Language.getClassName())}>
-                                    {brand.name[Language.getLanguage()]}
-                                </Typography>
-                            </Link>
-                        </Grid>
-                    ))}
+                    {/* info title */}
+                    <div className="info-title">
+                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
+                            {componentContent.title[Language.getLanguage()]}
+                        </Typography>
+                    </div>
 
-                </Grid>
+                    {/* brand list */}
+                    <Grid container className="info-brands-grid" spacing={4}>
 
-            </Container>
-        </div>
+                        {/* grid item */}
+                        {brands.map((brand, index) => (
+                            <Grid key={index} item xs={6} sm={4} md={3} className="grid-item">
+                                <Link to={`/info/brands/${kebabCase(brand.name.en)}`}>
+
+                                    {/* item image */}
+                                    <img src={brand.image} alt={brand[Language.getLanguage()]} className="item-image" />
+
+                                    {/* item title */}
+                                    <Typography variant="h5" className={classNames("item-title", Language.getClassName())}>
+                                        {brand.name[Language.getLanguage()]}
+                                    </Typography>
+                                </Link>
+                            </Grid>
+                        ))}
+
+                    </Grid>
+
+                </Container>
+            </div>
+        </>
     )
 }

@@ -6,6 +6,7 @@ import classNames from 'classnames'
 
 import '../info.scoped.scss'
 import Language from '../../../partials/helpers/Language'
+import { Helmet } from 'react-helmet'
 
 
 
@@ -55,44 +56,59 @@ export default function InfoBrandPreview() {
 
 
     return (
-        <div className="info info-brand-preview" dir="auto">
-            <Container>
+        <>
+            {/* overriding document head */}
+            <Helmet>
+                <title>{datas.brand[Language.getLanguage()]} | KrdCars</title>
+                <meta name="description" content={datas.brand[Language.getLanguage()]} />
 
-                {/* info title */}
-                <div className="info-title">
-                    <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                        {datas.brand[Language.getLanguage()]}
-                    </Typography>
-                </div>
+                <meta property="og:title" content={`${datas.brand[Language.getLanguage()]} | KrdCars`} />
+                <meta property="og:description" content={datas.brand[Language.getLanguage()]} />
 
-                {/* info grid */}
-                <Grid container className="info-outlined-grid" spacing={4}>
+                <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${datas.brand.en}`} />
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
 
-                    {/* grid card */}
-                    {datas.models.map((model, i) => (
-                        <Grid key={i} item xs={12} md={6} lg={4}>
-                            <Link to={`/info/brands/${kebabCase(datas.brand.en)}/${kebabCase(model.name.en)}`}>
-                                <Card className="grid-card">
-                                    <CardContent>
 
-                                        {/* card title */}
-                                        <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                            {model.name[Language.getLanguage()]}
-                                        </Typography>
+            <div className="info info-brand-preview" dir="auto">
+                <Container>
 
-                                        {/* card description */}
-                                        <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                            {model.description[Language.getLanguage()]}
-                                        </Typography>
+                    {/* info title */}
+                    <div className="info-title">
+                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
+                            {datas.brand[Language.getLanguage()]}
+                        </Typography>
+                    </div>
 
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </Grid>
-                    ))}
-                </Grid>
+                    {/* info grid */}
+                    <Grid container className="info-outlined-grid" spacing={4}>
 
-            </Container>
-        </div>
+                        {/* grid card */}
+                        {datas.models.map((model, i) => (
+                            <Grid key={i} item xs={12} md={6} lg={4}>
+                                <Link to={`/info/brands/${kebabCase(datas.brand.en)}/${kebabCase(model.name.en)}`}>
+                                    <Card className="grid-card">
+                                        <CardContent>
+
+                                            {/* card title */}
+                                            <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
+                                                {model.name[Language.getLanguage()]}
+                                            </Typography>
+
+                                            {/* card description */}
+                                            <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
+                                                {model.description[Language.getLanguage()]}
+                                            </Typography>
+
+                                        </CardContent>
+                                    </Card>
+                                </Link>
+                            </Grid>
+                        ))}
+                    </Grid>
+
+                </Container>
+            </div>
+        </>
     )
 }
