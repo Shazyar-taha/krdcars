@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
+import { kebabCase } from 'lodash'
 import classNames from 'classnames'
 
 import '../info.scoped.scss'
@@ -68,20 +69,20 @@ export default function InfoBrandPreview() {
                 <Grid container className="info-outlined-grid" spacing={4}>
 
                     {/* grid card */}
-                    {datas.models.map((info, i) => (
+                    {datas.models.map((model, i) => (
                         <Grid key={i} item xs={12} md={6} lg={4}>
-                            <Link to={`/info/${info.url}`}>
+                            <Link to={`/info/brands/${kebabCase(datas.brand.en)}/${kebabCase(model.name.en)}`}>
                                 <Card className="grid-card">
                                     <CardContent>
 
                                         {/* card title */}
                                         <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                            {info.name[Language.getLanguage()]}
+                                            {model.name[Language.getLanguage()]}
                                         </Typography>
 
                                         {/* card description */}
                                         <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                            {info.description[Language.getLanguage()]}
+                                            {model.description[Language.getLanguage()]}
                                         </Typography>
 
                                     </CardContent>
