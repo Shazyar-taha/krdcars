@@ -2,6 +2,7 @@
 
 .info {
     margin: var(--element-vertical-spacing) 0;
+    min-height: var(--element-min-height);
 
     // info page title
     .info-title {
@@ -24,13 +25,14 @@
 
             // card title
             .card-title {
-                margin-bottom: 1rem;
+                margin-bottom: -0.5rem;
                 color: var(--head-text-color);
                 font-weight: 400;
             }
 
             // card description
             .card-description {
+                margin-top: 1.5rem;
                 margin-bottom: -0.5rem;
                 color: var(--body-text-color);
             }
