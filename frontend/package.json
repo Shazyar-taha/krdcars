@@ -56,8 +56,7 @@
     "eject": "react-scripts eject",
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
-    "react-test": "react-scripts test",
-    "prebuild": "npm install"
+    "react-test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [

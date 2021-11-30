@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "prebuild": "npm install"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
