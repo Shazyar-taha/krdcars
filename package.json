@@ -26,9 +26,7 @@
     "url": "https://github.com/Shazyar-taha/krdcars/issues"
   },
   "homepage": "https://github.com/Shazyar-taha/krdcars#readme",
-  "dependencies": {},
   "devDependencies": {
-    "concurrently": "^6.3.0",
-    "nodemon": "^2.0.14"
+    "concurrently": "^6.3.0"
   }
 }
