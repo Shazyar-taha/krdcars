@@ -10,9 +10,9 @@ import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
-import InfoIndex from './components/pages/Info/InfoIndex/InfoIndex';
+import InfoIndex from './components/pages/Info/InfoIndex';
 import InfoBrands from './components/pages/Info/InfoBrands/InfoBrands';
-import InfoBrandPreview from './components/pages/Info/InfoBrandPreview/InfoBrandPreview';
+import InfoBrandModels from './components/pages/Info/InfoBrands/BrandModels';
 
 
 
@@ -65,7 +65,7 @@ export default function App() {
                 </Route>
                 {/* info/brands/:brand page */}
                 <Route path='/info/brands/:brand' exact>
-                    <InfoBrandPreview />
+                    <InfoBrandModels />
                 </Route>
 
             </Switch>

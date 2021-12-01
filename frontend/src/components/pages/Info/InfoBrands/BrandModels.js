@@ -4,7 +4,6 @@ import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
 import { kebabCase } from 'lodash'
 import classNames from 'classnames'
 
-import '../info.scoped.scss'
 import Language from '../../../partials/helpers/Language'
 import { Helmet } from 'react-helmet'
 

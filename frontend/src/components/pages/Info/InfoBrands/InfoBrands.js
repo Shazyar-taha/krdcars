@@ -5,7 +5,6 @@ import { Container, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 import kebabCase from 'lodash/kebabCase'
 
-import '../info.scoped.scss'
 import Language from '../../../partials/helpers/Language'
 
 
