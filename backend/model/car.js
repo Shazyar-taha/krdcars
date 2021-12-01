@@ -1,8 +1,8 @@
 const db = require('./db');
 
 
-// fetch all brands from table brand
-exports.brands = (language_id, cb) => {
+// fetch all brands from brand table 
+exports.brands = (language_id) => {
     const sql = `SELECT 
 	                id,
                     brand_name,
@@ -13,31 +13,24 @@ exports.brands = (language_id, cb) => {
                 FROM 
                 	brand 
                 WHERE language_id = ?;`;
-
-    db.query(sql, [language_id], async (err, rows) => {
-        if (err) throw err;
-        await cb(rows);
-    })
-
+    return db.execute(sql, [language_id]);
 }
 
 // fetch all models from model table
 exports.models = (language_id, cb) => {
     const sql = `SELECT 
 	model_name
-FROM
+            FROM
 	model
 WHERE language_id = ?`;
 
-    db.query(sql, [language_id], async (err, rows) => {
-        if (err) throw err;
-        await cb(rows);
-    })
+    return db.execute(sql, [language_id]);
+
 }
 
 
 // fetch all cars from car table
-exports.cars = (language_id, cb) => {
+exports.cars = (language_id) => {
     const sql = `SELECT 
 	car.car_name,
     br.brand_name,
@@ -56,10 +49,5 @@ INNER JOIN
 	car_type ct ON ct.id = car.car_type_id
 WHERE 
 	language_id = ?`;
-
-    db.query(sql, [language_id], async (err, rows) => {
-        if (err) throw err;
-        await cb(rows);
-    })
-
+    return db.execute(sql, [language_id]);
 }

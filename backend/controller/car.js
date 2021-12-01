@@ -3,13 +3,15 @@ const carModel = require('../model/car');
 
 
 
-// get car brand
+// get car brands
 router.get('/brand', (req, res) => {
-    console.log('hello');
-    carModel.brands(1, (rows) => {
+    carModel.brands(1).then(([rows, fieldData]) => {
         console.log(rows);
         res.send(rows);
+    }).catch((err) => {
+        console.log(err);
     });
+
 })
 
 

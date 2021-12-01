@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const config = {
     connectionLimit: 1000,
@@ -14,10 +14,10 @@ const config = {
 const pool = mysql.createPool(config);
 
 // connect to db
-pool.getConnection((err, connection) => {
-    if (err) throw err;
-    console.log('Mysql Connected');
-})
+// pool.getConnection((err, connection) => {
+//     if (err) throw err;
+//     console.log('Mysql Connected');
+// })
 
 
-module.exports = pool;
+module.exports = pool.promise();
