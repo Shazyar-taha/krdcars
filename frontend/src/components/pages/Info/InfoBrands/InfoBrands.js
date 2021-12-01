@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { Container } from '@mui/material'
 
-import Language from '../../../partials/helpers/Language'
 import { InfoCenteredGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
 
@@ -58,16 +57,7 @@ export default function InfoBrands() {
     return (
         <>
             {/* overriding document head */}
-            <Helmet>
-                <title>{componentContent.head.title[Language.getLanguage()]} | KrdCars</title>
-                <meta name="description" content={componentContent.head.description[Language.getLanguage()]} />
-
-                <meta property="og:title" content={`${componentContent.head.title[Language.getLanguage()]} | KrdCars`} />
-                <meta property="og:description" content={componentContent.head.description[Language.getLanguage()]} />
-
-                <meta name="keywords" content="KrdCars, cars, car pars, car shop, kurdstan cars" />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
+            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
             <div className="info-route info-brands" dir="auto">

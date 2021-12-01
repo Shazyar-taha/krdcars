@@ -1,10 +1,9 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { Container } from '@mui/material'
 
 import './infoHelpers/info.scss'
 import { InfoTitle, InfoOutlinedGrid } from './infoHelpers/infoComponents'
-import Language from '../../partials/helpers/Language'
+import CustomHelmet from '../../partials/helpers/CustomHelmet'
 
 
 // component content
@@ -68,16 +67,7 @@ export default function Info() {
     return (
         <>
             {/* overriding document head */}
-            <Helmet>
-                <title>{componentContent.head.title[Language.getLanguage()]} | KrdCars</title>
-                <meta name="description" content={componentContent.head.description[Language.getLanguage()]} />
-
-                <meta property="og:title" content={`${componentContent.head.title[Language.getLanguage()]} | KrdCars`} />
-                <meta property="og:description" content={componentContent.head.description[Language.getLanguage()]} />
-
-                <meta name="keywords" content="KrdCars, cars, car pars, car shop, kurdstan cars" />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
+            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
             {/* info inex page */}

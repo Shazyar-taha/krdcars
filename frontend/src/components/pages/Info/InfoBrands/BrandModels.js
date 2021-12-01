@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 import { Container } from '@mui/material'
 
-import Language from '../../../partials/helpers/Language'
 import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
 
@@ -56,16 +55,7 @@ export default function InfoBrandPreview() {
     return (
         <>
             {/* overriding document head */}
-            <Helmet>
-                <title>{datas.brand[Language.getLanguage()]} | KrdCars</title>
-                <meta name="description" content={datas.brand[Language.getLanguage()]} />
-
-                <meta property="og:title" content={`${datas.brand[Language.getLanguage()]} | KrdCars`} />
-                <meta property="og:description" content={datas.brand[Language.getLanguage()]} />
-
-                <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${datas.brand.en}`} />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
+            <CustomHelmet title={datas.brand} description={datas.brand} />
 
 
             <div className="info-route info-brand-preview" dir="auto">

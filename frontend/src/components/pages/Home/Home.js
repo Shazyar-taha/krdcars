@@ -1,12 +1,11 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 
 import './home.scoped.scss'
 import HomeMain from './HomeMain/HomeMain'
 import AdSection from './AdSection/AdSection'
 import VehicleParts from './VehicleParts/VehicleParts'
 import Store from './Store/Store'
-import Language from '../../partials/helpers/Language'
+import CustomHelmet from '../../partials/helpers/CustomHelmet'
 
 
 
@@ -33,16 +32,7 @@ export default function Home() {
     return (
         <>
             {/* overriding document head */}
-            <Helmet>
-                <title>{componentContent.head.title[Language.getLanguage()]}</title>
-                <meta name="description" content={componentContent.head.description[Language.getLanguage()]} />
-
-                <meta property="og:title" content={componentContent.head.title[Language.getLanguage()]} />
-                <meta property="og:description" content={componentContent.head.description[Language.getLanguage()]} />
-                
-                <meta name="keywords" content="KrdCars, cars, car pars, car shop, kurdstan cars" />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
+            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
             <div className="home-page">
