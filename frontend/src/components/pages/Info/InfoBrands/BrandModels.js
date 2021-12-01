@@ -69,7 +69,7 @@ export default function InfoBrandPreview() {
             </Helmet>
 
 
-            <div className="info info-brand-preview" dir="auto">
+            <div className="info-route info-brand-preview" dir="auto">
                 <Container>
 
                     {/* info title */}

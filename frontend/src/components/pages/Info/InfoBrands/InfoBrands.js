@@ -72,7 +72,7 @@ export default function InfoBrands() {
             </Helmet>
 
 
-            <div className="info info-brands" dir="auto">
+            <div className="info-route info-brands" dir="auto">
                 <Container>
 
                     {/* info title */}

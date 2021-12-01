@@ -81,7 +81,7 @@ export default function Info() {
             </Helmet>
 
 
-            <div className="info" dir="auto">
+            <div className="info-route" dir="auto">
                 <Container>
 
                     {/* info title */}
