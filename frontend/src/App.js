@@ -13,6 +13,7 @@ import Home from './components/pages/Home/Home';
 import InfoIndex from './components/pages/Info/InfoIndex';
 import InfoBrands from './components/pages/Info/InfoBrands/InfoBrands';
 import InfoBrandModels from './components/pages/Info/InfoBrands/BrandModels';
+import InfoCarParts from './components/pages/Info/InfoCarParts/InfoCarParts';
 
 
 
@@ -59,6 +60,7 @@ export default function App() {
                 <Route path='/info' exact>
                     <InfoIndex />
                 </Route>
+
                 {/* info/brands page */}
                 <Route path='/info/brands' exact>
                     <InfoBrands />
@@ -66,6 +68,11 @@ export default function App() {
                 {/* info/brands/:brand page */}
                 <Route path='/info/brands/:brand' exact>
                     <InfoBrandModels />
+                </Route>
+
+                {/* info/brands/:brand page */}
+                <Route path='/info/parts' exact>
+                    <InfoCarParts />
                 </Route>
 
             </Switch>
