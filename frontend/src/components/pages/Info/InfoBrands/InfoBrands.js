@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { Container, Grid, Typography } from '@mui/material'
-import classNames from 'classnames'
-import kebabCase from 'lodash/kebabCase'
+import { Container } from '@mui/material'
 
 import Language from '../../../partials/helpers/Language'
+import { InfoCenteredGrid, InfoTitle } from '../infoHelpers/infoComponents'
 
 
 
@@ -44,11 +42,11 @@ export default function InfoBrands() {
         */
         const response = [
             {
-                name: { en: 'Mitsubishi', kr: 'میسۆبیشی' },
+                title: { en: 'Mitsubishi', kr: 'میسۆبیشی' },
                 image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mitsubishi_logo.svg/2381px-Mitsubishi_logo.svg.png'
             },
             {
-                name: { en: 'Maseraty', kr: 'ماسێراتی' },
+                title: { en: 'Maseraty', kr: 'ماسێراتی' },
                 image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgsvwop0SIxlaP4knSlTeF8M-0MUQu2hc7g&usqp=CAU'
             },
         ]
@@ -76,32 +74,10 @@ export default function InfoBrands() {
                 <Container>
 
                     {/* info title */}
-                    <div className="info-title">
-                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                            {componentContent.title[Language.getLanguage()]}
-                        </Typography>
-                    </div>
+                    <InfoTitle title={componentContent.title} />
 
                     {/* brand list */}
-                    <Grid container className="info-brands-grid" spacing={4}>
-
-                        {/* grid item */}
-                        {brands.map((brand, index) => (
-                            <Grid key={index} item xs={6} sm={4} md={3} className="grid-item">
-                                <Link to={`/info/brands/${kebabCase(brand.name.en)}`}>
-
-                                    {/* item image */}
-                                    <img src={brand.image} alt={brand[Language.getLanguage()]} className="item-image" />
-
-                                    {/* item title */}
-                                    <Typography variant="h5" className={classNames("item-title", Language.getClassName())}>
-                                        {brand.name[Language.getLanguage()]}
-                                    </Typography>
-                                </Link>
-                            </Grid>
-                        ))}
-
-                    </Grid>
+                    <InfoCenteredGrid list={brands} fullUrl="/info/brands" />
 
                 </Container>
             </div>

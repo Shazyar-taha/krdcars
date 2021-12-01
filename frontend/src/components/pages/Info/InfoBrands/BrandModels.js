@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
-import { kebabCase } from 'lodash'
-import classNames from 'classnames'
+import { Helmet } from 'react-helmet'
+import { useParams } from 'react-router'
+import { Container } from '@mui/material'
 
 import Language from '../../../partials/helpers/Language'
-import { Helmet } from 'react-helmet'
+import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
 
 
 
@@ -36,7 +35,7 @@ export default function InfoBrandPreview() {
             },
             models: [
                 {
-                    name: { en: 'item1', kr: 'بەرهەمی ١' },
+                    title: { en: 'item1', kr: 'بەرهەمی ١' },
                     description: {
                         en: 'Information about car problems and their best solution',
                         kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
@@ -73,38 +72,10 @@ export default function InfoBrandPreview() {
                 <Container>
 
                     {/* info title */}
-                    <div className="info-title">
-                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                            {datas.brand[Language.getLanguage()]}
-                        </Typography>
-                    </div>
+                    <InfoTitle title={datas.brand} />
 
-                    {/* info grid */}
-                    <Grid container className="info-outlined-grid" spacing={4}>
-
-                        {/* grid card */}
-                        {datas.models.map((model, i) => (
-                            <Grid key={i} item xs={12} md={6} lg={4}>
-                                <Link to={`/info/brands/${kebabCase(datas.brand.en)}/${kebabCase(model.name.en)}`}>
-                                    <Card className="grid-card">
-                                        <CardContent>
-
-                                            {/* card title */}
-                                            <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                                {model.name[Language.getLanguage()]}
-                                            </Typography>
-
-                                            {/* card description */}
-                                            <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                                {model.description[Language.getLanguage()]}
-                                            </Typography>
-
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    {/* brand list */}
+                    <InfoOutlinedGrid list={datas.models} fullUrl={`/info/brands/${brand}`} />
 
                 </Container>
             </div>

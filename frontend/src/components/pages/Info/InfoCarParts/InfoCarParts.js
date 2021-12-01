@@ -1,11 +1,9 @@
+import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
-import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
-import classNames from 'classnames'
-import { kebabCase } from 'lodash'
 
 import Language from '../../../partials/helpers/Language'
+import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
 
 
 
@@ -43,16 +41,16 @@ export default function InfoCarParts() {
         * @TODO : fetch the parts list
         */
         const response = // await fetch(`/api/info/part`)
-        [
+            [
                 {
-                    name: { en: 'item1', kr: 'بەرهەمی ١' },
+                    title: { en: 'item1', kr: 'بەرهەمی ١' },
                     description: {
                         en: 'Information about car problems and their best solution',
                         kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
                     },
                 },
             ]
-        
+
 
         // setting the datas
         setParts(response)
@@ -79,38 +77,10 @@ export default function InfoCarParts() {
                 <Container>
 
                     {/* info title */}
-                    <div className="info-title">
-                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                            {componentContent.title[Language.getLanguage()]}
-                        </Typography>
-                    </div>
+                    <InfoTitle title={componentContent.title} />
 
-                    {/* info grid */}
-                    <Grid container className="info-outlined-grid" spacing={4}>
-
-                        {/* grid card */}
-                        {parts.map((part, i) => (
-                            <Grid key={i} item xs={12} md={6} lg={4}>
-                                <Link to={`/info/parts/${kebabCase(part.name.en)}`}>
-                                    <Card className="grid-card">
-                                        <CardContent>
-
-                                            {/* card title */}
-                                            <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                                {part.name[Language.getLanguage()]}
-                                            </Typography>
-
-                                            {/* card description */}
-                                            <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                                {part.description[Language.getLanguage()]}
-                                            </Typography>
-
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    {/* brand list */}
+                    <InfoOutlinedGrid list={parts} fullUrl={`/parts`} />
 
                 </Container>
             </div>

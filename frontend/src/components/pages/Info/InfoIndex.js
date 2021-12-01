@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { CardContent, Card, Container, Grid, Typography } from '@mui/material'
-import classNames from 'classnames'
+import { Container } from '@mui/material'
 
 import './infoHelpers/info.scss'
+import { InfoTitle, InfoOutlinedGrid } from './infoHelpers/infoComponents'
 import Language from '../../partials/helpers/Language'
 
 
@@ -81,47 +80,20 @@ export default function Info() {
             </Helmet>
 
 
+            {/* info inex page */}
             <div className="info-route" dir="auto">
                 <Container>
 
                     {/* info title */}
-                    <div className="info-title">
-                        <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                            {componentContent.title[Language.getLanguage()]}
-                        </Typography>
-                    </div>
+                    <InfoTitle title={componentContent.title} />
 
                     {/* info grid */}
-                    <Grid container className="info-outlined-grid" spacing={4}>
-
-                        {/* grid card */}
-                        {componentContent.infos.map((info, i) => (
-                            <Grid key={i} item xs={12} md={6} lg={4}>
-                                <Link to={`/info/${info.url}`}>
-                                    <Card className="grid-card">
-                                        <CardContent>
-
-                                            {/* card title */}
-                                            <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                                {info.title[Language.getLanguage()]}
-                                            </Typography>
-
-                                            {/* card description */}
-                                            <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                                {info.description[Language.getLanguage()]}
-                                            </Typography>
-
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <InfoOutlinedGrid list={componentContent.infos} fullUrl="/info" />
 
 
                     {/**
-                * @TODO : ad
-                */}
+                    * @TODO : ad
+                    */}
 
                 </Container>
             </div>
