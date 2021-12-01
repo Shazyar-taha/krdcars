@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import { CardContent, Card, Container, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 
-import './info.scss'
+import './infoHelpers/info.scss'
 import Language from '../../partials/helpers/Language'
 
 
