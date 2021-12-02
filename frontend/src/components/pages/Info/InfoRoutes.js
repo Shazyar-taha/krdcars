@@ -14,23 +14,23 @@ import InfoCarParts from './InfoCarParts/InfoCarParts'
 export default function InfoRoutes() {
 
     // this route path
-    const { path } = useRouteMatch()
+    const { url } = useRouteMatch()
 
 
     return (
         <>
             {/* info root route */}
-            <Route path={path} exact>
+            <Route path={url} exact>
                 <InfoIndex />
             </Route>
 
 
             {/* info brands route */}
-            <Route path={`${path}/brands`} exact>
+            <Route path={`${url}/brands`} exact>
                 <InfoBrands />
             </Route>
             {/* brand preview */}
-            <Route path={`${path}/brands/:brandId`} exact>
+            <Route path={`${url}/brands/:brandName`} exact>
                 <BrandModels />
             </Route>
 

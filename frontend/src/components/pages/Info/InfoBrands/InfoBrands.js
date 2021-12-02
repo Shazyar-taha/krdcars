@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
 import { InfoCenteredGrid, InfoTitle } from '../infoHelpers/infoComponents'
@@ -30,6 +31,10 @@ let componentContent = {
  *  @return {Element} : info brands page
  */
 export default function InfoBrands() {
+
+    // this route path
+    const { url } = useRouteMatch()
+
 
     // brand list state
     const [brands, setBrands] = useState([]);
@@ -67,7 +72,7 @@ export default function InfoBrands() {
                     <InfoTitle title={componentContent.title} />
 
                     {/* brand list */}
-                    <InfoCenteredGrid list={brands} fullUrl="/info/brands" />
+                    <InfoCenteredGrid list={brands} fullUrl={url} />
 
                 </Container>
             </div>

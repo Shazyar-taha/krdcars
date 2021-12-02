@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
 import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
@@ -12,8 +12,12 @@ import CustomHelmet from '../../../partials/helpers/CustomHelmet'
  */
 export default function InfoBrandPreview() {
 
+    // this route url
+    const { url } = useRouteMatch()
+
+
     // brand name from the request params
-    const { brand } = useParams()
+    const { brandName } = useParams()
 
     // brand and model datas
     const [datas, setDatas] = useState({
@@ -29,11 +33,12 @@ export default function InfoBrandPreview() {
         const response = // await fetch(`/api/brand/get-models/${brand}`)
         {
             brand: {
-                en: brand,
+                en: brandName,
                 kr: 'میسۆبیشی'
             },
             models: [
                 {
+                    url: 'item-1',
                     title: { en: 'item1', kr: 'بەرهەمی ١' },
                     description: {
                         en: 'Information about car problems and their best solution',
@@ -65,7 +70,7 @@ export default function InfoBrandPreview() {
                     <InfoTitle title={datas.brand} />
 
                     {/* brand list */}
-                    <InfoOutlinedGrid list={datas.models} fullUrl={`/info/brands/${brand}`} />
+                    <InfoOutlinedGrid list={datas.models} fullUrl={url} />
 
                 </Container>
             </div>

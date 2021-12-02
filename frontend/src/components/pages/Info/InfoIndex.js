@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
 import './infoHelpers/info.scss'
@@ -64,6 +65,11 @@ let componentContent = {
  *  @return {Element} : info index page
  */
 export default function InfoIndex() {
+
+    // this route path
+    const { url } = useRouteMatch()
+
+
     return (
         <>
             {/* overriding document head */}
@@ -78,7 +84,7 @@ export default function InfoIndex() {
                     <InfoTitle title={componentContent.title} />
 
                     {/* info grid */}
-                    <InfoOutlinedGrid list={componentContent.infos} fullUrl="/info" />
+                    <InfoOutlinedGrid list={componentContent.infos} fullUrl={url} />
 
 
                     {/**

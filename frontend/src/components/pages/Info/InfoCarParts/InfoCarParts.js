@@ -1,5 +1,6 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { useRouteMatch } from 'react-router'
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
@@ -31,6 +32,10 @@ let componentContent = {
  */
 export default function InfoCarParts() {
 
+    // this route url
+    const { url } = useRouteMatch()
+
+
     // parts datas
     const [parts, setParts] = useState([]);
 
@@ -42,6 +47,7 @@ export default function InfoCarParts() {
         const response = // await fetch(`/api/info/part`)
             [
                 {
+                    url: 'product-1',
                     title: { en: 'item1', kr: 'بەرهەمی ١' },
                     description: {
                         en: 'Information about car problems and their best solution',
@@ -70,7 +76,7 @@ export default function InfoCarParts() {
                     <InfoTitle title={componentContent.title} />
 
                     {/* brand list */}
-                    <InfoOutlinedGrid list={parts} fullUrl={`/parts`} />
+                    <InfoOutlinedGrid list={parts} fullUrl={url} />
 
                 </Container>
             </div>
