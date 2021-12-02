@@ -10,10 +10,7 @@ import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
-import InfoIndex from './components/pages/Info/InfoIndex';
-import InfoBrands from './components/pages/Info/InfoBrands/InfoBrands';
-import InfoBrandModels from './components/pages/Info/InfoBrands/BrandModels';
-import InfoCarParts from './components/pages/Info/InfoCarParts/InfoCarParts';
+import InfoRoutes from './components/pages/Info/InfoRoutes';
 
 
 
@@ -56,23 +53,9 @@ export default function App() {
                     <Home />
                 </Route>
 
-                {/* info page */}
-                <Route path='/info' exact>
-                    <InfoIndex />
-                </Route>
-
-                {/* info/brands page */}
-                <Route path='/info/brands' exact>
-                    <InfoBrands />
-                </Route>
-                {/* info/brands/:brand page */}
-                <Route path='/info/brands/:brand' exact>
-                    <InfoBrandModels />
-                </Route>
-
-                {/* info/brands/:brand page */}
-                <Route path='/info/parts' exact>
-                    <InfoCarParts />
+                {/* info route */}
+                <Route path='/info'>
+                    <InfoRoutes />
                 </Route>
 
             </Switch>

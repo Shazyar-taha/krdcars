@@ -61,9 +61,9 @@ let componentContent = {
 
 
 /**
- *  @return {Element} : info page
+ *  @return {Element} : info index page
  */
-export default function Info() {
+export default function InfoIndex() {
     return (
         <>
             {/* overriding document head */}
