@@ -4,7 +4,7 @@ import { Container, Typography } from '@mui/material'
 import classNames from 'classnames'
 
 import './footer.scoped.scss'
-import Language from '../helpers/Language'
+import { getLanguage, getClassName } from '../helpers/language'
 import Brand from '../Brand/Brand'
 
 
@@ -52,7 +52,7 @@ let componentContent = {
  */
 export default function Footer() {
     return (
-        <footer className="footer" dir={Language.getLanguage() === 'kr' ? 'rtl' : 'ltr'}>
+        <footer className="footer" dir={getLanguage() === 'kr' ? 'rtl' : 'ltr'}>
             <Container>
 
                 {/* footer content */}
@@ -67,8 +67,8 @@ export default function Footer() {
                         </Typography>
 
                         {/* column description */}
-                        <Typography variant="body1" className={classNames("column-description", Language.getClassName())}>
-                            {componentContent.firstContent.description[Language.getLanguage()]}
+                        <Typography variant="body1" className={classNames("column-description", getClassName())}>
+                            {componentContent.firstContent.description[getLanguage()]}
                         </Typography>
                     </div>
 
@@ -78,8 +78,8 @@ export default function Footer() {
                         <div key={index} className="grid-column">
 
                             {/* columt title */}
-                            <Typography variant="h6" className={classNames("column-title", Language.getClassName())}>
-                                {content.title[Language.getLanguage()]}
+                            <Typography variant="h6" className={classNames("column-title", getClassName())}>
+                                {content.title[getLanguage()]}
                             </Typography>
 
                             {/* column list */}
@@ -87,7 +87,7 @@ export default function Footer() {
                                 {content.links.map((link, i) => (
                                     <li key={i}>
                                         <Link className="list-link" to={link.url}>
-                                            {link[Language.getLanguage()]}
+                                            {link[getLanguage()]}
                                         </Link>
                                     </li>
                                 ))}
@@ -101,8 +101,8 @@ export default function Footer() {
 
                 {/* footer details */}
                 <div className="footer-details">
-                    <Typography variant="body1" className={classNames("footer-details-text", Language.getClassName())}>
-                        {componentContent.copyright[Language.getLanguage()]}
+                    <Typography variant="body1" className={classNames("footer-details-text", getClassName())}>
+                        {componentContent.copyright[getLanguage()]}
                     </Typography>
                 </div>
 

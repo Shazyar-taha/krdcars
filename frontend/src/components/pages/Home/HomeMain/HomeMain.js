@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import './home-main.scoped.scss'
 import background from './background.png'
-import Language from '../../../partials/helpers/Language';
+import { getLanguage, getClassName } from '../../../partials/helpers/language';
 
 
 // component content
@@ -33,8 +33,8 @@ export default function HomeMain() {
 
                 {/* main section title */}
                 <div className="main-title" data-aos="fade-up" data-aos-duration="1500">
-                    <h1 className={classNames("title-h1", Language.getClassName())} dir="auto">
-                        {componentContent.title[Language.getLanguage()]}
+                    <h1 className={classNames("title-h1", getClassName())} dir="auto">
+                        {componentContent.title[getLanguage()]}
                     </h1>
                 </div>
             </Container>

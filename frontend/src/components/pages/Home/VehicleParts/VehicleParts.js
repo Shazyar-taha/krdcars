@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import './vehicle-parts.scoped.scss'
 import background from './background.png'
-import Language from '../../../partials/helpers/Language'
+import { getLanguage, getClassName } from '../../../partials/helpers/language'
 import { Link } from 'react-router-dom'
 
 
@@ -44,22 +44,22 @@ export default function VehicleParts() {
                 <div className="vehicle-parts-details">
 
                     {/* section title */}
-                    <Typography variant="h6" className={classNames("details-subtitle", Language.getClassName())}>
-                        {componentContent.subtitle[Language.getLanguage()]}
+                    <Typography variant="h6" className={classNames("details-subtitle", getClassName())}>
+                        {componentContent.subtitle[getLanguage()]}
                     </Typography>
-                    <Typography variant="h4" className={classNames("details-title", Language.getClassName())}>
-                        {componentContent.title[Language.getLanguage()]}
+                    <Typography variant="h4" className={classNames("details-title", getClassName())}>
+                        {componentContent.title[getLanguage()]}
                     </Typography>
 
                     {/* section description */}
-                    <Typography variant="body1" className={classNames("details-description", Language.getClassName())}>
-                        {componentContent.descritopn[Language.getLanguage()]}
+                    <Typography variant="body1" className={classNames("details-description", getClassName())}>
+                        {componentContent.descritopn[getLanguage()]}
                     </Typography>
 
                     {/* read more button */}
                     <Link to="/info/parts">
-                        <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", Language.getClassName())}>
-                            {componentContent.button[Language.getLanguage()]}
+                        <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", getClassName())}>
+                            {componentContent.button[getLanguage()]}
                         </Button>
                     </Link>
 

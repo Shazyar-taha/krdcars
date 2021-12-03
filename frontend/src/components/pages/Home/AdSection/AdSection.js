@@ -5,7 +5,7 @@ import Carousel from 'react-material-ui-carousel'
 import classNames from 'classnames'
 
 import './ad-section.scss'
-import Language from '../../../partials/helpers/Language'
+import { getLanguage, getClassName } from '../../../partials/helpers/language'
 import Brand from '../../../partials/Brand/Brand'
 
 
@@ -46,24 +46,24 @@ export default function AdSection() {
                     <div className="carousel-item intro">
 
                         {/* intro title */}
-                        <Typography variant="h2" className={classNames("carousel-item-title", Language.getClassName())}>
-                            {componentContent.introAd.title[Language.getLanguage()]}
+                        <Typography variant="h2" className={classNames("carousel-item-title", getClassName())}>
+                            {componentContent.introAd.title[getLanguage()]}
                         </Typography>
 
                         {/* intro brand */}
                         <Brand className="carousel-item-brand" />
 
                         {/* intro description */}
-                        <Typography variant="body1" className={classNames("carousel-item-description", Language.getClassName())} dir="auto">
-                            {componentContent.introAd.description[Language.getLanguage()]}
+                        <Typography variant="body1" className={classNames("carousel-item-description", getClassName())} dir="auto">
+                            {componentContent.introAd.description[getLanguage()]}
                         </Typography>
 
                         <br />
 
                         {/* read more button */}
                         <Link to="/about">
-                            <Button variant="outlined" className={classNames("read-more-btn red-btn-outline", Language.getClassName())}>
-                                {componentContent.introAd.button[Language.getLanguage()]}
+                            <Button variant="outlined" className={classNames("read-more-btn red-btn-outline", getClassName())}>
+                                {componentContent.introAd.button[getLanguage()]}
                             </Button>
                         </Link>
                     </div>

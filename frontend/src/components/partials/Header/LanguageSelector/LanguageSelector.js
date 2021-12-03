@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import classNames from 'classnames';
 
 import './language-selector.scoped.scss'
-import Language from '../../helpers/Language';
+import { setLanguage } from '../../helpers/language';
 
 // component content
 let componentContent = [
@@ -36,7 +36,7 @@ export default function LanguageSelector() {
     function changeLanguage(e) {
 
         // // storing selected language
-        Language.setLanguage(e.target.getAttribute('symbol'))
+        setLanguage(e.target.getAttribute('symbol'))
 
         // // rerouting to same page
         window.location = thisPath

@@ -7,7 +7,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import classNames from 'classnames';
 
 import './header.scoped.scss'
-import Language from '../helpers/Language';
+import { getLanguage, getClassName } from '../helpers/language';
 import Brand from '../Brand/Brand'
 import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
 import LanguageSelector from './LanguageSelector/LanguageSelector';
@@ -100,8 +100,8 @@ export default function Header() {
                     </div>
 
                     {/* navigation links */}
-                    <ul className={classNames("nav-links", Language.getClassName())}
-                        style={Language.getLanguage() === 'kr' ? { flexDirection: "row-reverse" } : {}}
+                    <ul className={classNames("nav-links", getClassName())}
+                        style={getLanguage() === 'kr' ? { flexDirection: "row-reverse" } : {}}
                     >
                         {
                             componentContent.navLinks.map((link, i) => (
@@ -112,7 +112,7 @@ export default function Header() {
                                         onClick={toggleDrawer}
                                         {...link.options}
                                     >
-                                        {link.name[Language.getLanguage()]}
+                                        {link.name[getLanguage()]}
                                     </NavLink>
                                 </li>
                             ))
@@ -141,12 +141,12 @@ export default function Header() {
                     <div className={classNames("nav-drawer", { 'nav-drawer-open': drawerState })}>
 
                         {/* drawer links */}
-                        <ul className={classNames("drawer-links", Language.getClassName())}>
+                        <ul className={classNames("drawer-links", getClassName())}>
                             {
                                 componentContent.navLinks.map((link, i) => (
                                     <li key={i}>
                                         <NavLink to={link.url} className="link" onClick={toggleDrawer} exact>
-                                            {link.name[Language.getLanguage()]}
+                                            {link.name[getLanguage()]}
                                         </NavLink>
                                     </li>
                                 ))

@@ -4,7 +4,7 @@ import { Card, CardContent, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
 import { kebabCase } from 'lodash'
 
-import Language from '../../../partials/helpers/Language'
+import { getLanguage, getClassName } from '../../../partials/helpers/language'
 
 
 
@@ -20,8 +20,8 @@ import Language from '../../../partials/helpers/Language'
 export function InfoTitle(props) {
     return (
         <div className={classNames("info-title", props.className || '')}>
-            <Typography variant="h1" className={classNames("title-h1", Language.getClassName())}>
-                {props.title[Language.getLanguage()]}
+            <Typography variant="h1" className={classNames("title-h1", getClassName())}>
+                {props.title[getLanguage()]}
             </Typography>
         </div>
     )
@@ -66,13 +66,13 @@ export function InfoOutlinedGrid(props) {
                             <CardContent>
 
                                 {/* card title */}
-                                <Typography variant="h5" className={classNames("card-title", Language.getClassName())}>
-                                    {item.title[Language.getLanguage()]}
+                                <Typography variant="h5" className={classNames("card-title", getClassName())}>
+                                    {item.title[getLanguage()]}
                                 </Typography>
 
                                 {/* card description */}
-                                <Typography variant="body1" className={classNames("card-description", Language.getClassName())}>
-                                    {item.description[Language.getLanguage()]}
+                                <Typography variant="body1" className={classNames("card-description", getClassName())}>
+                                    {item.description[getLanguage()]}
                                 </Typography>
 
                             </CardContent>
@@ -121,11 +121,11 @@ export function InfoCenteredGrid(props) {
                     <Link to={`${props.fullUrl || ''}/${kebabCase(item.title.en)}`}>
 
                         {/* item image */}
-                        <img src={item.image} alt={item.title[Language.getLanguage()]} className="item-image" />
+                        <img src={item.image} alt={item.title[getLanguage()]} className="item-image" />
 
                         {/* item title */}
-                        <Typography variant="h5" className={classNames("item-title", Language.getClassName())}>
-                            {item.title[Language.getLanguage()]}
+                        <Typography variant="h5" className={classNames("item-title", getClassName())}>
+                            {item.title[getLanguage()]}
                         </Typography>
                     </Link>
                 </Grid>

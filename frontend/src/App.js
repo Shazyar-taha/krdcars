@@ -5,7 +5,7 @@ import Aos from 'aos'
 import 'aos/dist/aos.css';
 
 import './components/partials/designs/stylesheets/main.scss'
-import Language from './components/partials/helpers/Language'
+import { initLanguage } from './components/partials/helpers/language'
 import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
@@ -20,8 +20,8 @@ import InfoRoutes from './components/pages/Info/InfoRoutes';
  */
 export default function App() {
 
-    // initiating language helper cookie check constructor
-    new Language()
+    // initiating language cookie check
+    initLanguage()
 
 
     useEffect(() => {

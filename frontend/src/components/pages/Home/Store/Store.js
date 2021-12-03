@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import './store.scoped.scss'
 import background from './background.png'
-import Language from '../../../partials/helpers/Language'
+import { getLanguage, getClassName } from '../../../partials/helpers/language'
 
 
 // component content
@@ -36,14 +36,14 @@ export default function Store() {
                 <div className="home-store-content">
 
                     {/* section description */}
-                    <Typography variant="h4" className={classNames("content-title", Language.getClassName())}>
-                        {componentContent.title[Language.getLanguage()]}
+                    <Typography variant="h4" className={classNames("content-title", getClassName())}>
+                        {componentContent.title[getLanguage()]}
                     </Typography>
 
                     {/* read more button */}
                     <Link to="/store">
-                        <Button variant="outlined" className={classNames("content-read-more-btn white-btn-outline", Language.getClassName())}>
-                            {componentContent.button[Language.getLanguage()]}
+                        <Button variant="outlined" className={classNames("content-read-more-btn white-btn-outline", getClassName())}>
+                            {componentContent.button[getLanguage()]}
                         </Button>
                     </Link>
                 </div>
