@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
-import { kebabCase } from 'lodash'
 
 import './page-grid.scoped.scss'
 import { getLanguage, getClassName } from '../../../partials/helpers/language'
@@ -24,7 +23,7 @@ import { getLanguage, getClassName } from '../../../partials/helpers/language'
  * 
  *  @return {Element} : Outlined grid element
  */
- export function OutlinedGrid(props) {
+export function OutlinedGrid(props) {
     return (
         <Grid container className={classNames("page-outlined-grid", props.className || '')}
             spacing={props.gridConfigs?.spacing || 4} // default spacing if not defined
@@ -41,7 +40,10 @@ import { getLanguage, getClassName } from '../../../partials/helpers/language'
                 >
 
                     {/* card link */}
-                    <Link to={`${props.fullUrl || ''}/${item.url}`}>
+                    <Link
+                        to={{ pathname: item.otherUrl || `${props.fullUrl || ''}/${item.url}` }}
+                        target={item.otherUrl ? '_blank' : '_self'}
+                    >
                         <Card className="grid-card">
                             <CardContent>
 
@@ -98,7 +100,10 @@ export function CenteredGrid(props) {
                 >
 
                     {/* card link */}
-                    <Link to={`${props.fullUrl || ''}/${kebabCase(item.url)}`}>
+                    <Link
+                        to={{ pathname: item.otherUrl || `${props.fullUrl || ''}/${item.url}` }}
+                        target={item.otherUrl ? '_blank' : '_self'}
+                    >
 
                         {/* item image */}
                         <img src={item.image} alt={item.title[getLanguage()]} className="item-image" />
