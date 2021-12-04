@@ -5,6 +5,7 @@ import InfoIndex from './InfoIndex'
 import InfoBrands from './InfoBrands/InfoBrands'
 import BrandModels from './InfoBrands/BrandModels'
 import InfoCarParts from './InfoCarParts/InfoCarParts'
+import InfoDrivingWorks from './InfoDrivingWorks/InfoDrivingWorks'
 
 
 
@@ -38,6 +39,12 @@ export default function InfoRoutes() {
             {/* info car parts route */}
             <Route path={`${url}/parts`} exact>
                 <InfoCarParts />
+            </Route>
+
+
+            {/* info driving works route */}
+            <Route path={`${url}/driving-works`} exact>
+                <InfoDrivingWorks />
             </Route>
         </>
     )
