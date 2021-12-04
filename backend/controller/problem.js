@@ -24,3 +24,6 @@ router.get('/problem-id', (req, res) => {
         console.log(err);
     });
 });
+
+
+module.exports = router;
