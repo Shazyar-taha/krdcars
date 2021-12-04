@@ -98,7 +98,7 @@ export function CenteredGrid(props) {
                 >
 
                     {/* card link */}
-                    <Link to={`${props.fullUrl || ''}/${kebabCase(item.title.en)}`}>
+                    <Link to={`${props.fullUrl || ''}/${kebabCase(item.url)}`}>
 
                         {/* item image */}
                         <img src={item.image} alt={item.title[getLanguage()]} className="item-image" />
