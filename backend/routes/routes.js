@@ -1,13 +1,19 @@
 const express = require('express');
-const ads = require('../controller/ads');
-const car = require('../controller/car');
+const adsController = require('../controller/ads');
+const carController = require('../controller/car');
+const partController = require('../controller/part')
+const problemController = require('../controller/problem');
 
 const router = express.Router();
 
 
-router.use('/ads', ads);
+router.use('/ads', adsController);
 
-router.use('/car', car);
+router.use('/car', carController);
+
+router.use('/part', partController);
+
+router.use('/problem', problemController);
 
 
 module.exports = router;
