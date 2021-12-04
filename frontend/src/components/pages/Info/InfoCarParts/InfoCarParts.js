@@ -1,9 +1,10 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
-import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
-import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
+import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
+import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
 
@@ -68,15 +69,14 @@ export default function InfoCarParts() {
             <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
-            {/* info parts */}
-            <div className="info-route info-parts" dir="auto">
+            <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
-                    {/* info title */}
-                    <InfoTitle title={componentContent.title} />
+                    {/* page title */}
+                    <PageTitle title={componentContent.title} />
 
-                    {/* brand list */}
-                    <InfoOutlinedGrid list={parts} fullUrl={url} />
+                    {/* page list */}
+                    <OutlinedGrid list={parts} fullUrl={url} />
 
                 </Container>
             </div>

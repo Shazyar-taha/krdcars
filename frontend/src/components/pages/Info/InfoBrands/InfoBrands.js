@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
-import { InfoCenteredGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
+import { CenteredGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
@@ -37,25 +38,27 @@ export default function InfoBrands() {
 
 
     // brand list state
-    const [brands, setBrands] = useState([]);
+    const [datas, setDatas] = useState([]);
 
-    // get the brands list
+    // get the datas list
     useEffect(() => {
         /**
         * @TODO : fetch from server
         */
         const response = [
             {
+                url: 'mitsubishi',
                 title: { en: 'Mitsubishi', kr: 'میسۆبیشی' },
                 image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mitsubishi_logo.svg/2381px-Mitsubishi_logo.svg.png'
             },
             {
+                url: 'maseraty',
                 title: { en: 'Maseraty', kr: 'ماسێراتی' },
                 image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgsvwop0SIxlaP4knSlTeF8M-0MUQu2hc7g&usqp=CAU'
             },
         ]
 
-        setBrands(response)
+        setDatas(response)
     }, [])
 
 
@@ -65,14 +68,14 @@ export default function InfoBrands() {
             <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
-            <div className="info-route info-brands" dir="auto">
+            <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
-                    {/* info title */}
-                    <InfoTitle title={componentContent.title} />
+                    {/* page title */}
+                    <PageTitle title={componentContent.title} />
 
-                    {/* brand list */}
-                    <InfoCenteredGrid list={brands} fullUrl={url} />
+                    {/* page list */}
+                    <CenteredGrid list={datas} fullUrl={url} />
 
                 </Container>
             </div>

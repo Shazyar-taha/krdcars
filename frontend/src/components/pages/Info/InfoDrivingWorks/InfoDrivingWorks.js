@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
-import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
+import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 
 
 
@@ -68,15 +69,14 @@ export default function InfoDrivingWorks() {
             <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
 
-            {/* info page */}
-            <div className="info-route" dir="auto">
+            <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
                     {/* info title */}
-                    <InfoTitle title={componentContent.title} />
+                    <PageTitle title={componentContent.title} />
 
                     {/* info list */}
-                    <InfoOutlinedGrid list={datas} fullUrl={url} />
+                    <OutlinedGrid list={datas} fullUrl={url} />
 
                 </Container>
             </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
-import { InfoOutlinedGrid, InfoTitle } from '../infoHelpers/infoComponents'
+import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
+import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
@@ -63,14 +64,14 @@ export default function InfoBrandPreview() {
             <CustomHelmet title={datas.brand} description={datas.brand} />
 
 
-            <div className="info-route info-brand-preview" dir="auto">
+            <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
-                    {/* info title */}
-                    <InfoTitle title={datas.brand} />
+                    {/* page title */}
+                    <PageTitle title={datas.brand} />
 
-                    {/* brand list */}
-                    <InfoOutlinedGrid list={datas.models} fullUrl={url} />
+                    {/* page list */}
+                    <OutlinedGrid list={datas.models} fullUrl={url} />
 
                 </Container>
             </div>

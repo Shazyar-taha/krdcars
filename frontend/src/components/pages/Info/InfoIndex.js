@@ -2,9 +2,9 @@ import React from 'react'
 import { useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
 
-import './infoHelpers/info.scss'
-import { InfoTitle, InfoOutlinedGrid } from './infoHelpers/infoComponents'
 import CustomHelmet from '../../partials/helpers/CustomHelmet'
+import PageTitle from '../../partials/helpers/PageTitle/PageTitle'
+import { OutlinedGrid } from '../../partials/helpers/PageGrid/PageGrid'
 
 
 // component content
@@ -77,14 +77,14 @@ export default function InfoIndex() {
 
 
             {/* info inex page */}
-            <div className="info-route" dir="auto">
+            <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
                     {/* info title */}
-                    <InfoTitle title={componentContent.title} />
+                    <PageTitle title={componentContent.title} />
 
                     {/* info grid */}
-                    <InfoOutlinedGrid list={componentContent.infos} fullUrl={url} />
+                    <OutlinedGrid list={componentContent.infos} fullUrl={url} />
 
 
                     {/**
