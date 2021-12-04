@@ -13,6 +13,16 @@ default theme settings
     margin: auto !important;
 }
 
+// vertical margin
+.vertical-margin {
+    margin: var(--element-vertical-spacing) 0;
+}
+
+// long element
+.long-element {
+    min-height: var(--element-min-height);
+}
+
 /* Buttons */
 
 // red buttons
