@@ -12,6 +12,7 @@ import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import InfoRoutes from './components/pages/Info/InfoRoutes';
 import Violation from './components/pages/Violation/Violation';
+import ContactRoutes from './components/pages/Contact/ContactRoutes';
 
 
 
@@ -62,6 +63,11 @@ export default function App() {
                 {/* violation route */}
                 <Route path='/violation' exact>
                     <Violation />
+                </Route>
+
+                {/* violation route */}
+                <Route path='/contact' exact>
+                    <ContactRoutes />
                 </Route>
 
             </Switch>
