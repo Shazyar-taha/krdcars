@@ -1,0 +1,17 @@
+{
+    "configs": {
+        "font_class_name": "kurdish-font"
+    },
+    "partials": {
+        "header": {
+            "links": {
+                "home": "سەرەتا",
+                "informations": "زانیاریەکان",
+                "cars": "ئوتومبێلەکان",
+                "violation": "سەرپێچی",
+                "store": "کڕین و فرۆشتن",
+                "about": "دەربارە"
+            }
+        }
+    }
+}

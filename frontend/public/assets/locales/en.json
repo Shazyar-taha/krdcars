@@ -1,0 +1,17 @@
+{
+    "configs": {
+        "font_class_name": "english-font"
+    },
+    "partials": {
+        "header": {
+            "links": {
+                "home": "Home",
+                "informations": "Informations",
+                "cars": "Cars",
+                "violation": "Violation",
+                "store": "Store",
+                "about": "About"
+            }
+        }
+    }
+}
