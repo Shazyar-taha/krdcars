@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Brightness4Outlined from '@mui/icons-material/Brightness4Outlined'
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 import './theme-switcher.scoped.scss'
 
@@ -28,22 +29,18 @@ export default function ThemeSwitcher() {
     }, [themeState])
 
 
+    // getting the other theme color changing the theme color
+    const otherTheme = (currentTheme) => currentTheme === 'light' ? 'dark' : currentTheme === 'dark' ? 'light' : 'light'
+
     // theme switch toogle
     function toggleTheme(e) {
-        // if the current theme was light, changing it to dark
-        if (e.target.closest('.theme-switcher').getAttribute('theme') === 'light') {
-            setThemeState('dark')
-        }
-        // changing to light otherwise
-        else if (e.target.closest('.theme-switcher').getAttribute('theme') === 'dark') {
-            setThemeState('light')
-        }
+        setThemeState(otherTheme(e.target.closest('.theme-switcher').getAttribute('theme')))
     }
 
 
     return (
         <div className="theme-switcher" onClick={toggleTheme} theme={themeState} >
-            <Brightness4Outlined />
+            {themeState === 'light' ? <DarkModeIcon /> : themeState === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
         </div>
     )
 }
