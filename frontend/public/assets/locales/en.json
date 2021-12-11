@@ -12,6 +12,29 @@
                 "store": "Store",
                 "about": "About"
             }
+        },
+        "footer": {
+            "description": "a website for kurdistan drivers",
+            "copyright": "copyright 2021 krdcars",
+            "content": {
+                "website_routes": {
+                    "title": "Navigaiton",
+                    "links": {
+                        "informations": "Informations",
+                        "cars": "Cars",
+                        "parts": "Parts",
+                        "about": "About"
+                    }
+                },
+                "contact": {
+                    "title": "Contact",
+                    "links": {
+                        "feedback": "Feedback",
+                        "add_info": "Add Information",
+                        "create_ad": "Create Ad"
+                    }
+                }
+            }
         }
     }
 }
