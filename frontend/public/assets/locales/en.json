@@ -31,7 +31,8 @@
                     "links": {
                         "feedback": "Feedback",
                         "add_info": "Add Information",
-                        "create_ad": "Create Ad"
+                        "create_ad": "Create Ad",
+                        "ask_for_app": "Ask for App"
                     }
                 }
             }
