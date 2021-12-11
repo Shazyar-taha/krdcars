@@ -2,47 +2,35 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Typography } from '@mui/material'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import './footer.scoped.scss'
-import { getLanguage, getClassName } from '../helpers/language'
 import Brand from '../Brand/Brand'
 
 
 // component content
 let componentContent = {
-    firstContent: {
-        description: {
-            en: 'A website for kurdistan drivers and informing them about their vehicles',
-            kr: 'وێبسایتێک تایبەت بە شۆفێرانی کوردستان و ئاگادارکردنەوەیان دەربارەی ئوتومبێلەکان'
-        }
-    },
+    description: 'partials.footer.description',
     content: [
         {
-            title: { en: 'Website routes', kr: 'بەشەکانی وێبسایتەکە' },
+            title: 'partials.footer.content.website_routes.title',
             links: [
-                { en: 'Informations', kr: 'زانیاریەکان', url: '/info' },
-                { en: 'Cars', kr: 'ئوتومبێلەکان', url: '/info/brands' },
-                { en: 'parts', kr: 'پارچەکان', url: '/info/parts' },
-                { en: 'About', kr: 'دەربارە', url: '/about' }
+                { name: 'partials.footer.content.website_routes.links.informations', url: '/info' },
+                { name: 'partials.footer.content.website_routes.links.cars', url: '/info/brands' },
+                { name: 'partials.footer.content.website_routes.links.parts', url: '/info/parts' },
+                { name: 'partials.footer.content.website_routes.links.about', url: '/about' }
             ]
         },
         {
-            title: { en: 'Contact', kr: 'پەیوەندی کردن' },
+            title: 'partials.footer.content.contact.title',
             links: [
-                { en: 'Feedback', kr: 'فیدباک', url: '/contact/feedback' },
-                { en: 'Add Informations', kr: 'زیادکردنی زانیاری', url: '/contact/add-info' },
-                { en: 'Create ad', kr: 'بڵاوکردنەوەی ڕیکلام', url: '/contact/create-ad' }
-            ]
-        },
-        {
-            title: { en: 'Contribute', kr: 'پڕۆگرام سازی' },
-            links: [
-                { en: 'GitHub', kr: 'گیتهەب', url: '/github' },
-                { en: 'Ask for application', kr: 'داواکاری بۆ پڕۆگرام', url: 'contact/request-for-app' }
+                { name: 'partials.footer.content.contact.links.feedback', url: '/contact/feedback' },
+                { name: 'partials.footer.content.contact.links.add_info', url: '/contact/add-info' },
+                { name: 'partials.footer.content.contact.links.create_ad', url: '/contact/create-ad' }
             ]
         }
     ],
-    copyright: { en: `Copyright ${new Date().getFullYear()}, all rights reserved.`, kr: `مافی بڵاوکردنەوەی ئەم وێبسایتە پارێزراوە` }
+    copyright: 'partials.footer.copyright'
 }
 
 
@@ -51,8 +39,13 @@ let componentContent = {
  *  @return {Element} : app footer
  */
 export default function Footer() {
+
+    // translation hook
+    const { t } = useTranslation()
+
+
     return (
-        <footer className="footer" dir={getLanguage() === 'kr' ? 'rtl' : 'ltr'}>
+        <footer className="footer" dir="auto">
             <Container>
 
                 {/* footer content */}
@@ -67,8 +60,8 @@ export default function Footer() {
                         </Typography>
 
                         {/* column description */}
-                        <Typography variant="body1" className={classNames("column-description", getClassName())}>
-                            {componentContent.firstContent.description[getLanguage()]}
+                        <Typography variant="body1" className={classNames("column-description", t('configs.font_class_name'))}>
+                            {t(componentContent.description)}
                         </Typography>
                     </div>
 
@@ -78,8 +71,8 @@ export default function Footer() {
                         <div key={index} className="grid-column">
 
                             {/* columt title */}
-                            <Typography variant="h6" className={classNames("column-title", getClassName())}>
-                                {content.title[getLanguage()]}
+                            <Typography variant="h6" className={classNames("column-title", t('configs.font_class_name'))}>
+                                {t(content.title)}
                             </Typography>
 
                             {/* column list */}
@@ -87,7 +80,7 @@ export default function Footer() {
                                 {content.links.map((link, i) => (
                                     <li key={i}>
                                         <Link className="list-link" to={link.url}>
-                                            {link[getLanguage()]}
+                                            {t(link.name)}
                                         </Link>
                                     </li>
                                 ))}
@@ -101,8 +94,8 @@ export default function Footer() {
 
                 {/* footer details */}
                 <div className="footer-details">
-                    <Typography variant="body1" className={classNames("footer-details-text", getClassName())}>
-                        {componentContent.copyright[getLanguage()]}
+                    <Typography variant="body1" className={classNames("footer-details-text", t('configs.font_class_name'))}>
+                        {t(componentContent.copyright)}
                     </Typography>
                 </div>
 
