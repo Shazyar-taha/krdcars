@@ -6,14 +6,28 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 
 
 // available languages for the website
-const availableLanguages = ['kr', 'en']
+const availableLanguages = [
+    {
+        name: 'کوردی',
+        symbol: 'kr',
+        className: 'kurdish-font'
+    },
+    {
+        name: 'English',
+        symbol: 'en',
+        className: 'english-font'
+    },
+]
+
+// available language symbols
+const availableLanguagesSymbols = availableLanguages.map(language => language.symbol)
 
 // fallback language for the website
 const fallbackLanguages = 'kr'
 
 // i18next options
 const options = {
-    supportedLngs: availableLanguages,
+    supportedLngs: availableLanguagesSymbols,
     fallbackLng: fallbackLanguages,
     debug: false,
     // Options for language detector
@@ -38,4 +52,4 @@ i18next
 
 
 export default i18next
-export { availableLanguages }
+export { availableLanguages, availableLanguagesSymbols }
