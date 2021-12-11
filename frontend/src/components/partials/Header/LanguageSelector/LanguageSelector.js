@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import { useLocation } from 'react-router';
 import classNames from 'classnames';
+import i18n from 'i18next'
 
 import './language-selector.scoped.scss'
-import { setLanguage } from '../../helpers/language';
-
-// component content
-let componentContent = [
-    { name: 'کوردی', symbol: 'kr', classname: 'kurdish-font' },
-    { name: 'English', symbol: 'en', classname: 'english-font' }
-]
+import { availableLanguages } from '../../../../i18n.js'
 
 
 
@@ -22,10 +16,6 @@ export default function LanguageSelector() {
     // show list state
     const [showListState, setShowListState] = useState(false)
 
-    // this route pathname
-    const thisPath = useLocation().pathname
-
-
     // toggling show list
     function toggleDrawer(e) {
         setShowListState(!showListState)
@@ -34,12 +24,7 @@ export default function LanguageSelector() {
 
     // changing kanguage
     function changeLanguage(e) {
-
-        // // storing selected language
-        setLanguage(e.target.getAttribute('symbol'))
-
-        // // rerouting to same page
-        window.location = thisPath
+        i18n.changeLanguage(e.target.getAttribute('symbol'))
     }
 
 
@@ -51,10 +36,10 @@ export default function LanguageSelector() {
             {/* language select languages */}
             <div className="languages-list">
                 {
-                    componentContent.map((language, i) => (
+                    availableLanguages.map((language, i) => (
                         // each language select option
                         <div key={i}
-                            className={classNames('language', language.classname)}
+                            className={classNames('language', language.className)}
                             onClick={changeLanguage}
                             symbol={language.symbol}
                         >
