@@ -1,55 +1,38 @@
 import React, { useState } from 'react'
-import { Container } from '@mui/material'
 import { useLocation } from 'react-router';
+import { Container } from '@mui/material'
 import { NavLink, Link } from 'react-router-dom'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import classNames from 'classnames';
+import i18n from 'i18next'
+import { useTranslation } from 'react-i18next';
 
 import './header.scoped.scss'
-import { getLanguage, getClassName } from '../helpers/language';
 import Brand from '../Brand/Brand'
 import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
 import LanguageSelector from './LanguageSelector/LanguageSelector';
 
 
+
 // component content
 let componentContent = {
     navLinks: [
-        { name: { en: 'Home', kr: 'سەرەتا' }, url: '/', options: { exact: true } },
+        { title: 'partials.header.links.home', url: '/', options: { exact: true } },
         {
-            name: { en: 'Informations', kr: 'زانیاریەکان' }, url: '/info',
+            title: 'partials.header.links.informations', url: '/info',
             options: {
-                isActive: (match, location) => {
-                    // set active only if pathname not started with info/parts or info/brands
-                    return (location.pathname.startsWith('/info') &&
-                        !location.pathname.startsWith('/info/parts') &&
-                        !location.pathname.startsWith('/info/brands')
-                        ? true : false)
-                }
+                isActive: (match, location) =>
+                    location.pathname.startsWith('/info') && !location.pathname.startsWith('/info/brands')
             }
         },
         {
-            name: { en: 'Cars', kr: 'ئوتومبێلەکان' }, url: '/info/brands',
-            options: {
-                isActive: (match, location) => {
-                    // set active only if pathname not started with info/brands
-                    return location.pathname.startsWith('/info/brands') ? true : false
-                }
-            }
+            title: 'partials.header.links.cars', url: '/info/brands',
+            options: { isActive: (match, location) => location.pathname.startsWith('/info/brands') }
         },
-        {
-            name: { en: 'Vehicle Parts', kr: 'پارچەکان' }, url: '/info/parts',
-            options: {
-                isActive: (match, location) => {
-                    // set active only if pathname started with info/parts
-                    return location.pathname.startsWith('/info/parts') ? true : false
-                }
-            }
-        },
-        { name: { en: 'Violation', kr: 'سەرپێچی' }, url: '/violation' },
-        { name: { en: 'Store', kr: 'کڕین و فرۆشتن' }, url: '/store' },
-        { name: { en: 'About', kr: 'دەربارە' }, url: '/about' },
+        { title: 'partials.header.links.violation', url: '/violation' },
+        { title: 'partials.header.links.store', url: '/store' },
+        { title: 'partials.header.links.about', url: '/about' },
     ]
 }
 
@@ -59,6 +42,10 @@ let componentContent = {
  *  @return {Element} : app header
  */
 export default function Header() {
+
+    // translation hook
+    const { t } = useTranslation()
+
 
     // getting curent location
     const thisPath = useLocation().pathname
@@ -100,8 +87,8 @@ export default function Header() {
                     </div>
 
                     {/* navigation links */}
-                    <ul className={classNames("nav-links", getClassName())}
-                        style={getLanguage() === 'kr' ? { flexDirection: "row-reverse" } : {}}
+                    <ul className={classNames("nav-links", t('configs.font_class_name'))}
+                        style={i18n.language === 'kr' ? { flexDirection: "row-reverse" } : {}}
                     >
                         {
                             componentContent.navLinks.map((link, i) => (
@@ -112,7 +99,7 @@ export default function Header() {
                                         onClick={toggleDrawer}
                                         {...link.options}
                                     >
-                                        {link.name[getLanguage()]}
+                                        {t(link.title)}
                                     </NavLink>
                                 </li>
                             ))
@@ -141,12 +128,17 @@ export default function Header() {
                     <div className={classNames("nav-drawer", { 'nav-drawer-open': drawerState })}>
 
                         {/* drawer links */}
-                        <ul className={classNames("drawer-links", getClassName())}>
+                        <ul className={classNames("drawer-links", t('configs.font_class_name'))}>
                             {
                                 componentContent.navLinks.map((link, i) => (
                                     <li key={i}>
-                                        <NavLink to={link.url} className="link" onClick={toggleDrawer} exact>
-                                            {link.name[getLanguage()]}
+                                        <NavLink
+                                            to={link.url}
+                                            className={classNames("link")}
+                                            onClick={toggleDrawer}
+                                            {...link.options}
+                                        >
+                                            {t(link.title)}
                                         </NavLink>
                                     </li>
                                 ))
