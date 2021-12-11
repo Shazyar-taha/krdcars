@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Typography, Button } from '@mui/material'
-import Carousel from 'react-material-ui-carousel'
 import classNames from 'classnames'
 
 import './ad-section.scss'
 import { getLanguage, getClassName } from '../../../partials/helpers/language'
 import Brand from '../../../partials/Brand/Brand'
+
+// lazy importing
+const Carousel = React.lazy(() => import('react-material-ui-carousel'))
 
 
 // component content
@@ -39,39 +41,42 @@ export default function AdSection() {
         <section className="ad-section">
             <Container>
 
+
                 {/* ad section carousel */}
-                <Carousel className="ads-carousel" animation="slide" duration={1000} stopAutoPlayOnHover={true}>
+                <Suspense fallback={<div></div>}>
+                    <Carousel className="ads-carousel" animation="slide" duration={1000} stopAutoPlayOnHover={true}>
 
-                    {/* our introduction */}
-                    <div className="carousel-item intro">
+                        {/* our introduction */}
+                        <div className="carousel-item intro">
 
-                        {/* intro title */}
-                        <Typography variant="h2" className={classNames("carousel-item-title", getClassName())}>
-                            {componentContent.introAd.title[getLanguage()]}
-                        </Typography>
+                            {/* intro title */}
+                            <Typography variant="h2" className={classNames("carousel-item-title", getClassName())}>
+                                {componentContent.introAd.title[getLanguage()]}
+                            </Typography>
 
-                        {/* intro brand */}
-                        <Brand className="carousel-item-brand" />
+                            {/* intro brand */}
+                            <Brand className="carousel-item-brand" />
 
-                        {/* intro description */}
-                        <Typography variant="body1" className={classNames("carousel-item-description", getClassName())} dir="auto">
-                            {componentContent.introAd.description[getLanguage()]}
-                        </Typography>
+                            {/* intro description */}
+                            <Typography variant="body1" className={classNames("carousel-item-description", getClassName())} dir="auto">
+                                {componentContent.introAd.description[getLanguage()]}
+                            </Typography>
 
-                        <br />
+                            <br />
 
-                        {/* read more button */}
-                        <Link to="/about">
-                            <Button variant="outlined" className={classNames("read-more-btn red-btn-outline", getClassName())}>
-                                {componentContent.introAd.button[getLanguage()]}
-                            </Button>
-                        </Link>
-                    </div>
+                            {/* read more button */}
+                            <Link to="/about">
+                                <Button variant="outlined" className={classNames("read-more-btn red-btn-outline", getClassName())}>
+                                    {componentContent.introAd.button[getLanguage()]}
+                                </Button>
+                            </Link>
+                        </div>
 
 
-                    {/* other ads */}
-                    {/* {componentContent.ads.map((item, index) => <div className="carousel-item" key={index}>{item.name}</div>)} */}
-                </Carousel>
+                        {/* other ads */}
+                        {/* {componentContent.ads.map((item, index) => <div className="carousel-item" key={index}>{item.name}</div>)} */}
+                    </Carousel>
+                </Suspense>
 
             </Container>
         </section>
