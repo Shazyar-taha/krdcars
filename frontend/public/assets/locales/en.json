@@ -1,6 +1,7 @@
 {
     "configs": {
-        "font_class_name": "english-font"
+        "font_class_name": "english-font",
+        "see_more": "See More"
     },
     "partials": {
         "header": {
@@ -36,6 +37,25 @@
                     }
                 }
             }
+        }
+    },
+    "home": {
+        "head": {
+            "title": "Information about cars",
+            "description": "krdcars website for cars info and service in Kurdistan"
+        },
+        "main_section_title": "Information about cars",
+        "ad_section": {
+            "intro_ad": {
+                "title": "About Us",
+                "description": "We are a small team in kurdistan, we want to provide information about everything related to cars in kurdistan"
+            }
+        },
+        "store_title": "Find the perfect car for you in our store",
+        "car_parts": {
+            "subtitle": "Information about",
+            "title": "Car Parts",
+            "description": "Read more about car parts"
         }
     }
 }
