@@ -1,28 +1,19 @@
 import React from 'react'
 import { Button, Typography } from '@mui/material'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import './vehicle-parts.scoped.scss'
 import background from './background.png'
-import { getLanguage, getClassName } from '../../../partials/helpers/language'
 import { Link } from 'react-router-dom'
 
 
 // component content
 let componentContent = {
-    subtitle: {
-        en: 'Information about',
-        kr: 'زانیاری دەربارەی'
-    },
-    title: {
-        en: 'Vehicle parts',
-        kr: 'بەشەکانی ئوتومبێل'
-    },
-    descritopn: {
-        en: 'Learn about vehicle parts and get infromed',
-        kr: 'زانیاری بخوێنەرەوە دەربارەی بەشەکانی ئوتومبێل و خۆت پڕ زانیاری بکە'
-    },
-    button: { en: 'Read More', kr: 'زیاتر بخوێنەرەوە' }
+    subtitle: "home.car_parts.subtitle",
+    title: "home.car_parts.title",
+    descritopn: "home.car_parts.description",
+    button: "configs.see_more"
 }
 
 
@@ -31,6 +22,11 @@ let componentContent = {
  *  @return {Element} : vehicle parts section
  */
 export default function VehicleParts() {
+    
+    // translation hook
+    const { t } = useTranslation()
+    
+
     return (
         <section className="vehicle-parts">
 
@@ -44,22 +40,22 @@ export default function VehicleParts() {
                 <div className="vehicle-parts-details">
 
                     {/* section title */}
-                    <Typography variant="h6" className={classNames("details-subtitle", getClassName())}>
-                        {componentContent.subtitle[getLanguage()]}
+                    <Typography variant="h6" className={classNames("details-subtitle", t('configs.font_class_name'))}>
+                        {t(componentContent.subtitle)}
                     </Typography>
-                    <Typography variant="h4" className={classNames("details-title", getClassName())}>
-                        {componentContent.title[getLanguage()]}
+                    <Typography variant="h4" className={classNames("details-title", t('configs.font_class_name'))}>
+                        {t(componentContent.title)}
                     </Typography>
 
                     {/* section description */}
-                    <Typography variant="body1" className={classNames("details-description", getClassName())}>
-                        {componentContent.descritopn[getLanguage()]}
+                    <Typography variant="body1" className={classNames("details-description", t('configs.font_class_name'))}>
+                        {t(componentContent.descritopn)}
                     </Typography>
 
                     {/* read more button */}
                     <Link to="/info/parts">
-                        <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", getClassName())}>
-                            {componentContent.button[getLanguage()]}
+                        <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", t('configs.font_class_name'))}>
+                            {t(componentContent.button)}
                         </Button>
                     </Link>
 

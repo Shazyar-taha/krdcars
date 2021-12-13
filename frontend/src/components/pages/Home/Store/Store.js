@@ -2,19 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Container, Typography } from '@mui/material'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import './store.scoped.scss'
 import background from './background.png'
-import { getLanguage, getClassName } from '../../../partials/helpers/language'
 
 
 // component content
 let componentContent = {
-    title: {
-        en: 'Find the vehicle that suits you',
-        kr: 'ئەو ئوتومبێلە هەڵبژێرە کە بۆ تۆ گونجاوە'
-    },
-    button: { en: 'See More', kr: 'زیاتر ببینە' }
+    title: "home.store_title",
+    button: "configs.see_more"
 }
 
 
@@ -23,6 +20,10 @@ let componentContent = {
  *  @return {Element} : home page store section
  */
 export default function Store() {
+
+    // translation hook
+    const { t } = useTranslation()
+
     return (
         <div className="home-store">
 
@@ -36,14 +37,14 @@ export default function Store() {
                 <div className="home-store-content">
 
                     {/* section description */}
-                    <Typography variant="h4" className={classNames("content-title", getClassName())}>
-                        {componentContent.title[getLanguage()]}
+                    <Typography variant="h4" className={classNames("content-title", t('configs.font_class_name'))}>
+                        {t(componentContent.title)}
                     </Typography>
 
                     {/* read more button */}
                     <Link to="/store">
-                        <Button variant="outlined" className={classNames("content-read-more-btn white-btn-outline", getClassName())}>
-                            {componentContent.button[getLanguage()]}
+                        <Button variant="outlined" className={classNames("content-read-more-btn white-btn-outline", t('configs.font_class_name'))}>
+                            {t(componentContent.button)}
                         </Button>
                     </Link>
                 </div>

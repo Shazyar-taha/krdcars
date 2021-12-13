@@ -80,7 +80,7 @@ export default function Footer() {
                             <ul className="column-list">
                                 {content.links.map((link, i) => (
                                     <li key={i}>
-                                        <Link className="list-link" to={link.url}>
+                                        <Link className={classNames("list-link", t('configs.font_class_name'))} to={link.url}>
                                             {t(link.name)}
                                         </Link>
                                     </li>

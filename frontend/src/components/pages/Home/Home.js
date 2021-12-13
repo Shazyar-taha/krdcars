@@ -12,14 +12,8 @@ import CustomHelmet from '../../partials/helpers/CustomHelmet'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'KRDCars | get more information about cars from Kurdistan',
-            kr: 'KrdCars | زانیاری دەربارەی ئوتومبێلەکان'
-        },
-        description: {
-            en: 'krdcars website for cars info and service in Kurdistan.',
-            kr: 'وێبسایتی KrdCars تایبەت بە زانیاری و ڕێنمایی دەربارەی ئوتومبێلەکان'
-        }
+        title: 'home.head.title',
+        description: 'home.head.description',
     }
 }
 

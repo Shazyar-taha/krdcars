@@ -2,18 +2,15 @@ import React from 'react'
 import { Container } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import './home-main.scoped.scss'
 import background from './background.png'
-import { getLanguage, getClassName } from '../../../partials/helpers/language';
 
 
 // component content
 let componentContent = {
-    title: {
-        en: 'Information about vheicles',
-        kr: 'زانیاری و ڕێنمایی دەربارەی ئوتومبێلەکان'
-    }
+    title: "home.main_section_title"
 }
 
 
@@ -22,6 +19,11 @@ let componentContent = {
  *  @return {Element} : home page main section
  */
 export default function HomeMain() {
+
+    // translation hook
+    const { t } = useTranslation()
+    
+
     return (
         <main className="home-main">
 
@@ -33,8 +35,8 @@ export default function HomeMain() {
 
                 {/* main section title */}
                 <div className="main-title" data-aos="fade-up" data-aos-duration="1500">
-                    <h1 className={classNames("title-h1", getClassName())} dir="auto">
-                        {componentContent.title[getLanguage()]}
+                    <h1 className={classNames("title-h1", t('configs.font_class_name'))} dir="auto">
+                        {t(componentContent.title)}
                     </h1>
                 </div>
             </Container>
