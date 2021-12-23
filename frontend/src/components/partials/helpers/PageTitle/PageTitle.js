@@ -1,9 +1,9 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import './page-title.scoped.scss'
-import { getLanguage, getClassName } from '../../../partials/helpers/language'
 
 
 
@@ -17,10 +17,14 @@ import { getLanguage, getClassName } from '../../../partials/helpers/language'
  *  @return {Element} : page title element
  */
 export default function PageTitle(props) {
+
+    // translation hook
+    const { t } = useTranslation()
+
     return (
         <div className={classNames("page-title", props.className || '')}>
-            <Typography variant="h1" className={classNames("title-h1", getClassName())}>
-                {props.title[getLanguage()]}
+            <Typography variant="h1" className={classNames("title-h1", t('configs.font_class_name'))}>
+                {t(props.title)}
             </Typography>
         </div>
     )

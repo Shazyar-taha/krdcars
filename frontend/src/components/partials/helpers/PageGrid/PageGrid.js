@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 import './page-grid.scoped.scss'
-import { getLanguage, getClassName } from '../../../partials/helpers/language'
 
 
 
@@ -24,6 +24,10 @@ import { getLanguage, getClassName } from '../../../partials/helpers/language'
  *  @return {Element} : Outlined grid element
  */
 export function OutlinedGrid(props) {
+
+    // translation hook
+    const { t } = useTranslation()
+
     return (
         <Grid container className={classNames("page-outlined-grid", props.className || '')}
             spacing={props.gridConfigs?.spacing || 4} // default spacing if not defined
@@ -48,13 +52,13 @@ export function OutlinedGrid(props) {
                             <CardContent>
 
                                 {/* card title */}
-                                <Typography variant="h5" className={classNames("card-title", getClassName())}>
-                                    {item.title[getLanguage()]}
+                                <Typography variant="h5" className={classNames("card-title", t('configs.font_class_name'))}>
+                                    {t(item.title)}
                                 </Typography>
 
                                 {/* card description */}
-                                <Typography variant="body1" className={classNames("card-description", getClassName())}>
-                                    {item.description[getLanguage()]}
+                                <Typography variant="body1" className={classNames("card-description", t('configs.font_class_name'))}>
+                                    {t(item.description)}
                                 </Typography>
 
                             </CardContent>
@@ -84,6 +88,10 @@ export function OutlinedGrid(props) {
  *  @return {Element} : centered grid element
  */
 export function CenteredGrid(props) {
+
+    // translation hook
+    const { t } = useTranslation()
+
     return (
         <Grid container className={classNames("page-centered-grid", props.className || '')}
             spacing={props.gridConfigs?.spacing || 4} // default spacing if not defined
@@ -106,11 +114,11 @@ export function CenteredGrid(props) {
                     >
 
                         {/* item image */}
-                        <img src={item.image} alt={item.title[getLanguage()]} className="item-image" />
+                        <img src={item.image} alt={t(item.title)} className="item-image" />
 
                         {/* item title */}
-                        <Typography variant="h5" className={classNames("item-title", getClassName())}>
-                            {item.title[getLanguage()]}
+                        <Typography variant="h5" className={classNames("item-title", t('configs.font_class_name'))}>
+                            {t(item.title)}
                         </Typography>
                     </Link>
                 </Grid>

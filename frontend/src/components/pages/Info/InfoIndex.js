@@ -10,50 +10,32 @@ import { OutlinedGrid } from '../../partials/helpers/PageGrid/PageGrid'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'Informations',
-            kr: 'زانیاریەکان'
-        },
-        description: {
-            en: 'Informations list provided by KrdCars',
-            kr: 'لیستی زانیاریەکان'
-        }
+        title: 'informations.head.title',
+        description: 'informations.head.description',
     },
-    title: {
-        en: 'Informations',
-        kr: 'زانیاریەکان'
-    },
+    title: "informations.section_title",
     infos: [
         {
-            title: { en: 'Cars', kr: 'ئوتومبێلەکان' },
-            description: {
-                en: 'Information about car brands and models, and their quality',
-                kr: 'زانیاری دەربارەی براند و مۆدێلەکانی ئوتومبێل و ناساندن و خستنەڕووی کوالێتیەکان'
-            },
+            title: "informations.infos.cars.title",
+            description: "informations.infos.cars.description",
             url: 'brands'
         },
         {
-            title: { en: 'Car Parts', kr: 'بەشەکانی ئوتومبێل' },
-            description: {
-                en: 'Information about car parts and their qualifications',
-                kr: 'باسکردن و خستنەڕووی هەر بەشێکی ئوتومبێل و ناساندنێکی ورد بۆیان'
-            },
+            
+            title: "informations.infos.car_parts.title",
+            description: "informations.infos.car_parts.description",
             url: 'parts'
         },
         {
-            title: { en: 'Legall of ministry of transport', kr: 'کارەکانی وەزارەتی هاتوچۆ' },
-            description: {
-                en: 'Advice with legall works of ministry of transport',
-                kr: 'ڕێنوێنی کردن بۆ کار و بارە یاساییەکانی وەزارەتی هاتوچۆ'
-            },
+            
+            title: "informations.infos.legall_of_ministry_of_transport.title",
+            description: "informations.infos.legall_of_ministry_of_transport.description",
             url: 'driving-works'
         },
         {
-            title: { en: 'Car problems', kr: 'کێشەکانی ئوتومبێل' },
-            description: {
-                en: 'Information about car problems and their best solution',
-                kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
-            },
+            
+            title: "informations.infos.car_problems.title",
+            description: "informations.infos.car_problems.description",
             url: 'car-problems'
         },
     ]
