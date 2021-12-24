@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, Grid, Typography } from '@mui/material'
 import classNames from 'classnames'
+import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
 
 import './page-grid.scoped.scss'
@@ -12,6 +13,7 @@ import './page-grid.scoped.scss'
  * Outlined grid element
  * 
  * @param {Object} props : properties of the element
+ *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.className : custom class name for the list
  *      @param {Array} props.list : page list
  *      @param {String} props.fullUrl : full url path to the card link
@@ -53,12 +55,12 @@ export function OutlinedGrid(props) {
 
                                 {/* card title */}
                                 <Typography variant="h5" className={classNames("card-title", t('configs.font_class_name'))}>
-                                    {t(item.title)}
+                                    {props.external ? item.title?.[i18n.language] : t(item.title)}
                                 </Typography>
 
                                 {/* card description */}
                                 <Typography variant="body1" className={classNames("card-description", t('configs.font_class_name'))}>
-                                    {t(item.description)}
+                                    {props.external ? item.description?.[i18n.language] : t(item.description)}
                                 </Typography>
 
                             </CardContent>
@@ -76,6 +78,7 @@ export function OutlinedGrid(props) {
  * centered grid element
  * 
  * @param {Object} props : properties of the element
+ *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.className : custom class name for the list
  *      @param {Array} props.list : page list
  *      @param {String} props.fullUrl : full url path to the card link
@@ -114,11 +117,11 @@ export function CenteredGrid(props) {
                     >
 
                         {/* item image */}
-                        <img src={item.image} alt={t(item.title)} className="item-image" />
+                        <img src={item.image} alt={props.external ? item.title?.[i18n.language] : t(item.title)} className="item-image" />
 
                         {/* item title */}
                         <Typography variant="h5" className={classNames("item-title", t('configs.font_class_name'))}>
-                            {t(item.title)}
+                            {props.external ? item.title?.[i18n.language] : t(item.title)}
                         </Typography>
                     </Link>
                 </Grid>

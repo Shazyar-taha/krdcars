@@ -9,6 +9,11 @@ import i18n from 'i18next'
 /**
  * Adds react helmet element in a short way
  * 
+ * @param {Object} props : properties of the element
+ *      @param {String} props.external : determines if the details is external or not
+ *      @param {String} props.title : page title
+ *      @param {String} props.description : page description
+ * 
  * @return {Element} : react helmet element
  */
 export default function CustomHelmet(props) {
@@ -16,40 +21,20 @@ export default function CustomHelmet(props) {
     // translation hook
     const { t } = useTranslation()
 
-    if (props.external) {
-        return (
-            <Helmet>
-                {/* titles */}
-                <title>{props.title?.[i18n.language]} | KrdCars</title>
-                <meta property="og:title" content={`${props.title?.[i18n.language]} | KrdCars`} />
+    return (
+        <Helmet>
+            {/* titles */}
+            <title>{props.external ? props.title?.[i18n.language] : t(props.title)} | KrdCars</title>
+            <meta property="og:title" content={`${props.external ? props.title?.[i18n.language] : t(props.title)} | KrdCars`} />
 
-                {/* descriptions */}
-                <meta property="og:description" content={props.description?.[i18n.language]} />
-                <meta name="description" content={props.description?.[i18n.language]} />
+            {/* descriptions */}
+            <meta property="og:description" content={props.external ? props.description?.[i18n.language] : t(props.description)} />
+            <meta name="description" content={props.external ? props.description?.[i18n.language] : t(props.description)} />
 
-                {/* other metas */}
-                <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${props.keywords?.join(', ')}`} />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
-        )
-    }
-    else {
-        return (
-            <Helmet>
-                {/* titles */}
-                <title>{t(props.title)} | KrdCars</title>
-                <meta property="og:title" content={`${t(props.title)} | KrdCars`} />
-
-                {/* descriptions */}
-                <meta property="og:description" content={`${t(props.description)} | KrdCars`} />
-                <meta name="description" content={`${t(props.description)} | KrdCars`} />
-
-                {/* other metas */}
-                <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${props.keywords?.join(', ')}`} />
-                <meta property="og:url" content={window.location.href} />
-            </Helmet>
-        )
-
-    }
-
+            {/* other metas */}
+            <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${props.keywords?.join(', ')}`} />
+            <meta property="og:url" content={window.location.href} />
+        </Helmet>
+    )
 }
+

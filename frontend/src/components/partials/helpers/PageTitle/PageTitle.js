@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 import classNames from 'classnames'
+import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
 
 import './page-title.scoped.scss'
@@ -11,6 +12,7 @@ import './page-title.scoped.scss'
  * Title element from pages
  * 
  * @param {Object} props : properties of the element
+ *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.className : custom class name for the title
  *      @param {String} props.title : page title
  * 
@@ -24,7 +26,7 @@ export default function PageTitle(props) {
     return (
         <div className={classNames("page-title", props.className || '')}>
             <Typography variant="h1" className={classNames("title-h1", t('configs.font_class_name'))}>
-                {t(props.title)}
+                {props.external ? props.title?.[i18n.language] : t(props.title)}
             </Typography>
         </div>
     )
