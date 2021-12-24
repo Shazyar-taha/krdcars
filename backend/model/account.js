@@ -23,7 +23,7 @@ exports.addUser = async (user) => {
         VALUES(?, ?, ?, ?, ?)`;
 
         // hashing the password 
-        let hashPass = await bcrypt.hash(user.password, 10);
+        let hashPass = await bcrypt.hash(user.password, 12);
         console.log(hashPass);
         // insert a user 
         return db.execute(sql, [user.fullName, hashPass, user.email, user.permission, user.profileImg])
@@ -35,6 +35,40 @@ exports.addUser = async (user) => {
         console.log(email[0][0].email);
         return false;
     }
+
+
+}
+
+
+// this object pass the user{id, oldPassword, newPassword, confirm new Password}
+exports.changePassword = async (user) => {
+
+    // we get the user in database
+    return db.query('SELECT password FROM account WHERE id = ?', [user.id])
+        .then(([rows, fieldData]) => {
+            if (rows.length == 0) {
+                return 'not found the user'
+            } else {
+                try {
+                    return bcrypt.compare(user.oldPass, rows[0].password).then(async (result) => {
+                        if (result && (user.newPass == user.confirmPass)) {
+                            // update the user password 
+                            let newPassword = await bcrypt.hash(user.newPass, 12);
+                            return db.execute('UPDATE account SET password = ? WHERE id = ? ', [newPassword, user.id])
+                                .then(([rows, fieldData]) => {
+                                    return rows.affectedRows > 0;
+                                }).catch(err => console.log(err));
+                        } else {
+                            return false;
+                        }
+                    })
+                } catch (err) {
+                    console.log(err);
+                }
+
+            }
+
+        }).catch((err) => console.error(err));
 
 
 }
