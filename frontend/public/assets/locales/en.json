@@ -59,27 +59,29 @@
         }
     },
     "informations": {
-        "head": {
-            "title": "Informations",
-            "description": "Informations list provided by KrdCars"
-        },
-        "section_title": "Informations",
-        "infos": {
-            "cars": {
-                "title": "Cars",
-                "description": "Information about car brands and models, and their quality"
+        "index": {
+            "head": {
+                "title": "Informations",
+                "description": "Informations list provided by KrdCars"
             },
-            "car_parts": {
-                "title": "Car Parts",
-                "description": "Information about car parts and their qualifications"
-            },
-            "legall_of_ministry_of_transport": {
-                "title": "Legall of ministry of transport",
-                "description": "Advice with legall works of ministry of transport"
-            },
-            "car_problems": {
-                "title": "Car problems",
-                "description": "Information about car problems and their best solution"
+            "section_title": "Informations",
+            "infos": {
+                "cars": {
+                    "title": "Cars",
+                    "description": "Information about car brands and models, and their quality"
+                },
+                "car_parts": {
+                    "title": "Car Parts",
+                    "description": "Information about car parts and their qualifications"
+                },
+                "legall_of_ministry_of_transport": {
+                    "title": "Legall of ministry of transport",
+                    "description": "Advice with legall works of ministry of transport"
+                },
+                "car_problems": {
+                    "title": "Car problems",
+                    "description": "Information about car problems and their best solution"
+                }
             }
         }
     }
