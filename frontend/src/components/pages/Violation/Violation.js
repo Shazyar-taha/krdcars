@@ -10,53 +10,26 @@ import { OutlinedGrid } from '../../partials/helpers/PageGrid/PageGrid'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'Violations',
-            kr: 'سەرپێچی'
-        },
-        description: {
-            en: 'see your violations',
-            kr: 'سەرپێچیەکانت ببینە'
-        }
+        title: 'violation.index.head.title',
+        description: 'violation.index.head.description',
     },
-    title: {
-        en: 'Violations',
-        kr: 'سەرپێچی'
-    },
+    title: "violation.index.section_title",
     links: [
         {
-            title: { en: 'slemani', kr: 'سلێمانی' },
-            description: {
-                en: 'violations in slemani',
-                kr: 'سەرپێچیەکان لە سنووری پارێزگای سلێمانی'
-            },
-            /**
-            * @TODO : each city violation url
-            */
+            title: "violation.index.links.slemani.title",
+            description: "violation.index.links.slemani.description",
+            otherUrl: '',
+        },
+        {
+            title: "violation.index.links.hawler.title",
+            description: "violation.index.links.hawler.description",
             otherUrl: ''
         },
         {
-            title: { en: 'Hawler', kr: 'هەولێر' },
-            description: {
-                en: 'violations in hawler',
-                kr: 'سەرپێچیەکان لە سنووری پارێزگای هەولێر'
-            },
-            /**
-            * @TODO : each city violation url
-            */
+            title: "violation.index.links.duhok.title",
+            description: "violation.index.links.duhok.description",
             otherUrl: ''
-        },
-        {
-            title: { en: 'duhok', kr: 'دهۆک' },
-            description: {
-                en: 'violations in duhok',
-                kr: 'سەرپێچیەکان لە سنووری پارێزگای دهۆک'
-            },
-            /**
-            * @TODO : each city violation url
-            */
-            otherUrl: ''
-        },
+        }
     ]
 }
 
