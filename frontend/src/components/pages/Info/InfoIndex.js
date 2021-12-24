@@ -10,32 +10,32 @@ import { OutlinedGrid } from '../../partials/helpers/PageGrid/PageGrid'
 // component content
 let componentContent = {
     head: {
-        title: 'informations.head.title',
-        description: 'informations.head.description',
+        title: 'informations.index.head.title',
+        description: 'informations.index.head.description',
     },
-    title: "informations.section_title",
+    title: "informations.index.section_title",
     infos: [
         {
-            title: "informations.infos.cars.title",
-            description: "informations.infos.cars.description",
+            title: "informations.index.infos.cars.title",
+            description: "informations.index.infos.cars.description",
             url: 'brands'
         },
         {
             
-            title: "informations.infos.car_parts.title",
-            description: "informations.infos.car_parts.description",
+            title: "informations.index.infos.car_parts.title",
+            description: "informations.index.infos.car_parts.description",
             url: 'parts'
         },
         {
             
-            title: "informations.infos.legall_of_ministry_of_transport.title",
-            description: "informations.infos.legall_of_ministry_of_transport.description",
+            title: "informations.index.infos.legall_of_ministry_of_transport.title",
+            description: "informations.index.infos.legall_of_ministry_of_transport.description",
             url: 'driving-works'
         },
         {
             
-            title: "informations.infos.car_problems.title",
-            description: "informations.infos.car_problems.description",
+            title: "informations.index.infos.car_problems.title",
+            description: "informations.index.infos.car_problems.description",
             url: 'car-problems'
         },
     ]

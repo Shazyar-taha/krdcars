@@ -11,19 +11,10 @@ import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'Brands',
-            kr: 'براندەکان'
-        },
-        description: {
-            en: 'Brands list',
-            kr: 'لیستی براندەکان'
-        }
+        title: 'informations.brands.head.title',
+        description: 'informations.brands.head.description',
     },
-    title: {
-        en: 'Car Brands',
-        kr: 'کۆمپانیاکانی بەرهەمهێنانی ئوتومبێل'
-    },
+    title: 'informations.brands.section_title',
 }
 
 
@@ -75,7 +66,7 @@ export default function InfoBrands() {
                     <PageTitle title={componentContent.title} />
 
                     {/* page list */}
-                    <CenteredGrid list={datas} fullUrl={url} />
+                    <CenteredGrid list={datas} fullUrl={url} external />
 
                 </Container>
             </div>

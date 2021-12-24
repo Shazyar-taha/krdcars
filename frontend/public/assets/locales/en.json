@@ -83,6 +83,13 @@
                     "description": "Information about car problems and their best solution"
                 }
             }
+        },
+        "brands": {
+            "head": {
+                "title": "Cars",
+                "description": "Car details provided"
+            },
+            "section_title": "Car brands"
         }
     }
 }
