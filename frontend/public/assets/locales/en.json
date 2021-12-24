@@ -90,6 +90,27 @@
                 "description": "Car details provided"
             },
             "section_title": "Car brands"
+        },
+        "parts": {
+            "head": {
+                "title": "Car Parts",
+                    "description": "Information about car parts and their qualifications"
+            },
+            "section_title": "Car Parts"
+        },
+        "driving_works": {
+            "head": {
+                "title": "Legall of ministry of transport",
+                    "description": "Advice with legall works of ministry of transport"
+            },
+            "section_title": "Legall of ministry of transport"
+        },
+        "car_problems": {
+            "head": {
+                "title": "Car problems",
+                    "description": "Information about car problems and their best solution"
+            },
+            "section_title": "Car problems"
         }
     }
 }
