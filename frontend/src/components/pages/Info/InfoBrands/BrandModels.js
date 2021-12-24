@@ -61,17 +61,17 @@ export default function InfoBrandPreview() {
     return (
         <>
             {/* overriding document head */}
-            <CustomHelmet title={datas.brand} description={datas.brand} />
+            <CustomHelmet title={datas.brand} description={datas.brand} external />
 
 
             <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
                     {/* page title */}
-                    <PageTitle title={datas.brand} />
+                    <PageTitle title={datas.brand} external />
 
                     {/* page list */}
-                    <OutlinedGrid list={datas.models} fullUrl={url} />
+                    <OutlinedGrid list={datas.models} fullUrl={url} external />
 
                 </Container>
             </div>

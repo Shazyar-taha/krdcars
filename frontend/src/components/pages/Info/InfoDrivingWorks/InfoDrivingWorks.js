@@ -11,19 +11,10 @@ import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'Kurdistan driving works',
-            kr: 'کارەکانی وەزارەتی هاتووچۆ'
-        },
-        description: {
-            en: 'list of legalls of ministry of transport',
-            kr: 'لیستی کارەکانی وەزارەتی هاتوچۆ'
-        }
+        title: 'informations.driving_works.head.title',
+        description: 'informations.driving_works.head.description',
     },
-    title: {
-        en: 'Kurdistan driving works',
-        kr: 'کارەکانی وەزارەتی هاتووچۆ'
-    },
+    title: 'informations.driving_works.section_title',
 }
 
 
@@ -76,7 +67,7 @@ export default function InfoDrivingWorks() {
                     <PageTitle title={componentContent.title} />
 
                     {/* info list */}
-                    <OutlinedGrid list={datas} fullUrl={url} />
+                    <OutlinedGrid list={datas} fullUrl={url} external />
 
                 </Container>
             </div>
