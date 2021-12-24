@@ -94,23 +94,46 @@
         "parts": {
             "head": {
                 "title": "Car Parts",
-                    "description": "Information about car parts and their qualifications"
+                "description": "Information about car parts and their qualifications"
             },
             "section_title": "Car Parts"
         },
         "driving_works": {
             "head": {
                 "title": "Legall of ministry of transport",
-                    "description": "Advice with legall works of ministry of transport"
+                "description": "Advice with legall works of ministry of transport"
             },
             "section_title": "Legall of ministry of transport"
         },
         "car_problems": {
             "head": {
                 "title": "Car problems",
-                    "description": "Information about car problems and their best solution"
+                "description": "Information about car problems and their best solution"
             },
             "section_title": "Car problems"
+        }
+    },
+    "violation": {
+        "index": {
+            "head": {
+                "title": "Violations",
+                "description": "See your violation records"
+            },
+            "section_title": "Violations",
+            "links": {
+                "slemani": {
+                    "title": "Slemani",
+                    "description": "Violation records in Slemani"
+                },
+                "hawler": {
+                    "title": "Hawler",
+                    "description": "Violation records in Hawler"
+                },
+                "duhok": {
+                    "title": "Duhok",
+                    "description": "Violation records in Duhok"
+                }
+            }
         }
     }
 }
