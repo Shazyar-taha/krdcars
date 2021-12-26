@@ -123,3 +123,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# SQL test files
+*Test.session.sql
