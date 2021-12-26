@@ -16,7 +16,7 @@ let componentContent = {
             title: 'partials.footer.content.website_routes.title',
             links: [
                 { name: 'partials.footer.content.website_routes.links.informations', url: '/info' },
-                { name: 'partials.footer.content.website_routes.links.cars', url: '/info/brands' },
+                { name: 'partials.footer.content.website_routes.links.cars', url: '/info/cars' },
                 { name: 'partials.footer.content.website_routes.links.parts', url: '/info/parts' },
                 { name: 'partials.footer.content.website_routes.links.about', url: '/about' }
             ]

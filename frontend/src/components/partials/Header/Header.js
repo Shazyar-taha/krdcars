@@ -23,12 +23,12 @@ let componentContent = {
             title: 'partials.header.links.informations', url: '/info',
             options: {
                 isActive: (match, location) =>
-                    location.pathname.startsWith('/info') && !location.pathname.startsWith('/info/brands')
+                    location.pathname.startsWith('/info') && !location.pathname.startsWith('/info/cars')
             }
         },
         {
-            title: 'partials.header.links.cars', url: '/info/brands',
-            options: { isActive: (match, location) => location.pathname.startsWith('/info/brands') }
+            title: 'partials.header.links.cars', url: '/info/cars',
+            options: { isActive: (match, location) => location.pathname.startsWith('/info/cars') }
         },
         { title: 'partials.header.links.violation', url: '/violation' },
         { title: 'partials.header.links.store', url: '/store' },

@@ -11,24 +11,24 @@ import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 // component content
 let componentContent = {
     head: {
-        title: 'informations.brands.head.title',
-        description: 'informations.brands.head.description',
+        title: 'informations.cars.head.title',
+        description: 'informations.cars.head.description',
     },
-    title: 'informations.brands.section_title',
+    title: 'informations.cars.section_title',
 }
 
 
 
 /**
- *  @return {Element} : info brands page
+ *  @return {Element} : info Cars page
  */
-export default function InfoBrands() {
+export default function InfoCars() {
 
     // this route path
     const { url } = useRouteMatch()
 
 
-    // brand list state
+    // brands list state
     const [datas, setDatas] = useState([]);
 
     // get the datas list

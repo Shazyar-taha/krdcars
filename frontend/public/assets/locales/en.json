@@ -84,12 +84,12 @@
                 }
             }
         },
-        "brands": {
+        "cars": {
             "head": {
                 "title": "Cars",
                 "description": "Car details provided"
             },
-            "section_title": "Car brands"
+            "section_title": "Cars"
         },
         "parts": {
             "head": {

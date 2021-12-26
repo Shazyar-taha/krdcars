@@ -9,9 +9,9 @@ import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 
 
 /**
- *  @return {Element} : info brand preview page
+ *  @return {Element} : info car brands preview page
  */
-export default function InfoBrandPreview() {
+export default function InfoCarsBrandsPreview() {
 
     // this route url
     const { url } = useRouteMatch()
@@ -31,7 +31,7 @@ export default function InfoBrandPreview() {
         /**
         * @TODO : send the brand name to server and validate it, then fetch get the models list
         */
-        const response = // await fetch(`/api/brand/get-models/${brand}`)
+        const response = // await fetch(`/api/cars/${brand}/get-models`)
         {
             brand: {
                 en: brandName,
