@@ -12,7 +12,7 @@ router.use('/account', accountController);
 
 router.use('/ads', adsController);
 
-router.use('/car', carController);
+router.use('/info', carController);
 
 router.use('/part', partController);
 
