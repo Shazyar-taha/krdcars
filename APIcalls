@@ -1,0 +1,139 @@
+// get all cars
+GET: /apis/info/cars/brand?page={PAGENUMBER}
+RESPONSE: 
+[
+    {
+        url: 'mitsubishi',
+        title: { en: 'Mitsubishi', kr: 'میسۆبیشی' },
+        image: ''
+    },
+]
+
+-----------------------
+
+// get specific car
+get: /apis/info/cars/brand/{BRANDUID}
+{
+    brand: {
+        name:{
+            en: brandName,
+            kr: 'میسۆبیشی'
+        },
+        founderName: {
+            en: '',
+            kr: ''
+        },
+        foundDate: '',
+        headquartersLocation {
+            en: '',
+            kr: ''
+        },
+    },
+    models: [
+        {
+            url: 'item-1',
+            title: { en: 'item1', kr: 'بەرهەمی ١' },
+        },
+    ]
+}
+
+------------------
+
+// get specific model
+get: /apis/info/cars/brand/{BRANDUID}/{MODELUID}?year={YEAR}
+response: {
+    name: {
+        en: '',
+        kr: ''
+    },
+    carInformation: {
+        en: '',
+        kr: ''
+    },
+    image: '',
+    carType: {
+        en: '',
+        kr: ''
+    },
+    availableYears: [1990, 2004, 2021]
+}
+
+------------------
+
+// get car parts
+GET: /apis/info/car-parts?page={PAGENUMBER}
+response: 
+[
+    {
+        url: 'product-1',
+        title: { en: 'item1', kr: 'بەرهەمی ١' },
+        description: {
+            en: 'Information about car problems and their best solution',
+            kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+        },
+    },
+]
+
+------------------
+
+// get car specific part
+GET: /apis/info/car-parts/{PARTUID}
+response: 
+{
+    title: { en: 'item1', kr: 'بەرهەمی ١' },
+    description: {
+        en: 'Information about car problems and their best solution',
+        kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+    },
+    image: '',
+},
+
+------------------
+
+// get car car problems
+GET: /apis/info/car-problems?page={PAGENUMBER}
+response: 
+[
+    {
+        url: 'product-1',
+        title: { en: 'item1', kr: 'بەرهەمی ١' },
+        description: {
+            en: 'Information about car problems and their best solution',
+            kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+        },
+    },
+]
+
+------------------
+
+// get car specific car problem
+GET: /apis/info/car-parts/{PARTUID}
+response: 
+{
+    title: { en: 'item1', kr: 'بەرهەمی ١' },
+    description: {
+        en: 'Information about car problems and their best solution',
+        kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+    },
+    auther: {
+        accountType: '',
+        name: ''
+    },
+    image: '',
+},
+
+------------------
+
+// get car legalls of legall of ministry of transport
+GET: /apis/info/driving-works?page={PAGENUMBER}
+response: 
+[
+    {
+        url: 'product-1',
+        title: { en: 'item1', kr: 'بەرهەمی ١' },
+        description: {
+            en: 'Information about car problems and their best solution',
+            kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+        },
+    },
+]
