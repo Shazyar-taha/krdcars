@@ -13,7 +13,7 @@ let componentContent = {
     subtitle: "home.car_parts.subtitle",
     title: "home.car_parts.title",
     descritopn: "home.car_parts.description",
-    button: "configs.see_more"
+    button: "configs.keywords.see_more"
 }
 
 
