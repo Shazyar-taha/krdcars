@@ -1,7 +1,12 @@
 {
     "configs": {
         "font_class_name": "english-font",
-        "see_more": "See More"
+        "keywords": {
+            "see_more": "See more",
+            "founder": "Founder",
+            "founded": "Founded",
+            "headquarters_location": "‌Headquarters Location"
+        }
     },
     "partials": {
         "header": {
