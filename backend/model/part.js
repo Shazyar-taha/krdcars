@@ -2,34 +2,43 @@ const db = require('./db');
 
 
 // fetch all parts from part table
-exports.findAll = (languageId) => {
-    const sql = `SELECT 
-                id,
-                part_name,
-                about,
-                img
-            FROM
-                part
-            WHERE language_id = ?`;
-    return db.execute(sql, [languageId]);
-
-}
-
-// fetch part by id 
-// the parameters contain languageId and partId
-exports.findPartById = (params) => {
-    const sql = `SELECT 
-                    id,
-                    part_name,
-                    about,
-                    img
+exports.findAll = (offset) => {
+    const sql = ` SELECT
+                    u.name,
+                    p.part_name,
+                    p.about,
+                    p.language_id
                 FROM
-                    part
-                WHERE language_id = ? AND id = ?`
+                    part p 
+                INNER JOIN 
+                    url u ON u.id = p.url_id
+                ORDER BY u.name, p.language_id
+                LIMIT 20 OFFSET ?`;
+    return db.query(sql, [offset]);
+}
 
-    return db.execute(sql, [params.languageId, params.partId]);
+// fetch part by url id 
+exports.findPartByUId = (partUId) => {
+    const sql = ` SELECT
+                    u.name,
+                    p.part_name,
+                    p.about,
+                    p.language_id,
+                    p.img
+                FROM
+                    part p 
+                INNER JOIN 
+                    url u ON u.id = p.url_id
+                WHERE 
+                    u.name = ?
+                ORDER BY 
+                    u.name, p.language_id`;
+
+    return db.query(sql, [partUId]);
 
 }
+
+
 
 // adding a part to part table
 exports.addPart = (params) => {

@@ -14,7 +14,7 @@ router.use('/ads', adsController);
 
 router.use('/info', carController);
 
-router.use('/part', partController);
+router.use('/info', partController);
 
 router.use('/problem', problemController);
 
