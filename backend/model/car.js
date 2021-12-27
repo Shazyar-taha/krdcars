@@ -1,19 +1,42 @@
 const db = require('./db');
 
 
+
+
+
 // fetch all brands from brand table 
-exports.brands = (languageId) => {
+exports.findAllBrand = (offset) => {
     const sql = `SELECT 
-	                id,
-                    brand_name,
-                    founder_name,
-                    founder_date,
-                    headquarters_location,
-                    logo
-                FROM 
-                	brand 
-                WHERE language_id = ?;`;
-    return db.execute(sql, [languageId]);
+        url.id,
+        url.name AS url_name,
+        br.brand_name AS title,
+        br.language_id,
+        br.logo AS img
+    FROM 
+        brand br
+    INNER JOIN 
+        url ON url.id = br.url_id
+    ORDER BY url.name, br.language_id ASC 
+    LIMIT 20 OFFSET ?`;
+    return db.query(sql, [offset]);
+}
+
+// fetch the specific brand using url name
+exports.findBrandByUId = (uid) => {
+    const sql = `SELECT
+                    br.brand_name,
+                    br.founder_name,
+                    br.founder_date,
+                    br.headquarters_location,
+                    br.language_id
+                FROM
+                    brand br
+                INNER JOIN 
+                    url ON url.id = br.url_id
+                WHERE 
+                    url.name = ?
+                ORDER BY br.language_id`;
+    return db.query(sql, [uid]);
 }
 
 // fetch all models from model table
