@@ -24,7 +24,7 @@ get: /apis/info/cars/brand/{BRANDUID}
             kr: ''
         },
         foundDate: '',
-        headquartersLocation {
+        headquartersLocation: {
             en: '',
             kr: ''
         },

@@ -11,7 +11,7 @@ import background from './background.png'
 // component content
 let componentContent = {
     title: "home.store_title",
-    button: "configs.see_more"
+    button: "configs.keywords.see_more"
 }
 
 

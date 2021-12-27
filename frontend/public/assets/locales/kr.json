@@ -1,7 +1,12 @@
 {
     "configs": {
         "font_class_name": "kurdish-font",
-        "see_more": "زیاتر ببینە"
+        "keywords": {
+            "see_more": "زیاتر ببینە",
+            "founder": "دروستکەر",
+            "founded": "بەرواری دروستکردن",
+            "headquarters_location": "بنکەی سەرەکی"
+        }
     },
     "partials": {
         "header": {

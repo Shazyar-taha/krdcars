@@ -16,7 +16,7 @@ let componentContent = {
     introAd: {
         title: "home.ad_section.intro_ad.title",
         description: "home.ad_section.intro_ad.description",
-        button: "configs.see_more",
+        button: "configs.keywords.see_more",
     },
     ads: [
         /**

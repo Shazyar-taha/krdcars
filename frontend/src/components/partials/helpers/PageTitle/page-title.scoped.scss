@@ -6,4 +6,21 @@
         color: var(--head-text-color);
         font-size: var(--xx-huge-font-size);
     }
+
+    // page details
+    .details {
+        margin-top: 1rem;
+        color: var(--body-text-color);
+        font-size: var(--small-font-size);
+
+        // each detail
+        .detail {
+            margin-top: 0.5rem;
+
+            // removing margin top for the first detail
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
 }

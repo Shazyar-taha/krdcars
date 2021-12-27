@@ -22,7 +22,7 @@ export default function InfoCarsBrandsPreview() {
 
     // brand and model datas
     const [datas, setDatas] = useState({
-        brand: { en: '', kr: '' },
+        brand: { name: { en: '', kr: '' } },
         models: []
     });
 
@@ -34,8 +34,19 @@ export default function InfoCarsBrandsPreview() {
         const response = // await fetch(`/api/cars/${brand}/get-models`)
         {
             brand: {
-                en: brandName,
-                kr: 'میسۆبیشی'
+                name: {
+                    en: brandName,
+                    kr: 'میسۆبیشی'
+                },
+                founderName: {
+                    en: '',
+                    kr: ''
+                },
+                foundDate: '',
+                headquartersLocation: {
+                    en: '',
+                    kr: ''
+                },
             },
             models: [
                 {
@@ -49,11 +60,18 @@ export default function InfoCarsBrandsPreview() {
             ]
         }
 
+        // adding details array to brand
+        response.brand = {
+            name: response.brand.name,
+            details: [
+                { key: 'configs.keywords.founder', value: response.brand.founderName },
+                { key: 'configs.keywords.founded', value: 'هەلاو', singleValue: true },
+                { key: 'configs.keywords.headquarters_location', value: response.brand.headquartersLocation },
+            ]
+        }
+
         // setting the datas
-        setDatas({
-            brand: response.brand,
-            models: response.models
-        })
+        setDatas(response)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -61,14 +79,14 @@ export default function InfoCarsBrandsPreview() {
     return (
         <>
             {/* overriding document head */}
-            <CustomHelmet title={datas.brand} description={datas.brand} external />
+            <CustomHelmet title={datas.brand.name} description={datas.brand.name} external />
 
 
             <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
                     {/* page title */}
-                    <PageTitle title={datas.brand} external />
+                    <PageTitle title={datas.brand.name} details={datas.brand.details} external />
 
                     {/* page list */}
                     <OutlinedGrid list={datas.models} fullUrl={url} external />

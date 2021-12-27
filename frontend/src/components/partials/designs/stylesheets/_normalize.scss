@@ -15,6 +15,16 @@ default document styles
 
     // transition animation on theme color change
     transition: background 0.6s, background-color 0.6s, color 0.6s ease;
+
+    // removing transition for unordered list and anything inside svg
+    ul,
+    svg * {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -ms-transition: none !important;
+        -o-transition: none !important;
+        transition: none !important;
+    }
 }
 
 // setting body defaults
