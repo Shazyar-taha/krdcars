@@ -16,7 +16,7 @@ router.use('/info', carController);
 
 router.use('/info', partController);
 
-router.use('/problem', problemController);
+router.use('/info', problemController);
 
 
 module.exports = router;

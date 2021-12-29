@@ -2,37 +2,42 @@ const db = require('./db');
 
 
 // fetch all problem from problem table
-exports.findAll = (languageId) => {
+exports.findAll = (offset) => {
     const sql = `SELECT 
-                p.id,
-                p.problem_name,
-                p.about,
-                p.img,
-                ac.full_name,
-                ac.permission
-            FROM 
-                problem p
-            INNER JOIN 
-                account ac ON ac.id = p.account_id 
-            WHERE p.language_id = ?`;
+                    u.name,
+                    p.problem_name,
+                    p.about,
+                    p.language_id
+                FROM 
+                    problem p 
+                INNER JOIN
+                    url u ON u.id = p.url_id
+                ORDER BY 
+                    u.name, p.language_id
+                LIMIT 20 OFFSET ?`;
 
-    return db.execute(sql, [language_id]);
+    return db.query(sql, [offset]);
 }
 
 // fetch a problem using problem id 
-exports.findProblemById = (params) => {
+exports.findProblemByUId = (problemUId) => {
     const sql = `SELECT 
-                p.id,
-                p.problem_name,
-                p.about,
-                p.img,
-                ac.full_name,
-                ac.permission
-            FROM 
-                problem p
-            INNER JOIN 
-                account ac ON ac.id = p.account_id 
-            WHERE p.language_id = ? AND p.id = ?`;
+                    p.problem_name,
+                    p.about,
+                    ac.full_name,
+                    ac.permission,
+                    p.img,
+                    p.language_id
+                FROM 
+                    problem p 
+                INNER JOIN 
+                    url u ON u.id = p.url_id
+                INNER JOIN 
+                    account ac ON ac.id = p.account_id
+                WHERE 
+                    u.name = ?
+                ORDER BY 
+                    u.name, p.language_id`;
 
-    return db.execute(sql, [params.languageId, params.problemId]);
+    return db.execute(sql, [problemUId]);
 }

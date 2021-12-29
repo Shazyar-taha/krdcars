@@ -107,7 +107,7 @@ response:
 ------------------
 
 // get car specific car problem
-GET: /apis/info/car-parts/{PARTUID}
+GET: /apis/info/car-problem/{PARTUID}
 response: 
 {
     title: { en: 'item1', kr: 'بەرهەمی ١' },
