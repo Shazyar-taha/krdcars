@@ -2,15 +2,20 @@ const db = require('./db');
 
 
 // fetch all driven works data 
-exports.findAll = (languageId) => {
+exports.findAll = (offset) => {
     const sql = `SELECT 
-                id, name, information
-            FROM
-                driven_work 
-            WHERE 
-                language_id = ?`;
+                    u.name,
+                    d.name AS title,
+                    d.information,
+                    d.language_id
+                FROM 
+                    driving_work d
+                INNER JOIN 
+                    url u ON u.id = d.url_id
+                ORDER BY u.name, d.language_id
+                LIMIT 20 OFFSET ?`;
 
-    return db.execute(sql, [languageId]);
+    return db.query(sql, [offset]);
 }
 
 

@@ -4,6 +4,7 @@ const carController = require('../controller/car');
 const partController = require('../controller/part')
 const problemController = require('../controller/problem');
 const accountController = require('../controller/account');
+const drivingController = require('../controller/driven_work');
 
 
 const router = express.Router();
@@ -17,6 +18,8 @@ router.use('/info', carController);
 router.use('/info', partController);
 
 router.use('/info', problemController);
+
+router.use('/info', drivingController);
 
 
 module.exports = router;
