@@ -41,8 +41,6 @@ export default function DetailsFixer(details, keyPrefix = '', skipKeys = ['name'
         details: detailsArray
     }
 
-    console.log(details);
-
     return details;
 }
 
