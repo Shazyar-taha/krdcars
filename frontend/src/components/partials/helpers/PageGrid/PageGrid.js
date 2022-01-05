@@ -59,9 +59,11 @@ export function OutlinedGrid(props) {
                                 </Typography>
 
                                 {/* card description */}
-                                <Typography variant="body1" className={classNames("card-description", t('configs.font_class_name'))}>
-                                    {props.external ? item.description?.[i18n.language] : t(item.description)}
-                                </Typography>
+                                {item.description &&
+                                    <Typography variant="body1" className={classNames("card-description", t('configs.font_class_name'))}>
+                                        {props.external ? item.description?.[i18n.language] : t(item.description)}
+                                    </Typography>
+                                }
 
                             </CardContent>
                         </Card>
