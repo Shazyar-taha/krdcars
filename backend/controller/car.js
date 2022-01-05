@@ -102,9 +102,20 @@ router.get('/cars/brand/:brandUId', (req, res) => {
 
 
 // get specific car 
-router.get('/cars/brand/:brandUid/:modelUid', (req, res) => {
+router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
     const brandUid = req.params.brandUid,
         modelUid = req.params.modelUid;
+
+    // getting brandname
+    let [brandName] = await carModel.findBrandByUId(brandUid).catch((err) => {
+        console.log(err);
+    });
+
+    // making brandName object
+    brandName = {
+        en: brandName[0].brand_name,
+        kr: brandName[1].brand_name
+    }
 
     const year = parseInt(req.query.year || 0);
 
@@ -122,6 +133,7 @@ router.get('/cars/brand/:brandUid/:modelUid', (req, res) => {
                                     en: rows.find(r => r.language_id == 1).car_name,
                                     kr: rows.find(r => r.language_id == 2).car_name
                                 },
+                                brandName,
                                 carInformation: {
                                     en: rows.find(r => r.language_id == 1).car_information,
                                     kr: rows.find(r => r.language_id == 2).car_information
