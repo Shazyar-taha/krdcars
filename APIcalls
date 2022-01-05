@@ -46,6 +46,10 @@ response: {
         en: '',
         kr: ''
     },
+    brandName: {
+        en: '',
+        kr: ''
+    },
     carInformation: {
         en: '',
         kr: ''

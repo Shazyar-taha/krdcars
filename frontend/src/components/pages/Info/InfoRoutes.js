@@ -4,6 +4,7 @@ import { Route, useRouteMatch } from 'react-router'
 import InfoIndex from './InfoIndex'
 import InfoCars from './InfoCars/InfoCars'
 import CarModels from './InfoCars/CarModels'
+import ModelPreview from './InfoCars/ModelPreview'
 import InfoCarParts from './InfoCarParts/InfoCarParts'
 import InfoDrivingWorks from './InfoDrivingWorks/InfoDrivingWorks'
 import InfoCarProblems from './InfoCarProblems/InfoCarProblems'
@@ -34,6 +35,10 @@ export default function InfoRoutes() {
             {/* car brand preview */}
             <Route path={`${url}/cars/:brandName`} exact>
                 <CarModels />
+            </Route>
+            {/* car brand preview */}
+            <Route path={`${url}/cars/:brandName/:modelUid`} exact>
+                <ModelPreview />
             </Route>
 
 
