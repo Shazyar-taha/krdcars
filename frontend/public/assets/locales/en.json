@@ -5,7 +5,10 @@
             "see_more": "See more",
             "founder": "Founder",
             "founded": "Founded",
-            "headquarters_location": "‌Headquarters Location"
+            "headquarters_location": "‌Headquarters Location",
+            "brand_name": "Brand Name",
+            "car_type": "Car Type",
+            "available_years": "Available Years"
         }
     },
     "partials": {
