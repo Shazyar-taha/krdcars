@@ -6,9 +6,9 @@
             "founder": "دروستکەر",
             "founded": "بەرواری دروستکردن",
             "headquarters": "بنکەی سەرەکی",
-            "brand_name": "براند",
-            "car_type": "جۆری ئوتومبێل",
-            "available_years": "ساڵەکان"
+            "available_years": "ساڵەکان",
+            "brandName": "براند",
+            "carType": "جۆری ئوتومبێل"
         }
     },
     "partials": {
