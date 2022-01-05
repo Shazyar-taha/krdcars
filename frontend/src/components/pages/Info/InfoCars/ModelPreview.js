@@ -30,7 +30,7 @@ export default function ModelPreview() {
         availableYears: [],
     });
 
-    // get the datas list
+    // fetching the model details
     useEffect(() => {
         /**
         * @TODO : fetch from server

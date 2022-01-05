@@ -38,6 +38,9 @@ export default function InfoCarsBrandsPreview() {
 
                 setDatas(res.data)
             })
+            .catch(err => {
+                console.log(err)
+            })
     }, [brandName])
 
 
