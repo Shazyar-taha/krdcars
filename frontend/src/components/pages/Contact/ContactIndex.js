@@ -86,11 +86,6 @@ export default function ContactIndex() {
                     {/* contact grid */}
                     <OutlinedGrid list={componentContent.infos} fullUrl={url} />
 
-
-                    {/**
-                    * @TODO : ad
-                    */}
-
                 </Container>
             </div>
         </div>

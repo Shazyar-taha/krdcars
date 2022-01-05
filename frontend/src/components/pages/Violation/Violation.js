@@ -60,11 +60,6 @@ export default function InfoIndex() {
                     {/* page grid */}
                     <OutlinedGrid list={componentContent.links} fullUrl={url} />
 
-
-                    {/**
-                    * @TODO : ad
-                    */}
-
                 </Container>
             </div>
         </>

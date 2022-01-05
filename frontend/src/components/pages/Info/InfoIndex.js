@@ -68,11 +68,6 @@ export default function InfoIndex() {
                     {/* info grid */}
                     <OutlinedGrid list={componentContent.infos} fullUrl={url} />
 
-
-                    {/**
-                    * @TODO : ad
-                    */}
-
                 </Container>
             </div>
         </>
