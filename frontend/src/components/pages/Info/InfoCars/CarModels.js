@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useRouteMatch } from 'react-router'
 import { Container } from '@mui/material'
+import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
 import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
+import detailsFixer from '../../../partials/helpers/detailsFixer'
 
 
 
@@ -16,64 +18,27 @@ export default function InfoCarsBrandsPreview() {
     // this route url
     const { url } = useRouteMatch()
 
-
     // brand name from the request params
     const { brandName } = useParams()
 
-    // brand and model datas
+    // page datas
     const [datas, setDatas] = useState({
         brand: { name: { en: '', kr: '' } },
         models: []
     });
 
-    // fetching the models list
+
+    // fetching the brand details and models list
     useEffect(() => {
-        /**
-        * @TODO : send the brand name to server and validate it, then fetch get the models list
-        */
-        const response = // await fetch(`/api/cars/${brand}/get-models`)
-        {
-            brand: {
-                name: {
-                    en: brandName,
-                    kr: 'میسۆبیشی'
-                },
-                founderName: {
-                    en: '',
-                    kr: ''
-                },
-                foundDate: '',
-                headquartersLocation: {
-                    en: '',
-                    kr: ''
-                },
-            },
-            models: [
-                {
-                    url: 'item-1',
-                    title: { en: 'item1', kr: 'بەرهەمی ١' },
-                    description: {
-                        en: 'Information about car problems and their best solution',
-                        kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
-                    },
-                },
-            ]
-        }
+        axios.get(`/apis/info/cars/brand/${brandName}`)
+            .then(res => {
 
-        // adding details array to brand
-        response.brand = {
-            name: response.brand.name,
-            details: [
-                { key: 'configs.keywords.founder', value: response.brand.founderName },
-                { key: 'configs.keywords.founded', value: 'هەلاو', singleValue: true },
-                { key: 'configs.keywords.headquarters_location', value: response.brand.headquartersLocation },
-            ]
-        }
+                // fixing the details for brand
+                res.data.brand = detailsFixer(res.data.brand, 'configs.keywords.',)
 
-        // setting the datas
-        setDatas(response)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+                setDatas(res.data)
+            })
+    }, [brandName])
 
 
     return (
