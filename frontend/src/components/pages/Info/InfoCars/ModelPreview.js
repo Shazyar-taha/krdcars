@@ -36,7 +36,7 @@ export default function ModelPreview() {
     useEffect(() => {
         axios.get(`/apis/info/cars/brand/${brandName}/${modelUid}${search}`)
             .then(res => {
-                res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'img'])
+                res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'image'])
                 setDatas(res.data)
             })
             .catch(err => {
@@ -60,7 +60,7 @@ export default function ModelPreview() {
                     {/* page infos */}
                     <InfoPreview
                         description={datas.carInformation}
-                        image={`data:image/jpg;base64,${datas.img}`}
+                        image={`data:image/jpg;base64,${datas.image}`}
                         imageAlt={datas.name}
                         subText={datas.availableYears}
                         subTextLinkTemplate={pathname}

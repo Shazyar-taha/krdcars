@@ -29,7 +29,7 @@ router.get('/cars/brand', (req, res) => {
                         en: rows.find(r => r.id == row.id && r.language_id == 1).title,
                         kr: rows.find(r => r.id == row.id && r.language_id == 2).title
                     },
-                    img: row.img
+                    image: row.img
                 });
 
             }
@@ -138,7 +138,7 @@ router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
                                     en: rows.find(r => r.language_id == 1).car_information,
                                     kr: rows.find(r => r.language_id == 2).car_information
                                 },
-                                img: rows.find(r => r.language_id == 1).img,
+                                image: rows.find(r => r.language_id == 1).img,
                                 carType: {
                                     en: rows.find(r => r.language_id == 1).car_type_name,
                                     kr: rows.find(r => r.language_id == 2).car_type_name
@@ -174,7 +174,7 @@ router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
                                     en: rows.find(r => r.language_id == 1).car_information,
                                     kr: rows.find(r => r.language_id == 2).car_information
                                 },
-                                img: rows.find(r => r.language_id == 1).img,
+                                image: rows.find(r => r.language_id == 1).img,
                                 carType: {
                                     en: rows.find(r => r.language_id == 1).car_type_name,
                                     kr: rows.find(r => r.language_id == 2).car_type_name
