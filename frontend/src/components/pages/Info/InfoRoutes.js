@@ -33,11 +33,11 @@ export default function InfoRoutes() {
                 <InfoCars />
             </Route>
             {/* car brand preview */}
-            <Route path={`${url}/cars/:brandName`} exact>
+            <Route path={`${url}/cars/:brandUid`} exact>
                 <CarModels />
             </Route>
             {/* car brand preview */}
-            <Route path={`${url}/cars/:brandName/:modelUid`} exact>
+            <Route path={`${url}/cars/:brandUid/:modelUid`} exact>
                 <ModelPreview />
             </Route>
 

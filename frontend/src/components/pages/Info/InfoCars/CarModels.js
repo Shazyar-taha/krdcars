@@ -19,7 +19,7 @@ export default function InfoCarsBrandsPreview() {
     const { url } = useRouteMatch()
 
     // brand name from the request params
-    const { brandName } = useParams()
+    const { brandUid } = useParams()
 
     // page datas
     const [datas, setDatas] = useState({
@@ -30,7 +30,7 @@ export default function InfoCarsBrandsPreview() {
 
     // fetching the brand details and models list
     useEffect(() => {
-        axios.get(`/apis/info/cars/brand/${brandName}`)
+        axios.get(`/apis/info/cars/brand/${brandUid}`)
             .then(res => {
 
                 // fixing the details for brand
@@ -41,7 +41,7 @@ export default function InfoCarsBrandsPreview() {
             .catch(err => {
                 console.log(err)
             })
-    }, [brandName])
+    }, [brandUid])
 
 
     return (

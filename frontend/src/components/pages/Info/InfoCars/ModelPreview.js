@@ -17,7 +17,7 @@ export default function ModelPreview() {
 
 
     // brand name from the request params
-    const { brandName, modelUid } = useParams()
+    const { brandUid, modelUid } = useParams()
 
     // this url and query search
     const { pathname, search } = useLocation()
@@ -34,7 +34,7 @@ export default function ModelPreview() {
 
     // fetching the model details
     useEffect(() => {
-        axios.get(`/apis/info/cars/brand/${brandName}/${modelUid}${search}`)
+        axios.get(`/apis/info/cars/brand/${brandUid}/${modelUid}${search}`)
             .then(res => {
                 res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'image'])
                 setDatas(res.data)
@@ -42,7 +42,7 @@ export default function ModelPreview() {
             .catch(err => {
                 console.log(err)
             })
-    }, [brandName, modelUid, search])
+    }, [brandUid, modelUid, search])
 
 
     return (
