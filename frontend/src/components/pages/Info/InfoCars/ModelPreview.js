@@ -1,7 +1,10 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import axios from 'axios'
+
 import CustomHelmet from '../../../partials/helpers/CustomHelmet'
+import DetailsFixer from '../../../partials/helpers/detailsFixer'
 import InfoPreview from '../../../partials/helpers/InfoPreview/InfoPreview'
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
 
@@ -18,7 +21,6 @@ export default function ModelPreview() {
 
     // this url and query search
     const { pathname, search } = useLocation()
-    const searchYear = new URLSearchParams(search).get('year')
 
 
     // brand and model datas
@@ -32,42 +34,15 @@ export default function ModelPreview() {
 
     // fetching the model details
     useEffect(() => {
-        /**
-        * @TODO : fetch from server
-        */
-        const response = {
-            name: {
-                en: modelUid,
-                kr: 'مۆدێل'
-            },
-            brandName: {
-                en: brandName,
-                kr: 'براند'
-            },
-            carInformation: {
-                en: 'car infos',
-                kr: 'زانیاری ئوتومبێل'
-            },
-            image: '',
-            carType: {
-                en: 'xezani',
-                kr: 'خێزانی'
-            },
-            availableYears: [1990, 2004, 2021]
-        }
-
-        // adding details array to model
-        response.details = [
-            { key: 'configs.keywords.brand_name', value: response.brandName },
-            { key: 'configs.keywords.car_type', value: response.carType },
-        ]
-
-        // deleting details from the object
-        delete response.brandName
-        delete response.carType
-
-        setDatas(response)
-    }, [search])
+        axios.get(`/apis/info/cars/brand/${brandName}/${modelUid}${search}`)
+            .then(res => {
+                res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'img'])
+                setDatas(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [brandName, modelUid, search])
 
 
     return (
@@ -85,7 +60,7 @@ export default function ModelPreview() {
                     {/* page infos */}
                     <InfoPreview
                         description={datas.carInformation}
-                        image={datas.image}
+                        image={`data:image/jpg;base64,${datas.img}`}
                         imageAlt={datas.name}
                         subText={datas.availableYears}
                         subTextLinkTemplate={pathname}
