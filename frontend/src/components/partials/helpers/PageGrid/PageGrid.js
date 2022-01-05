@@ -80,10 +80,11 @@ export function OutlinedGrid(props) {
  * centered grid element
  * 
  * @param {Object} props : properties of the element
- *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.className : custom class name for the list
  *      @param {Array} props.list : page list
+ *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.fullUrl : full url path to the card link
+ *      @param {String} props.imagePrefix : prefix text of images, it is 'data:image/png;base64,' by default
  *      @param {Object} props.gridConfigs : grid configurations
  *          @param {Number} props.gridConfigs.spacing : grid element spacing
  *          @param {Number} props.gridConfigs.xs : grid xs item siFze
@@ -93,6 +94,8 @@ export function OutlinedGrid(props) {
  *  @return {Element} : centered grid element
  */
 export function CenteredGrid(props) {
+
+    const imagePrefix = props.imagePrefix || 'data:image/png;base64,'
 
     // translation hook
     const { t } = useTranslation()
@@ -119,7 +122,7 @@ export function CenteredGrid(props) {
                     >
 
                         {/* item image */}
-                        <img src={item.image} alt={props.external ? item.title?.[i18n.language] : t(item.title)} className="item-image" />
+                        <img src={imagePrefix + item.image} alt={props.external ? item.title?.[i18n.language] : t(item.title)} className="item-image" />
 
                         {/* item title */}
                         <Typography variant="h5" className={classNames("item-title", t('configs.font_class_name'))}>
