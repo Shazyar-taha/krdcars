@@ -59,13 +59,12 @@ router.get('/car-parts/:partUId', (req, res) => {
     partModel.findPartByUId(partUId).then(([rows, field]) => {
         console.log(rows);
         if (rows.length != 0) {
-            let parts = [];
 
             rows.forEach((row) => {
                 if (oldPartUid.length == 0 || oldPartUid != row.name) {
                     oldPartUid = row.name;
 
-                    parts.push({
+                    res.send({
                         title: {
                             en: rows.find(r => r.name == row.name && r.language_id == 1).part_name,
                             kr: rows.find(r => r.name == row.name && r.language_id == 2).part_name
@@ -78,10 +77,6 @@ router.get('/car-parts/:partUId', (req, res) => {
                     })
                 }
             })
-
-            res.send({
-                parts
-            });
 
         } else {
             res.send({
