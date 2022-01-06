@@ -65,7 +65,7 @@ router.get('/car-parts/:partUId', (req, res) => {
                     oldPartUid = row.name;
 
                     res.send({
-                        title: {
+                        name: {
                             en: rows.find(r => r.name == row.name && r.language_id == 1).part_name,
                             kr: rows.find(r => r.name == row.name && r.language_id == 2).part_name
                         },
