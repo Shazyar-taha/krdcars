@@ -1,6 +1,7 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
+import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
 import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
@@ -29,28 +30,17 @@ export default function InfoCarParts() {
 
 
     // parts datas
-    const [parts, setParts] = useState([]);
+    const [datas, setDatas] = useState([]);
 
     // fetching the parts list
     useEffect(() => {
-        /**
-        * @TODO : fetch the parts list
-        */
-        const response = // await fetch(`/api/info/part`)
-            [
-                {
-                    url: 'product-1',
-                    title: { en: 'item1', kr: 'بەرهەمی ١' },
-                    description: {
-                        en: 'Information about car problems and their best solution',
-                        kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
-                    },
-                },
-            ]
-
-
-        // setting the datas
-        setParts(response)
+        axios.get('/apis/info/car-parts')
+            .then(res => {
+                setDatas(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
 
@@ -67,7 +57,7 @@ export default function InfoCarParts() {
                     <PageTitle title={componentContent.title} />
 
                     {/* page list */}
-                    <OutlinedGrid list={parts} fullUrl={url} external />
+                    <OutlinedGrid list={datas} fullUrl={url} external />
 
                 </Container>
             </div>
