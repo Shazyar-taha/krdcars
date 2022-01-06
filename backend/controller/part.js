@@ -57,7 +57,6 @@ router.get('/car-parts/:partUId', (req, res) => {
     let oldPartUid = '';
 
     partModel.findPartByUId(partUId).then(([rows, field]) => {
-        console.log(rows);
         if (rows.length != 0) {
 
             rows.forEach((row) => {
@@ -73,7 +72,7 @@ router.get('/car-parts/:partUId', (req, res) => {
                             en: rows.find(r => r.name == row.name && r.language_id == 1).about,
                             kr: rows.find(r => r.name == row.name && r.language_id == 2).about
                         },
-                        img: row.img
+                        image: row.img
                     })
                 }
             })
