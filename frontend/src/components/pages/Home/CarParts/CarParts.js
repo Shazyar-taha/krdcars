@@ -3,7 +3,7 @@ import { Button, Typography } from '@mui/material'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
-import './vehicle-parts.scoped.scss'
+import './car-parts.scoped.scss'
 import background from './background.png'
 import { Link } from 'react-router-dom'
 
@@ -19,25 +19,25 @@ let componentContent = {
 
 
 /**
- *  @return {Element} : vehicle parts section
+ *  @return {Element} : car parts section
  */
-export default function VehicleParts() {
+export default function CarParts() {
     
     // translation hook
     const { t } = useTranslation()
     
 
     return (
-        <section className="vehicle-parts">
+        <section className="car-parts">
 
             {/* section background image */}
-            <img src={background} alt="" className="vehicle-parts-background" />
+            <img src={background} alt="" className="car-parts-background" />
 
             {/* section details */}
-            <div className="vehicle-parts-leftside">
+            <div className="car-parts-leftside">
 
                 {/* section title */}
-                <div className="vehicle-parts-details">
+                <div className="car-parts-details">
 
                     {/* section title */}
                     <Typography variant="h6" className={classNames("details-subtitle", t('configs.font_class_name'))}>

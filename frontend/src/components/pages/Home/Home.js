@@ -3,7 +3,7 @@ import React from 'react'
 import './home.scoped.scss'
 import HomeMain from './HomeMain/HomeMain'
 import AdSection from './AdSection/AdSection'
-import VehicleParts from './VehicleParts/VehicleParts'
+import CarParts from './CarParts/CarParts'
 import Store from './Store/Store'
 import CustomHelmet from '../../partials/helpers/CustomHelmet'
 
@@ -38,7 +38,7 @@ export default function Home() {
                 <AdSection />
 
                 {/* vehicle parts */}
-                <VehicleParts />
+                <CarParts />
 
                 {/* home page store section */}
                 <Store />

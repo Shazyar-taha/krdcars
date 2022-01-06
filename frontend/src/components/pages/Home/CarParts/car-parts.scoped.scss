@@ -1,13 +1,13 @@
-/* vehicle parts */
+/* car parts */
 
-.vehicle-parts {
+.car-parts {
     margin-top: var(--element-vertical-spacing);
     position: relative;
     width: 100vw;
     height: fit-content;
 
-    // vehicle parts background image
-    .vehicle-parts-background {
+    // car parts background image
+    .car-parts-background {
         position: absolute;
         top: 0;
         left: 0;
@@ -16,8 +16,8 @@
         object-fit: cover;
     }
 
-    // vehicle parts details
-    .vehicle-parts-leftside {
+    // car parts details
+    .car-parts-leftside {
         padding: calc(var(--element-vertical-spacing) * 1.5) 0;
         position: relative;
         width: 50%;
@@ -26,33 +26,33 @@
         z-index: 1;
 
         // leftside details
-        .vehicle-parts-details {
+        .car-parts-details {
             margin: auto;
             text-align: center;
             max-width: 25rem;
 
-            // vehicle parts details subtitle
+            // car parts details subtitle
             .details-subtitle {
                 font-size: var(--large-font-size);
                 margin-bottom: 2rem;
                 color: var(--white-color);
             }
 
-            // vehicle parts details title
+            // car parts details title
             .details-title {
                 font-size: var(--x-huge-font-size);
                 margin-bottom: 5rem;
                 color: var(--white-color);
             }
 
-            // vehicle parts details description
+            // car parts details description
             .details-description {
                 margin-bottom: 2rem;
                 font-size: var(--medium-font-size);
                 color: var(--white-color);
             }
 
-            // vehicle parts readmore button
+            // car parts readmore button
             .details-read-more-btn {
                 font-size: var(--medium-font-size);
             }
@@ -63,9 +63,9 @@
 // responsive breakpoints
 
 @media screen and (max-width: 500px) {
-    .vehicle-parts {
+    .car-parts {
         height: fit-content;
-        .vehicle-parts-leftside {
+        .car-parts-leftside {
             padding: var(--element-vertical-spacing) 0;
             width: 100%;
         }
