@@ -31,7 +31,7 @@
                     "links": {
                         "informations": "Informations",
                         "cars": "Cars",
-                        "parts": "Parts",
+                        "car_parts": "Parts",
                         "about": "About"
                     }
                 },
