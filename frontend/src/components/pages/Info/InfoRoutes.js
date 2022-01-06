@@ -6,6 +6,7 @@ import InfoCars from './InfoCars/InfoCars'
 import CarModels from './InfoCars/CarModels'
 import ModelPreview from './InfoCars/ModelPreview'
 import InfoCarParts from './InfoCarParts/InfoCarParts'
+import CarPartPreview from './InfoCarParts/CarPartPreview'
 import InfoDrivingWorks from './InfoDrivingWorks/InfoDrivingWorks'
 import InfoCarProblems from './InfoCarProblems/InfoCarProblems'
 
@@ -36,7 +37,7 @@ export default function InfoRoutes() {
             <Route path={`${url}/cars/:brandUid`} exact>
                 <CarModels />
             </Route>
-            {/* car brand preview */}
+            {/* car model preview */}
             <Route path={`${url}/cars/:brandUid/:modelUid`} exact>
                 <ModelPreview />
             </Route>
@@ -45,6 +46,10 @@ export default function InfoRoutes() {
             {/* info car parts route */}
             <Route path={`${url}/car-parts`} exact>
                 <InfoCarParts />
+            </Route>
+            {/* car parts preview */}
+            <Route path={`${url}/car-parts/:partUid`} exact>
+                <CarPartPreview />
             </Route>
 
 
