@@ -24,7 +24,7 @@ let componentContent = {
             
             title: "informations.index.infos.car_parts.title",
             description: "informations.index.infos.car_parts.description",
-            url: 'parts'
+            url: 'car-parts'
         },
         {
             

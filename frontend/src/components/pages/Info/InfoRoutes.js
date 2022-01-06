@@ -43,7 +43,7 @@ export default function InfoRoutes() {
 
 
             {/* info car parts route */}
-            <Route path={`${url}/parts`} exact>
+            <Route path={`${url}/car-parts`} exact>
                 <InfoCarParts />
             </Route>
 
