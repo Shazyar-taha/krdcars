@@ -4,7 +4,7 @@
  * NOTE: skips name property by default
  * 
  * @param {Object} details : details object
- * @param {Boolean} skipKeys : the keys that will be skipped, contains 'name' key by default
+ * @param {Array} skipKeys : the keys that will be skipped, contains 'name' key by default
  * @param {Boolean} keyPrefix : prefix text for each key
  * @param {Boolean} fixDate : determines if the dates should be fixed or not
  * 
