@@ -9,6 +9,7 @@ import InfoCarParts from './InfoCarParts/InfoCarParts'
 import CarPartPreview from './InfoCarParts/CarPartPreview'
 import InfoDrivingWorks from './InfoDrivingWorks/InfoDrivingWorks'
 import InfoCarProblems from './InfoCarProblems/InfoCarProblems'
+import ProblemPreview from './InfoCarProblems/ProblemPreview'
 
 
 
@@ -62,6 +63,12 @@ export default function InfoRoutes() {
             {/* info driving works route */}
             <Route path={`${url}/car-problems`} exact>
                 <InfoCarProblems />
+            </Route>
+
+
+            {/* info driving works route */}
+            <Route path={`${url}/car-problems/:problemUid`} exact>
+                <ProblemPreview />
             </Route>
         </>
     )
