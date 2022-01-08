@@ -1,6 +1,7 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
+import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
 import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
@@ -31,26 +32,15 @@ export default function InfoCarProblems() {
     // page datas
     const [datas, setDatas] = useState([]);
 
-    // fetching the datas list
+    // fetching the problems list
     useEffect(() => {
-        /**
-        * @TODO : fetch the datas
-        */
-        const response = // await fetch(`/api/info/driving-works`)
-            [
-                {
-                    url: 'problem-1',
-                    title: { en: 'problem 1', kr: 'کێشەی ١' },
-                    description: {
-                        en: 'info about kurdistan car works',
-                        kr: 'زانیاری دەربارەی کارەکانی شۆفێر لە کوردستان'
-                    },
-                },
-            ]
-
-
-        // setting the datas
-        setDatas(response)
+        axios.get('/apis/info/car-problems')
+            .then(res => {
+                setDatas(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }, [])
 
 
