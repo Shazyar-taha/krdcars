@@ -3,7 +3,7 @@ const problemModel = require('../model/problem');
 
 
 // get all problems
-router.get('/car-problem', (req, res) => {
+router.get('/car-problems', (req, res) => {
     // get the page in query
     const page = parseInt(req.query.page || 1);
     // the limit is 20
@@ -54,7 +54,7 @@ router.get('/car-problem', (req, res) => {
 });
 
 // get a problem by problem u id
-router.get('/car-problem/:problemUId', (req, res) => {
+router.get('/car-problems/:problemUId', (req, res) => {
     // get
     const problemUid = req.params.problemUId;
 
