@@ -141,3 +141,20 @@ response:
         },
     },
 ]
+
+------------------
+
+// get car specific car problem
+GET: /apis/info/driving-works/{WORKUID}
+response: 
+{
+    title: { en: 'item1', kr: 'بەرهەمی ١' },
+    description: {
+        en: 'Information about car problems and their best solution',
+        kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+    },
+    auther: {
+        accountType: '',
+        name: ''
+    },
+},
