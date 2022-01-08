@@ -75,7 +75,7 @@ router.get('/car-problems/:problemUId', (req, res) => {
                     accountType: rows[0].permission,
                     name: rows[0].full_name,
                 },
-                img: rows[0].img
+                image: rows[0].img
             }
 
             res.send(problem);
