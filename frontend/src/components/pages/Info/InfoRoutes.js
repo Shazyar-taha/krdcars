@@ -64,8 +64,6 @@ export default function InfoRoutes() {
             <Route path={`${url}/car-problems`} exact>
                 <InfoCarProblems />
             </Route>
-
-
             {/* info driving works route */}
             <Route path={`${url}/car-problems/:problemUid`} exact>
                 <ProblemPreview />

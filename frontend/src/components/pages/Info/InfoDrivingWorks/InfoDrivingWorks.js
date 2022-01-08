@@ -1,9 +1,10 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
-import CustomHelmet from '../../../partials/helpers/CustomHelmet'
+import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
+import CustomHelmet from '../../../partials/helpers/CustomHelmet'
 import { OutlinedGrid } from '../../../partials/helpers/PageGrid/PageGrid'
 
 
@@ -31,26 +32,15 @@ export default function InfoDrivingWorks() {
     // page datas
     const [datas, setDatas] = useState([]);
 
-    // fetching the datas list
+    // fetching the works list
     useEffect(() => {
-        /**
-        * @TODO : fetch the datas
-        */
-        const response = // await fetch(`/api/info/driving-works`)
-            [
-                {
-                    url: 'work-1',
-                    title: { en: 'work1', kr: 'کاری ١' },
-                    description: {
-                        en: 'info about kurdistan car works',
-                        kr: 'زانیاری دەربارەی کارەکانی شۆفێر لە کوردستان'
-                    },
-                },
-            ]
-
-
-        // setting the datas
-        setDatas(response)
+        axios.get('/apis/info/driving-works')
+            .then(res => {
+                setDatas(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
 
