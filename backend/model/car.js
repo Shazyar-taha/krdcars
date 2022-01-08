@@ -64,6 +64,7 @@ exports.findAllModelsByBrand = (brandUId) => {
 // fetch the all models of a specific brand
 exports.findCarByModelByBrand = (brandUid, modelUid) => {
     const sql = `SELECT 
+                    br.brand_name,
                     c.car_name,
                     c.car_information,
                     c.img, 
@@ -71,14 +72,14 @@ exports.findCarByModelByBrand = (brandUid, modelUid) => {
                     c.language_id, 
                     c.img,
                     MAX(c.car_year) AS car_year
-                    
                 FROM
                     car c
                 INNER JOIN
                     car_type ct ON ct.id = c.car_type_id
                         AND ct.language_id = c.language_id
                 INNER JOIN 
-                    brand br ON br.id = c.brand_id
+                    brand br ON br.id = c.brand_id 
+                        AND br.language_id = c.language_id
                 INNER JOIN 
                     model m ON m.id = c.model_id
                 INNER JOIN 
@@ -88,7 +89,7 @@ exports.findCarByModelByBrand = (brandUid, modelUid) => {
                 WHERE
                     (u_brand.name = ? AND u_model.name = ?)
                 GROUP BY
-                    c.car_name`;
+                    c.car_name;`;
 
     return db.query(sql, [brandUid, modelUid]);
 }
@@ -117,6 +118,7 @@ exports.findCarYearByModelByBrand = (brandUid, modelUid) => {
 // fetch a car by year, model and brand
 exports.findCarByYear = (brandUid, modelUid, year) => {
     const sql = `SELECT 
+                br.brand_name,
                 c.car_name,
                 c.car_information,
                 c.img, 
@@ -130,6 +132,7 @@ exports.findCarByYear = (brandUid, modelUid, year) => {
                     AND ct.language_id = c.language_id
             INNER JOIN 
                 brand br ON br.id = c.brand_id
+                    AND br.language_id = c.language_id
             INNER JOIN 
                 model m ON m.id = c.model_id
             INNER JOIN 

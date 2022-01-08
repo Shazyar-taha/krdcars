@@ -106,17 +106,6 @@ router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
     const brandUid = req.params.brandUid,
         modelUid = req.params.modelUid;
 
-    // getting brandname
-    let [brandName] = await carModel.findBrandByUId(brandUid).catch((err) => {
-        console.log(err);
-    });
-
-    // making brandName object
-    brandName = {
-        en: brandName.find(row => row.language_id == 1).brand_name,
-        kr: brandName.find(row => row.language_id == 1).brand_name
-    }
-
     const year = parseInt(req.query.year || 0);
 
     console.log('the year is ' + year);
@@ -126,29 +115,32 @@ router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
             .then(([rows, fieldData]) => {
                 if (rows.length != 0) {
                     carModel.findCarYearByModelByBrand(brandUid, modelUid).
-                        then(([modelYears, fieldData]) => {
+                    then(([modelYears, fieldData]) => {
 
-                            res.send({
-                                name: {
-                                    en: rows.find(r => r.language_id == 1).car_name,
-                                    kr: rows.find(r => r.language_id == 2).car_name
-                                },
-                                brandName,
-                                carInformation: {
-                                    en: rows.find(r => r.language_id == 1).car_information,
-                                    kr: rows.find(r => r.language_id == 2).car_information
-                                },
-                                image: rows.find(r => r.language_id == 1).img,
-                                carType: {
-                                    en: rows.find(r => r.language_id == 1).car_type_name,
-                                    kr: rows.find(r => r.language_id == 2).car_type_name
-                                },
-                                availableYears: modelYears.map(r => r.car_year)
+                        res.send({
+                            name: {
+                                en: rows.find(r => r.language_id == 1).car_name,
+                                kr: rows.find(r => r.language_id == 2).car_name
+                            },
+                            brandName: {
+                                en: rows.find(r => r.language_id == 1).brand_name,
+                                kr: rows.find(r => r.language_id == 2).brand_name
+                            },
+                            carInformation: {
+                                en: rows.find(r => r.language_id == 1).car_information,
+                                kr: rows.find(r => r.language_id == 2).car_information
+                            },
+                            image: rows.find(r => r.language_id == 1).img,
+                            carType: {
+                                en: rows.find(r => r.language_id == 1).car_type_name,
+                                kr: rows.find(r => r.language_id == 2).car_type_name
+                            },
+                            availableYears: modelYears.map(r => r.car_year)
 
-                            });
-                        }).catch(err => {
-                            console.log(err);
                         });
+                    }).catch(err => {
+                        console.log(err);
+                    });
                 } else {
                     res.send({
                         message: 'Sorry that brand with that model is not available'
@@ -162,29 +154,32 @@ router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
             .then(([rows, fieldData]) => {
                 if (rows.length != 0) {
                     carModel.findCarYearByModelByBrand(brandUid, modelUid).
-                        then(([modelYears, fieldData]) => {
+                    then(([modelYears, fieldData]) => {
 
-                            res.send({
-                                name: {
-                                    en: rows.find(r => r.language_id == 1).car_name,
-                                    kr: rows.find(r => r.language_id == 2).car_name
-                                },
-                                brandName,
-                                carInformation: {
-                                    en: rows.find(r => r.language_id == 1).car_information,
-                                    kr: rows.find(r => r.language_id == 2).car_information
-                                },
-                                image: rows.find(r => r.language_id == 1).img,
-                                carType: {
-                                    en: rows.find(r => r.language_id == 1).car_type_name,
-                                    kr: rows.find(r => r.language_id == 2).car_type_name
-                                },
-                                availableYears: modelYears.map(r => r.car_year)
+                        res.send({
+                            name: {
+                                en: rows.find(r => r.language_id == 1).car_name,
+                                kr: rows.find(r => r.language_id == 2).car_name
+                            },
+                            brandName: {
+                                en: rows.find(r => r.language_id == 1).brand_name,
+                                kr: rows.find(r => r.language_id == 2).brand_name
+                            },
+                            carInformation: {
+                                en: rows.find(r => r.language_id == 1).car_information,
+                                kr: rows.find(r => r.language_id == 2).car_information
+                            },
+                            image: rows.find(r => r.language_id == 1).img,
+                            carType: {
+                                en: rows.find(r => r.language_id == 1).car_type_name,
+                                kr: rows.find(r => r.language_id == 2).car_type_name
+                            },
+                            availableYears: modelYears.map(r => r.car_year)
 
-                            });
-                        }).catch(err => {
-                            console.log(err);
                         });
+                    }).catch(err => {
+                        console.log(err);
+                    });
                 } else {
                     res.send({
                         message: 'Please Check the model or year'
