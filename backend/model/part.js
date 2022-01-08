@@ -24,11 +24,13 @@ exports.findPartByUId = (partUId) => {
                     p.part_name,
                     p.about,
                     p.language_id,
-                    p.img
+                    i.img
                 FROM
                     part p 
                 INNER JOIN 
                     url u ON u.id = p.url_id
+                LEFT JOIN 
+                    img i ON i.id = p.img_id
                 WHERE 
                     u.name = ?
                 ORDER BY 
@@ -36,14 +38,4 @@ exports.findPartByUId = (partUId) => {
 
     return db.query(sql, [partUId]);
 
-}
-
-
-
-// adding a part to part table
-exports.addPart = (params) => {
-    const sql = `INSERT INTO part(part_name, about, img, language_id)
-    VALUES(?, ?, ?, ?)`;
-
-    return db.execute(sql, [params.partName, params.about, params.img, params.languageId]);
 }
