@@ -19,18 +19,6 @@ exports.findAll = (offset) => {
 }
 
 
-// fetch all driven works by id
-// param consists the id and languageId
-exports.findById = (params) => {
-    const sql = `SELECT 
-            id, name, information
-        FROM
-            driven_work 
-        WHERE 
-            language_id = ? AND id = ?`;
-
-    return db.execute(sql, [params.languageId, params.id]);
-}
 
 
 // adding the data to driven work
