@@ -152,9 +152,6 @@ response:
     description: {
         en: 'Information about car problems and their best solution',
         kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
-    },
-    auther: {
-        accountType: '',
-        name: ''
-    },
+    }
+   
 },

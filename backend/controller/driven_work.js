@@ -37,13 +37,45 @@ router.get('/driving-works', (req, res) => {
             res.send(driving);
         } else {
             res.send({
-                message: 'Sorry We don\'t have any problem data'
+                message: 'Sorry We don\'t have any driving works data'
             });
         }
     }).catch((err) => console.log(err));
 
 })
 
+router.get('/driving-works/:uId', (req, res) => {
+
+    drivenModel.findByUId(req.params.uId).then(([rows, fieldData]) => {
+
+        if (rows.length > 0) {
+
+            let drivingWorks = {
+
+                title: {
+                    en: rows.find(r => r.language_id == 1).title,
+                    kr: rows.find(r => r.language_id == 2).title
+                },
+                description: {
+                    en: rows.find(r => r.language_id == 1).info,
+                    kr: rows.find(r => r.language_id == 2).info
+                }
+
+            };
+
+            res.send(drivingWorks);
+
+        } else {
+            res.send({
+                message: 'Sorry We don\'t have this data'
+            });
+        }
+
+
+
+    }).catch((err) => console.log(err));
+
+});
 
 
 

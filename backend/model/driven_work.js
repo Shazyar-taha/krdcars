@@ -18,7 +18,21 @@ exports.findAll = (offset) => {
     return db.query(sql, [offset]);
 }
 
+// fetch the specific driving work by uId
+exports.findByUId = (uId) => {
+    const sql = `SELECT 
+                    d.name AS title,
+                    d.information AS info,
+                    d.language_id
+                FROM  
+                    driving_work d 
+                INNER JOIN 
+                    url u ON u.id = d.url_id
+                WHERE 
+                    u.name = ? and u.url_type_id = ?`;
 
+    return db.query(sql, [uId, 5]);
+}
 
 
 // adding the data to driven work
