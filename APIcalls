@@ -1,5 +1,5 @@
 // get all cars
-GET: /apis/info/cars/brands?page={PAGENUMBER}
+GET: /apis/info/cars?page={PAGENUMBER}
 RESPONSE: 
 [
     {
@@ -12,7 +12,7 @@ RESPONSE:
 -----------------------
 
 // get specific car
-get: /apis/info/cars/brands/{BRANDUID}
+get: /apis/info/cars/{BRANDUID}
 {
     brand: {
         name:{
@@ -40,7 +40,7 @@ get: /apis/info/cars/brands/{BRANDUID}
 ------------------
 
 // get specific model
-get: /apis/info/cars/brands/{BRANDUID}/{MODELUID}?year={YEAR}
+get: /apis/info/cars/{BRANDUID}/{MODELUID}?year={YEAR}
 response: {
     name: {
         en: '',
