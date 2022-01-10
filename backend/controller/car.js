@@ -4,7 +4,7 @@ const carModel = require('../model/car');
 // NOTE if languageId equals 1 that's English and that equals 2 that's kurdish
 
 // get car brands
-router.get('/cars/brand', (req, res) => {
+router.get('/cars/brands', (req, res) => {
     // limit is 20
     const page = parseInt(req.query.page || 1);
     // offset
@@ -44,7 +44,7 @@ router.get('/cars/brand', (req, res) => {
 });
 
 // get specific brands
-router.get('/cars/brand/:brandUId', (req, res) => {
+router.get('/cars/brands/:brandUId', (req, res) => {
     const brandUid = req.params.brandUId;
     let models = [];
     let modelUrl = '';
@@ -102,7 +102,7 @@ router.get('/cars/brand/:brandUId', (req, res) => {
 
 
 // get specific car 
-router.get('/cars/brand/:brandUid/:modelUid', async (req, res) => {
+router.get('/cars/brands/:brandUid/:modelUid', async (req, res) => {
     const brandUid = req.params.brandUid,
         modelUid = req.params.modelUid;
 

@@ -1,5 +1,5 @@
 // get all cars
-GET: /apis/info/cars/brand?page={PAGENUMBER}
+GET: /apis/info/cars/brands?page={PAGENUMBER}
 RESPONSE: 
 [
     {
@@ -12,7 +12,7 @@ RESPONSE:
 -----------------------
 
 // get specific car
-get: /apis/info/cars/brand/{BRANDUID}
+get: /apis/info/cars/brands/{BRANDUID}
 {
     brand: {
         name:{
@@ -40,7 +40,7 @@ get: /apis/info/cars/brand/{BRANDUID}
 ------------------
 
 // get specific model
-get: /apis/info/cars/brand/{BRANDUID}/{MODELUID}?year={YEAR}
+get: /apis/info/cars/brands/{BRANDUID}/{MODELUID}?year={YEAR}
 response: {
     name: {
         en: '',
@@ -153,5 +153,21 @@ response:
         en: 'Information about car problems and their best solution',
         kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
     }
-   
 },
+
+
+------------------
+
+// get car legalls of legall of ministry of transport
+GET: /apis/info/driving-works?page={PAGENUMBER}
+response: 
+[
+    {
+        url: 'product-1',
+        title: { en: 'item1', kr: 'بەرهەمی ١' },
+        description: {
+            en: 'Information about car problems and their best solution',
+            kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+        },
+    },
+]

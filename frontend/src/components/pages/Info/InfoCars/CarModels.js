@@ -30,7 +30,7 @@ export default function InfoCarsBrandsPreview() {
 
     // fetching the brand details and models list
     useEffect(() => {
-        axios.get(`/apis/info/cars/brand/${brandUid}`)
+        axios.get(`/apis/info/cars/brands/${brandUid}`)
             .then(res => {
 
                 // fixing the details for brand

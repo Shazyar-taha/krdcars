@@ -34,7 +34,7 @@ export default function ModelPreview() {
 
     // fetching the model details
     useEffect(() => {
-        axios.get(`/apis/info/cars/brand/${brandUid}/${modelUid}${search}`)
+        axios.get(`/apis/info/cars/brands/${brandUid}/${modelUid}${search}`)
             .then(res => {
                 res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'image'])
                 setDatas(res.data)

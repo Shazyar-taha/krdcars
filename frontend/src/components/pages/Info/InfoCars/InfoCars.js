@@ -34,7 +34,7 @@ export default function InfoCars() {
 
     // fetching the brands list
     useEffect(() => {
-        axios.get('/apis/info/cars/brand')
+        axios.get('/apis/info/cars/brands')
             .then(res => {
                 setDatas(res.data)
             })
