@@ -158,16 +158,52 @@ response:
 
 ------------------
 
-// get car legalls of legall of ministry of transport
-GET: /apis/info/driving-works?page={PAGENUMBER}
+// get search result
+GET: /apis/search?query={QUERY}
 response: 
-[
-    {
-        url: 'product-1',
-        title: { en: 'item1', kr: 'بەرهەمی ١' },
-        description: {
-            en: 'Information about car problems and their best solution',
-            kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+{
+    brands: [
+        {
+            url: 'mitsubishi',
+            title: { en: 'Mitsubishi', kr: 'میسۆبیشی' },
+            image: ''
+        }
+    ],
+    models: [
+        {
+            url: 'item-1',
+            brandUid: 'brand uid',
+            title: { en: 'item1', kr: 'بەرهەمی ١' },
         },
-    },
-]
+    ],
+    parts: [
+        {
+            url: 'product-1',
+            title: { en: 'item1', kr: 'بەرهەمی ١' },
+            description: {
+                en: 'Information about car problems and their best solution',
+                kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+            },
+        },
+    ],
+    problems: [
+        {
+            url: 'product-1',
+            title: { en: 'item1', kr: 'بەرهەمی ١' },
+            description: {
+                en: 'Information about car problems and their best solution',
+                kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+            },
+        },
+    ],
+    drivingWorks: [
+        {
+            url: 'product-1',
+            title: { en: 'item1', kr: 'بەرهەمی ١' },
+            description: {
+                en: 'Information about car problems and their best solution',
+                kr: 'باسکردن و خستنەڕووی کێشەکانی ئوتومبێل و خستنەڕووی باشترین چارەسەرەکان بۆی'
+            },
+        },
+    ]
+}
