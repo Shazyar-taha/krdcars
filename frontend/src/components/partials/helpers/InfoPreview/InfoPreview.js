@@ -30,7 +30,7 @@ export default function InfoPreview(props) {
     const { t } = useTranslation()
 
     return (
-        <div className={classNames("info-preview", props.className)} style={props.style}>
+        <div className={classNames("info-preview",{'single-side': (!props.SubText && !props.image)} , props.className)} style={props.style}>
 
             {/* side */}
             <div className="side-1">
@@ -45,33 +45,39 @@ export default function InfoPreview(props) {
 
 
             {/* side */}
-            <div className="side-2">
+            {(props.SubText || props.image) &&
+                <div className="side-2">
 
-                {/* info-image */}
-                <div className="info-image">
-                    <img className="image" src={props.image} alt={props.external ? props.imageAlt[i18n.language] : t(props.imageAlt)}
-                    />
-                </div>
+                    {/* info-image */}
+                    {props.image &&
+                        <div className="info-image">
+                            <img className="image" src={props.image} alt={props.external ? props.imageAlt[i18n.language] : t(props.imageAlt)}
+                            />
+                        </div>
+                    }
 
-                {/* info image subtext */}
-                <div className="info-subtext">
+                    {/* info image subtext */}
+                    {props.SubText &&
+                        <div className="info-subtext">
 
-                    {/* if the subtext is array, then showing them in ul, otherwise as a string */}
-                    {Array.isArray(props.subText) ?
-                        <ul className={classNames("subtext-ul", t('configs.font_class_name'))}>
-                            {props.subText.map((subtext, i) =>
-                                <li key={i} className="subtext-li">
-                                    <Link to={`${props.subTextLinkTemplate}?year=${subtext}`}>{subtext}</Link>
-                                </li>
-                            )}
-                        </ul>
-                        :
-                        <p className={classNames("subtext-p", t('configs.font_class_name'))}>
-                            {props.subText}
-                        </p>
+                            {/* if the subtext is array, then showing them in ul, otherwise as a string */}
+                            {Array.isArray(props.subText) ?
+                                <ul className={classNames("subtext-ul", t('configs.font_class_name'))}>
+                                    {props.subText.map((subtext, i) =>
+                                        <li key={i} className="subtext-li">
+                                            <Link to={`${props.subTextLinkTemplate}?year=${subtext}`}>{subtext}</Link>
+                                        </li>
+                                    )}
+                                </ul>
+                                :
+                                <p className={classNames("subtext-p", t('configs.font_class_name'))}>
+                                    {props.subText}
+                                </p>
+                            }
+                        </div>
                     }
                 </div>
-            </div>
+            }
 
         </div>
     )

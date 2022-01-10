@@ -5,6 +5,11 @@
     display: grid;
     grid-template-columns: 1fr 25rem;
 
+    // singlesided preview
+    &.single-side {
+        display: block;
+    }
+
     // info description
     .info-description {
         transition: none; // preventing translation delay
