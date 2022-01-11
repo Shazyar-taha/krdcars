@@ -35,9 +35,23 @@ exports.findByUId = (uId) => {
 }
 
 
-// adding the data to driven work
-// params consists the name , info and languageId
-exports.add = (params) => {
-    const sql = `INSERT INTO driven_work(name, information, language_id) VALUES(?, ?, ?)`;
-    return db.execute(sql, [params.name, params.info, params.language]);
+
+exports.findDrivingUsingSearch = (drivingName, uId) => {
+    const sql = `SELECT 
+                    u.name AS url,
+                    d.name AS title,
+                d.information AS info,
+                    d.language_id
+                FROM 
+                    driving_work d
+                INNER JOIN 
+                    url u ON u.id = d.url_id
+                WHERE 
+                    d.name LIKE '%${drivingName}%' OR
+                    u.name LIKE '%${uId}%'
+                ORDER BY
+                    d.language_id ASC
+                LIMIT 20 OFFSET 0`;
+    return db.query(sql, []);
+
 }

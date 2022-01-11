@@ -43,3 +43,24 @@ exports.findProblemByUId = (problemUId) => {
 
     return db.execute(sql, [problemUId]);
 }
+
+// fetch some problem using search
+exports.findProblemUsingSearch = (problemName, uId) => {
+    const sql = `SELECT 
+                    u.name AS url,
+                    p.problem_name,
+                    p.about AS info,
+                    p.language_id
+                FROM 
+                    problem p 
+                INNER JOIN 
+                    url u ON u.id = p.url_id
+                WHERE 
+                    p.problem_name LIKE '%${problemName}%' OR
+                    u.name LIKE '%${uId}%'
+                ORDER BY
+                    p.language_id ASC
+                LIMIT 20 OFFSET 0`;
+
+    return db.query(sql, []);
+}

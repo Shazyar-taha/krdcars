@@ -40,29 +40,28 @@ exports.findBrandByUId = (uid) => {
     return db.query(sql, [uid]);
 }
 
-
-// fetch the models using brand url name
-exports.findAllModelsByBrand = (brandUId) => {
+// fetch the some brand by searching name
+exports.findBrandBySearch = (brandName, uId) => {
     const sql = `SELECT 
-                    u_model.name AS url_name,
-                    m.model_name,
-                    m.language_id
-                FROM 
-                    car 
-                INNER JOIN 
-                    model m ON m.id = car.model_id
-                INNER JOIN 
-                    url u_model ON u_model.id = m.url_id
-                INNER JOIN 
-                    brand b ON b.id = car.brand_id
-                INNER JOIN 
-                    url u_brand ON u_brand.id = b.url_id 
-                WHERE 
-                    u_brand.name = ?
-                ORDER BY 
-                    u_model.name, m.language_id ASC`;
-    return db.query(sql, [brandUId]);
+                u.name AS url,
+                b.brand_name AS title,
+                i.img AS image,
+                b.language_id
+            FROM 
+                brand b
+            INNER JOIN 
+                url u ON u.id = b.url_id
+            LEFT JOIN 
+                img i ON i.id = b.img_id
+            WHERE 
+                b.brand_name LIKE '%${brandName}%' OR
+                u.name LIKE '%${uId}%'
+            ORDER BY 
+                b.language_id ASC
+            LIMIT 20 OFFSET 0;`
+    return db.query(sql, []);
 }
+
 
 
 // fetch the all models of a specific brand
@@ -97,6 +96,56 @@ exports.findCarByModelByBrand = (brandUid, modelUid) => {
                     c.car_name`;
 
     return db.query(sql, [brandUid, modelUid]);
+}
+
+// fetch the models using model name url name
+exports.findAllModelsByBrand = (brandUId) => {
+    const sql = `SELECT 
+                    u_model.name AS url_name,
+                    m.model_name,
+                    m.language_id
+                FROM 
+                    car 
+                INNER JOIN 
+                    model m ON m.id = car.model_id
+                INNER JOIN 
+                    url u_model ON u_model.id = m.url_id
+                INNER JOIN 
+                    brand b ON b.id = car.brand_id
+                INNER JOIN 
+                    url u_brand ON u_brand.id = b.url_id 
+                WHERE 
+                    u_brand.name = ?
+                ORDER BY 
+                    u_model.name, m.language_id ASC`;
+    return db.query(sql, [brandUId]);
+}
+
+// fetch the models
+exports.findModelBySearch = (modelName, uId) => {
+    const sql = `SELECT 
+                u.name AS model_url,
+                m.model_name AS title,
+                ub.name AS brand_url,
+                m.language_id
+            FROM 
+                car c
+            INNER JOIN 
+                model m ON m.id = c.model_id
+            INNER JOIN 
+                brand b ON b.id = c.brand_id
+            INNER JOIN 
+                url u ON u.id = m.url_id
+            INNER JOIN 
+                url ub ON ub.id = b.url_id
+            WHERE 
+                m.model_name LIKE '%${modelName}%' OR
+                u.name LIKE '%${uId}%'
+            ORDER BY 
+                m.language_id ASC
+            LIMIT 20 OFFSET 0`;
+
+    return db.query(sql, []);
 }
 
 // fetch all years of the specific model and brand
