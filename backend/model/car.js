@@ -122,7 +122,7 @@ exports.findAllModelsByBrand = (brandUId) => {
 }
 
 // fetch the models
-exports.findModelBySearch = (modelName, uId) => {
+exports.findModelBySearch = (search) => {
     const sql = `SELECT 
                 u.name AS model_url,
                 m.model_name AS title,
