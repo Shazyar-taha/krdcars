@@ -36,21 +36,24 @@ exports.findByUId = (uId) => {
 
 
 
-exports.findDrivingUsingSearch = (drivingName, uId) => {
-    const sql = `SELECT 
+exports.findDrivingUsingSearch = (search) => {
+    const sql = `SELECT DISTINCT
                     u.name AS url,
-                    d.name AS title,
-                d.information AS info,
-                    d.language_id
+                    d1.name AS english,
+                    d1.information AS english_des,
+                    d2.name AS kurdish,
+                    d2.information AS kurdish_des
                 FROM 
-                    driving_work d
+                    driving_work d 
                 INNER JOIN 
                     url u ON u.id = d.url_id
+                LEFT JOIN 
+                    driving_work d1 ON (d1.url_id = d.url_id AND d1.language_id = 1)
+                LEFT JOIN 
+                    driving_work d2 ON (d2.url_id = d.url_id AND d2.language_id = 2)
                 WHERE 
-                    d.name LIKE '%${drivingName}%' OR
-                    u.name LIKE '%${uId}%'
-                ORDER BY
-                    d.language_id ASC
+                    d.name LIKE '%${search}%' OR
+                    u.name LIKE '%${search}%'
                 LIMIT 20 OFFSET 0`;
     return db.query(sql, []);
 

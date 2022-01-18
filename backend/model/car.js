@@ -41,24 +41,28 @@ exports.findBrandByUId = (uid) => {
 }
 
 // fetch the some brand by searching name
-exports.findBrandBySearch = (brandName, uId) => {
-    const sql = `SELECT 
-                u.name AS url,
-                b.brand_name AS title,
-                i.img AS image,
-                b.language_id
-            FROM 
-                brand b
-            INNER JOIN 
-                url u ON u.id = b.url_id
-            LEFT JOIN 
-                img i ON i.id = b.img_id
-            WHERE 
-                b.brand_name LIKE '%${brandName}%' OR
-                u.name LIKE '%${uId}%'
-            ORDER BY 
-                b.language_id ASC
-            LIMIT 20 OFFSET 0;`
+exports.findBrandBySearch = (search) => {
+    const sql = `SELECT DISTINCT
+                    u.name AS url,
+                    b1.brand_name AS english,
+                    b2.brand_name AS kurdish,
+                    i.img AS image
+                FROM
+                    brand b
+                        INNER JOIN
+                    url u ON u.id = b.url_id
+                        INNER JOIN
+                    img i ON i.id = b.img_id
+                        LEFT JOIN
+                    brand b1 ON (b1.url_id = b.url_id
+                        AND b1.language_id = 1)
+                        LEFT JOIN
+                    brand b2 ON (b2.url_id = b.url_id
+                        AND b2.language_id = 2)
+                WHERE
+                    b.brand_name LIKE '%${search}%'
+                        OR u.name LIKE '%${search}%'
+                LIMIT 20 OFFSET 0;`;
     return db.query(sql, []);
 }
 
@@ -123,27 +127,29 @@ exports.findAllModelsByBrand = (brandUId) => {
 
 // fetch the models
 exports.findModelBySearch = (search) => {
-    const sql = `SELECT 
-                u.name AS model_url,
-                m.model_name AS title,
-                ub.name AS brand_url,
-                m.language_id
-            FROM 
-                car c
-            INNER JOIN 
-                model m ON m.id = c.model_id
-            INNER JOIN 
-                brand b ON b.id = c.brand_id
-            INNER JOIN 
-                url u ON u.id = m.url_id
-            INNER JOIN 
-                url ub ON ub.id = b.url_id
-            WHERE 
-                m.model_name LIKE '%${modelName}%' OR
-                u.name LIKE '%${uId}%'
-            ORDER BY 
-                m.language_id ASC
-            LIMIT 20 OFFSET 0`;
+    const sql = `SELECT DISTINCT
+                    um.name AS modelUrl,
+                    ub.name AS brandUrl,
+                    m1.model_name AS english,
+                    m2.model_name AS kurdish
+                FROM 
+                    model m 
+                INNER JOIN 
+                    car c ON c.model_id = m.id
+                INNER JOIN 
+                    brand b ON b.id = c.brand_id
+                INNER JOIN 
+                    url um ON um.id = m.url_id
+                INNER JOIN 
+                    url ub ON ub.id = b.url_id
+                LEFT JOIN 
+                    model m1 ON (m1.url_id = m.url_id AND m1.language_id = 1)
+                LEFT JOIN 
+                    model m2 ON (m2.url_id = m.url_id AND m2.language_id = 2)
+                WHERE 
+                    m.model_name LIKE '%${search}%' 
+                    OR um.name LIKE '%${search}%'
+                LIMIT 20 OFFSET 0;`;
 
     return db.query(sql, []);
 }

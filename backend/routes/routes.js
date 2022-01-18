@@ -5,6 +5,7 @@ const partController = require('../controller/part')
 const problemController = require('../controller/problem');
 const accountController = require('../controller/account');
 const drivingController = require('../controller/driven_work');
+const searchController = require('../controller/search');
 
 
 const router = express.Router();
@@ -20,6 +21,8 @@ router.use('/info', partController);
 router.use('/info', problemController);
 
 router.use('/info', drivingController);
+
+router.get('/search', searchController.search);
 
 
 module.exports = router;
