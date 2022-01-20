@@ -13,6 +13,7 @@ import Home from './components/pages/Home/Home';
 import InfoRoutes from './components/pages/Info/InfoRoutes';
 import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
+import SearchRoute from './components/pages/Search/SearchRoute';
 
 
 
@@ -65,9 +66,14 @@ export default function App() {
                     <Violation />
                 </Route>
 
-                {/* violation route */}
+                {/* contact route */}
                 <Route path='/contact' exact>
                     <ContactRoutes />
+                </Route>
+
+                {/* search route */}
+                <Route path='/search' exact>
+                    <SearchRoute />
                 </Route>
 
             </Switch>
