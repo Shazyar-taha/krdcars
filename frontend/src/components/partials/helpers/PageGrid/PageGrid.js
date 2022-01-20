@@ -15,6 +15,7 @@ import './page-grid.scoped.scss'
  * @param {Object} props : properties of the element
  *      @param {String} props.external : determines if the details is external or not
  *      @param {String} props.className : custom class name for the list
+ *      @param {String} props.style : custom style name for the list
  *      @param {Array} props.list : page list
  *      @param {String} props.fullUrl : full url path to the card link
  *      @param {Object} props.gridConfigs : grid configurations
@@ -31,7 +32,7 @@ export function OutlinedGrid(props) {
     const { t } = useTranslation()
 
     return (
-        <Grid container className={classNames("page-outlined-grid", props.className || '')}
+        <Grid container className={classNames("page-outlined-grid", props.className || '')} style={props.style}
             spacing={props.gridConfigs?.spacing || 4} // default spacing if not defined
         >
 
@@ -47,7 +48,14 @@ export function OutlinedGrid(props) {
 
                     {/* card link */}
                     <Link
-                        to={{ pathname: item.otherUrl || `${props.fullUrl || ''}/${item.url}` }}
+                        to={{
+                            pathname: item.otherUrl ||
+                                `${props.fullUrl && // checking if the fullUrl is availabel
+                                    /\[(\w+)\]/.test(props.fullUrl) ? // checking if the fullUrl has a dynamic key
+                                    props.fullUrl.replace(/\[(\w+)\]/g, item[props.fullUrl.match(/\[(\w+)\]/)[1]]) : // replacing the dynamic key with its value in the item
+                                    props.fullUrl || '' // if the fullUrl is not containg a dynamic key then use it normally, or if it is not provided at all then use an empty string
+                                }/${item.url}`
+                        }}
                         target={item.otherUrl ? '_blank' : '_self'}
                     >
                         <Card className="grid-card">
@@ -86,9 +94,10 @@ export function OutlinedGrid(props) {
  * centered grid element
  * 
  * @param {Object} props : properties of the element
- *      @param {String} props.className : custom class name for the list
- *      @param {Array} props.list : page list
  *      @param {String} props.external : determines if the details is external or not
+ *      @param {String} props.className : custom class name for the list
+ *      @param {String} props.style : custom style name for the list
+ *      @param {Array} props.list : page list
  *      @param {String} props.fullUrl : full url path to the card link
  *      @param {String} props.imagePrefix : prefix text of images, it is 'data:image/png;base64,' by default
  *      @param {Object} props.gridConfigs : grid configurations
@@ -107,7 +116,7 @@ export function CenteredGrid(props) {
     const { t } = useTranslation()
 
     return (
-        <Grid container className={classNames("page-centered-grid", props.className || '')}
+        <Grid container className={classNames("page-centered-grid", props.className || '')} style={props.style}
             spacing={props.gridConfigs?.spacing || 4} // default spacing if not defined
         >
 
@@ -123,7 +132,14 @@ export function CenteredGrid(props) {
 
                     {/* card link */}
                     <Link
-                        to={{ pathname: item.otherUrl || `${props.fullUrl || ''}/${item.url}` }}
+                        to={{
+                            pathname: item.otherUrl ||
+                                `${props.fullUrl && // checking if the fullUrl is availabel
+                                    /\[(\w+)\]/.test(props.fullUrl) ? // checking if the fullUrl has a dynamic key
+                                    props.fullUrl.replace(/\[(\w+)\]/g, item[props.fullUrl.match(/\[(\w+)\]/)[1]]) : // replacing the dynamic key with its value in the item
+                                    props.fullUrl || '' // if the fullUrl is not containg a dynamic key then use it normally, or if it is not provided at all then use an empty string
+                                }/${item.url}`
+                        }}
                         target={item.otherUrl ? '_blank' : '_self'}
                     >
 
