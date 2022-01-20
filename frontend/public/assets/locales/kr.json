@@ -2,6 +2,13 @@
     "configs": {
         "font_class_name": "kurdish-font",
         "keywords": {
+            "brands": "براندەکان",
+            "models": "مۆدێلەکان",
+            "parts": "پارچەکان",
+            "problems": "کێشەکان",
+            "driving_works": "کارەکانی وەزارەتی هاتوچۆ",
+            "search": "گەڕان بکە لە وێبسایتەکە",
+            "search_label": "ئینتەر بکە بۆ گەڕان",
             "see_more": "زیاتر ببینە",
             "founder": "دروستکەر",
             "founded": "بەرواری دروستکردن",

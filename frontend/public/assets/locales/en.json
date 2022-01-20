@@ -2,6 +2,13 @@
     "configs": {
         "font_class_name": "english-font",
         "keywords": {
+            "brands": "Brands",
+            "models": "Models",
+            "parts": "Parts",
+            "problems": "Problems",
+            "driving_works": "Driving Works",
+            "search": "Search in the website",
+            "search_label": "Press Enter to search",
             "see_more": "See more",
             "founder": "Founder",
             "founded": "Founded",
