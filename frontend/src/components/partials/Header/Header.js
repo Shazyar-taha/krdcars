@@ -117,7 +117,7 @@ export default function Header() {
                         <div className={classNames("button", { 'white-only': thisPath === '/' })}>
                             <ThemeSwitcher />
                         </div>
-                        <Link to="/sign-up" className={classNames("button", { 'white-only': thisPath === '/' })} onClick={closeDrawer}>
+                        <Link to="/login" className={classNames("button", { 'white-only': thisPath === '/' })} onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>
@@ -156,7 +156,7 @@ export default function Header() {
                             <div className="button">
                                 <ThemeSwitcher />
                             </div>
-                            <Link to="/sign-up" className="button" onClick={closeDrawer}>
+                            <Link to="/login" className="button" onClick={closeDrawer}>
                                 <AccountCircleOutlinedIcon />
                             </Link>
                         </div>
