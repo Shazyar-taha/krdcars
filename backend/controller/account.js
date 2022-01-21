@@ -33,7 +33,7 @@ route.post('/login', (req, res) => {
 });
 
 // adding a new user to database
-route.post('/user', async (req, res) => {
+route.post('/register', async (req, res) => {
 
     const user = {
         fullName: "Shazyar Taha Abdulla",
