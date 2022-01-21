@@ -40,9 +40,13 @@
                 border-radius: 5px;
                 transition: width 0.6s, transform 0.6s, top 0.6s, bottom 0.6s, left 0.6s, opacity 0.6s ease;
 
-                // white only burger
-                &.white-only {
+                // white burger
+                &.white {
                     background-color: var(--white-color);
+                }
+                // black burger
+                &.black {
+                    background-color: var(--black-color);
                 }
 
                 // first line
@@ -96,9 +100,13 @@
                     font-size: var(--x-small-font-size);
                     color: var(--body-oposite-color);
 
-                    // white only links
-                    &.white-only {
+                    // white links
+                    &.white {
                         color: var(--white-color);
+                    }
+                    // black links
+                    &.black {
+                        color: var(--black-color);
                     }
 
                     // active navlink
@@ -128,9 +136,13 @@
                     margin-right: 0;
                 }
 
-                // white only buttons
-                &.white-only {
+                // white buttons
+                &.white {
                     color: var(--white-color);
+                }
+                // black buttons
+                &.black {
+                    color: var(--black-color);
                 }
             }
         }

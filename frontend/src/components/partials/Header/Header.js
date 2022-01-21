@@ -33,7 +33,9 @@ let componentContent = {
         { title: 'partials.header.links.violation', url: '/violation' },
         { title: 'partials.header.links.store', url: '/store' },
         { title: 'partials.header.links.about', url: '/about' },
-    ]
+    ],
+    whiteNavLinks: ['/'],
+    blackNavLinks: ['/login', '/register'],
 }
 
 
@@ -50,6 +52,7 @@ export default function Header() {
     // getting curent location
     const thisPath = useLocation().pathname
 
+
     // drawer state
     const [drawerState, setDrawerState] = useState(false)
 
@@ -61,6 +64,17 @@ export default function Header() {
     function closeDrawer() {
         setDrawerState(false)
     }
+
+
+    // navigation color based on the url it is colored in
+    let navColor =
+        componentContent.whiteNavLinks.includes(thisPath) && !drawerState ? 'white' :
+            componentContent.blackNavLinks.includes(thisPath) && !drawerState ? 'black' : ''
+
+    // brand color based on the url it is colored in
+    let brandColor =
+        componentContent.whiteNavLinks.includes(thisPath) ? 'var(--white-color)' :
+            componentContent.blackNavLinks.includes(thisPath) ? 'var(--black-color)' : undefined
 
 
     return (
@@ -75,15 +89,15 @@ export default function Header() {
                     {/* header brand */}
                     <div className="nav-brand">
                         <Link to="/">
-                            <Brand krdColor={thisPath === '/' ? 'var(--white-color)' : ''} style={{ height: "var(--x-small-font-size)" }} />
+                            <Brand krdColor={brandColor} style={{ height: "var(--x-small-font-size)" }} />
                         </Link>
                     </div>
 
                     {/* navbar hamburger */}
                     <div className={classNames("nav-burger", { 'nav-burger-open': drawerState })} onClick={toggleDrawer}>
-                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
-                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
-                        <span className={classNames("burger-line", { 'white-only': thisPath === '/' && !drawerState })}></span>
+                        <span className={classNames("burger-line", navColor)}></span>
+                        <span className={classNames("burger-line", navColor)}></span>
+                        <span className={classNames("burger-line", navColor)}></span>
                     </div>
 
                     {/* navigation links */}
@@ -95,8 +109,8 @@ export default function Header() {
                                 <li key={i}>
                                     <NavLink
                                         to={link.url}
-                                        className={classNames("link", { 'white-only': thisPath === '/' })}
-                                        onClick={toggleDrawer}
+                                        className={classNames("link", navColor)}
+                                        onClick={closeDrawer}
                                         {...link.options}
                                     >
                                         {t(link.title)}
@@ -108,16 +122,16 @@ export default function Header() {
 
                     {/* navigation buttons */}
                     <div className="nav-buttons">
-                        <Link to="/search" className={classNames("button", { 'white-only': thisPath === '/' })}>
+                        <Link to="/search" className={classNames("button", navColor)}>
                             <SearchOutlinedIcon />
                         </Link>
-                        <div className={classNames("button", { 'white-only': thisPath === '/' })}>
+                        <div className={classNames("button", navColor)}>
                             <LanguageSelector />
                         </div>
-                        <div className={classNames("button", { 'white-only': thisPath === '/' })}>
+                        <div className={classNames("button", navColor)}>
                             <ThemeSwitcher />
                         </div>
-                        <Link to="/login" className={classNames("button", { 'white-only': thisPath === '/' })} onClick={closeDrawer}>
+                        <Link to="/login" className={classNames("button", navColor)} onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>
@@ -135,7 +149,7 @@ export default function Header() {
                                         <NavLink
                                             to={link.url}
                                             className={classNames("link")}
-                                            onClick={toggleDrawer}
+                                            onClick={closeDrawer}
                                             {...link.options}
                                         >
                                             {t(link.title)}
