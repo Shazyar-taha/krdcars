@@ -60,3 +60,39 @@ default theme settings
     background-color: var(--white-color) !important;
     color: var(--white-color) !important;
 }
+
+// text field designs
+.textfield {
+    label:not(.Mui-error) {
+        color: var(--body-text-color) !important;
+    }
+    input {
+        color: var(--head-text-color) !important;
+    }
+    *:not(.Mui-error) {
+        fieldset {
+            border-color: var(--body-text-color) !important;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        label:not(.Mui-error) {
+            color: var(--head-text-color) !important;
+        }
+        *:not(.Mui-error) {
+            fieldset {
+                border-color: var(--head-text-color) !important;
+            }
+        }
+    }
+
+    // kurdish textfield
+    &.kurdish-font {
+        label,
+        input,
+        fieldset {
+            font-family: var(--kurdish-font-family) !important;
+        }
+    }
+}
