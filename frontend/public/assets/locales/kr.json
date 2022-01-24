@@ -151,5 +151,39 @@
                 }
             }
         }
+    },
+    "login": {
+        "head": {
+            "title": "چوونەژورەوە",
+            "description": "چوونەژورەوە بۆ هەژمارەکەت"
+        },
+        "form": {
+            "title": "چوونەژورەوە",
+            "description": "چوونەژورەوە بۆ هەژمارەکەت",
+            "email": "ئیمەڵ",
+            "password": "تێپەڕەوشە",
+            "show_password": "نیشاندانی تێپەڕەوشە",
+            "submit": "چوونەژورەوە",
+            "register_question": "هەژمارت نیە؟",
+            "register_link": "خۆت تۆمار بکە لێرە"
+        }
+    },
+    "register": {
+        "head": {
+            "title": "خۆتۆمار کردن",
+            "description": "خۆتۆمار کردن لە وێبسایتەکە"
+        },
+        "form": {
+            "title": "خۆتۆمار کردن",
+            "description": "خۆتۆمار کردن لە وێبسایتەکە",
+            "name": "ناو",
+            "email": "ئیمەیڵ",
+            "password": "تێپەڕەوشە",
+            "password_confirmation": "تێپەڕەوشە دووبارە بنووسە",
+            "show_password": "نیشاندانی تێپەڕەوشە",
+            "submit": "خۆتۆمار کردن",
+            "login_question": "هەژمارت هەیە؟",
+            "login_link": "بچۆرە ژوورەوە لێرە"
+        }
     }
 }

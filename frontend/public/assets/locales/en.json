@@ -151,5 +151,39 @@
                 }
             }
         }
+    },
+    "login": {
+        "head": {
+            "title": "Login",
+            "description": "Login to your account"
+        },
+        "form": {
+            "title": "Login",
+            "description": "Login to your account",
+            "email": "Email",
+            "password": "Password",
+            "show_password": "Show Password",
+            "submit": "Login",
+            "register_question": "Don't have an account?",
+            "register_link": "Register here"
+        }
+    },
+    "register": {
+        "head": {
+            "title": "Register",
+            "description": "Register to our website"
+        },
+        "form": {
+            "title": "Register",
+            "description": "Register to our website",
+            "fullname": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "show_password": "Show Password",
+            "password_confirmation": "Password confirmation",
+            "submit": "Register",
+            "login_question": "Already have an account?",
+            "login_link": "Login here"
+        }
     }
 }
