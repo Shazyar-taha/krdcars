@@ -14,6 +14,7 @@ import InfoRoutes from './components/pages/Info/InfoRoutes';
 import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
+import Login from './components/pages/User/Login';
 
 
 
@@ -74,6 +75,11 @@ export default function App() {
                 {/* search route */}
                 <Route path='/search' exact>
                     <SearchRoute />
+                </Route>
+
+                {/* search route */}
+                <Route path='/login' exact>
+                    <Login />
                 </Route>
 
             </Switch>

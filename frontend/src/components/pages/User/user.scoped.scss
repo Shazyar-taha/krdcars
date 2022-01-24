@@ -1,0 +1,89 @@
+/* user pages */
+
+.user-page {
+    position: relative;
+    top: calc(0px - var(--element-vertical-spacing));
+    height: 100vh;
+
+    // main section background image
+    .main-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // main section
+    .user-container {
+        position: relative;
+        top: calc(2 * var(--element-vertical-spacing));
+        z-index: 1;
+    }
+
+    // the form
+    .user-page-form {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 500px;
+        background-color: var(--body-bg-color);
+        border-radius: var(--xx-small-font-size);
+
+        // form headers
+        .form-header {
+            text-align: center;
+
+            // form header title
+            .form-title {
+                font-size: var(--xx-huge-font-size);
+                color: var(--head-text-color);
+            }
+
+            // form header title
+            .form-description {
+                margin-top: 0.5rem;
+                font-size: var(--x-small-font-size);
+                color: var(--body-text-color);
+            }
+        }
+
+        // form inputs
+        .form-fields {
+            margin-top: 3rem;
+
+            // each form field
+            .form-field {
+                margin-top: 1rem;
+                width: 100%;
+
+                // removing first ones margin
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+
+            // form checkbox
+            .checkbox {
+                display: inline;
+
+                // checkbox label
+                label {
+                    color: var(--body-text-color);
+                }
+            }
+
+            // form register button
+            .form-register-button {
+                margin-top: 1.5rem;
+                text-align: center;
+                color: var(--body-text-color);
+
+                // register link
+                .link {
+                    color: var(--main-blue-color);
+                }
+            }
+        }
+    }
+}
