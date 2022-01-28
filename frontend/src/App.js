@@ -15,6 +15,7 @@ import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
 import Login from './components/pages/User/Login';
+import Register from './components/pages/User/Register';
 
 
 
@@ -77,9 +78,14 @@ export default function App() {
                     <SearchRoute />
                 </Route>
 
-                {/* search route */}
+                {/* login route */}
                 <Route path='/login' exact>
                     <Login />
+                </Route>
+
+                {/* register route */}
+                <Route path='/register' exact>
+                    <Register />
                 </Route>
 
             </Switch>

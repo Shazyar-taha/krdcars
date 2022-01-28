@@ -180,7 +180,7 @@
             "email": "Email",
             "password": "Password",
             "show_password": "Show Password",
-            "password_confirmation": "Password confirmation",
+            "confirm_password": "Password confirmation",
             "submit": "Register",
             "login_question": "Already have an account?",
             "login_link": "Login here"

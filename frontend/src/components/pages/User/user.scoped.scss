@@ -66,9 +66,23 @@
             // form checkbox
             .checkbox {
                 display: inline;
+                width: 100%;
 
                 // checkbox label
                 label {
+                    color: var(--body-text-color);
+                }
+            }
+
+            // password validation
+            .password-validation {
+                margin-top: 1rem;
+                padding: 0.5rem 1rem;
+                background-color: var(--body-bg-color-lighter);
+                border-radius: var(--xx-small-font-size);
+
+                label {
+                    font-size: var(--xx-small-font-size);
                     color: var(--body-text-color);
                 }
             }
@@ -85,5 +99,15 @@
                 }
             }
         }
+    }
+}
+
+// responsive breakpoints
+
+@media screen and (max-width: 1000px) {
+    // giving more height to the main section on small views
+    .user-page {
+        height: fit-content;
+        padding-bottom: calc(3 * var(--element-vertical-spacing));
     }
 }
