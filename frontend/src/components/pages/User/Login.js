@@ -35,6 +35,10 @@ let componentContent = {
  */
 export default function Login() {
 
+    // valid email regex
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
     const { t } = useTranslation()
 
     // show password state
@@ -61,23 +65,22 @@ export default function Login() {
     }
 
 
-    // valid email regex
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
     // form submition handler
     function handleSubmit() {
 
-        // checking if the email is valid before submitting
+        let validation = { valid_email: true, valid_password: true }
+
+        // email must satisfy it's regex
         if (!emailRegex.test(values.email.toLowerCase())) {
-            setValues({ ...values, valid_email: false })
-            return
+            validation.valid_email = false
         }
 
-        // checking if the password is valid before submitting
+        // password fill must be filled
         if (values.password.length <= 0) {
-            setValues({ ...values, valid_password: false })
-            return
+            validation.valid_password = false
         }
+
+        setValues({ ...values, ...validation })
     }
 
 
@@ -170,7 +173,7 @@ export default function Login() {
 
                             {/* register link */}
                             <FormControl className="form-field">
-                                <Typography variant="body1" className={classNames("form-register-button", t('configs.font_class_name'))}>
+                                <Typography variant="body1" className={classNames("form-reroute-button", t('configs.font_class_name'))}>
                                     {t(componentContent.form.registerQuestion)}
                                     <span> </span>
                                     <Link to="/register" className={classNames("link", t('configs.font_class_name'))}>
