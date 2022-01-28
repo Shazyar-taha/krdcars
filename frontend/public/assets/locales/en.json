@@ -176,14 +176,21 @@
         "form": {
             "title": "Register",
             "description": "Register to our website",
-            "fullname": "Full Name",
+            "name": "Full Name",
             "email": "Email",
             "password": "Password",
             "show_password": "Show Password",
             "confirm_password": "Password confirmation",
             "submit": "Register",
             "login_question": "Already have an account?",
-            "login_link": "Login here"
+            "login_link": "Login here",
+            "password_validation": {
+                "length": "Password length must be at least 8 characters",
+                "lowercase": "Password must contain at least one lowercase letter",
+                "uppercase": "Password must contain at least one uppercase letter",
+                "number": "Password must contain at least one number",
+                "symbols": "Password must contain at least one special character"
+            }
         }
     }
 }
