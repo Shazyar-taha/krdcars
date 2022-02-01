@@ -102,6 +102,29 @@
     }
 }
 
+// contact flash message
+.contact-flash {
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    position: fixed;
+    bottom: 15px;
+    left: 20px;
+    font-size: var(--large-font-size);
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: calc(var(--small-font-size) / 3);
+
+    // success message
+    &.success {
+        background-color: var(--main-green-color);
+    }
+
+    // error message
+    &.failed {
+        background-color: var(--main-red-color);
+    }
+}
+
 // responsive breakpoints
 
 @media screen and (max-width: 1000px) {

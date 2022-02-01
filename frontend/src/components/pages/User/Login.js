@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Checkbox, Container, FormControl, TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import axios from 'axios'
 
 import './user.scoped.scss'
 import background from './background.jpg'
@@ -25,6 +26,10 @@ let componentContent = {
         submit: 'login.form.submit',
         registerQuestion: 'login.form.register_question',
         registerLink: 'login.form.register_link',
+    },
+    status:{
+        success: 'login.status.success',
+        failed: 'login.status.failed',
     }
 }
 
@@ -35,11 +40,14 @@ let componentContent = {
  */
 export default function Login() {
 
+    const { t } = useTranslation()
+
+    // flash message
+    const [flash, setFlash] = useState(null)
+
+
     // valid email regex
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-
-    const { t } = useTranslation()
 
     // show password state
     const [values, setValues] = useState({
@@ -81,6 +89,35 @@ export default function Login() {
         }
 
         setValues({ ...values, ...validation })
+
+        // if any of the inputs are invaild, we don't submit the form
+        if (Object.values(validation).some(value => value === false)) return
+
+        axios.post('/apis/account/login', {
+            email: values.email,
+            password: values.password
+        })
+            .then(function (res) {
+
+                /**
+                 * @todo : save authenicated user with redux
+                 */
+                
+                // setting flash message
+                setFlash(createFlash(
+                    t(componentContent.status[res.data.message.toLowerCase()]),
+                    res.data.message.toLowerCase(),
+                    t('configs.font_class_name')
+                ))
+
+                // remving flash message after 5s
+                setTimeout(() => {
+                    setFlash(null)
+                }, 5000)
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
 
@@ -121,6 +158,7 @@ export default function Login() {
                             <FormControl className="form-field">
                                 {/* email input */}
                                 <TextField
+                                    dir="ltr"
                                     className={classNames("textfield", t('configs.font_class_name'))}
                                     variant="outlined"
                                     name="email"
@@ -185,7 +223,25 @@ export default function Login() {
 
                     </div>
                 </Container>
+
+                {/* flash message */}
+                {flash}
             </div>
         </>
     );
+}
+
+
+
+/**
+ * creates flash message for registration
+ * 
+ * @param {String} message : message shown in the flash
+ * @param {String} status : status of the flash message, {failed || success}
+ * @param {String} className : class name of the flash message
+ */
+ function createFlash(message, status, className) {
+    return (
+        <div className={classNames("contact-flash", status, className)}>{message}</div>
+    )
 }

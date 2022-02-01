@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Checkbox, Container, FormControl, TextField, Typography } from '@mui/material';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 import './user.scoped.scss'
 import CustomHelmet from '../../partials/helpers/CustomHelmet';
@@ -34,6 +35,10 @@ let componentContent = {
             number: 'register.form.password_validation.number',
             symbols: 'register.form.password_validation.symbols',
         }
+    },
+    status: {
+        success: 'register.status.success',
+        failed: 'register.status.failed',
     }
 }
 
@@ -44,12 +49,15 @@ let componentContent = {
  */
 export default function Register() {
 
+    const { t } = useTranslation()
+
+    // flash message
+    const [flash, setFlash] = useState(null)
+
     // valid input regexs
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.{8,})/
 
-
-    const { t } = useTranslation()
 
     // show password state
     const [values, setValues] = useState({
@@ -114,8 +122,37 @@ export default function Register() {
         }
 
         setValues({ ...values, ...validation })
-    }
 
+        // if any of the inputs are invaild, we don't submit the form
+        if (Object.values(validation).some(value => value === false)) return
+
+        axios.post('/apis/account/register', {
+            fullName: values.name,
+            email: values.email,
+            password: values.password
+        })
+            .then(function (res) {
+
+                /**
+                 * @todo : reroute the user to login
+                 */
+
+                // setting flash message
+                setFlash(createFlash(
+                    t(componentContent.status[res.data.message.toLowerCase()]),
+                    res.data.message.toLowerCase(),
+                    t('configs.font_class_name')
+                ))
+
+                // remving flash message after 5s
+                setTimeout(() => {
+                    setFlash(null)
+                }, 5000)
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
 
     return (
         <>
@@ -169,6 +206,7 @@ export default function Register() {
                             {/* email input */}
                             <FormControl className="form-field">
                                 <TextField
+                                    dir="ltr"
                                     className={classNames("textfield", t('configs.font_class_name'))}
                                     variant="outlined"
                                     name="email"
@@ -328,7 +366,25 @@ export default function Register() {
 
                     </div>
                 </Container>
+
+                {/* flash message */}
+                {flash}
             </div>
         </>
     );
+}
+
+
+
+/**
+ * creates flash message for registration
+ * 
+ * @param {String} message : message shown in the flash
+ * @param {String} status : status of the flash message, {failed || success}
+ * @param {String} className : class name of the flash message
+ */
+function createFlash(message, status, className) {
+    return (
+        <div className={classNames("contact-flash", status, className)}>{message}</div>
+    )
 }
