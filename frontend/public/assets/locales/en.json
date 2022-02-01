@@ -166,6 +166,10 @@
             "submit": "Login",
             "register_question": "Don't have an account?",
             "register_link": "Register here"
+        },
+        "status": {
+            "success": "Loged in successfully",
+            "failed": "Login to failed, wrong credentials"
         }
     },
     "register": {
@@ -191,6 +195,10 @@
                 "number": "Password must contain at least one number",
                 "symbols": "Password must contain at least one special character"
             }
+        },
+        "status": {
+            "success": "Successfully registered",
+            "failed": "Can't use previously registered emails"
         }
     }
 }
