@@ -1,48 +1,58 @@
 const accountModel = require('../model/account');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
+
+const initializePassport = require('./passport-config');
+
+initializePassport(passport);
 
 const route = require('express').Router();
 
+exports.postLogin = passport.authenticate('local');
 
 
-route.post('/login', (req, res) => {
+route.post('/login', passport.authenticate('local'), (req, res) => {
 
-    const { email, password } = req.body;
+    // const { email, password } = req.body;
 
-    accountModel.login(email).then(async ([rows, fieldData]) => {
-        if (rows.length > 0) {
-            try {
-                let isCorrect = await bcrypt.compare(password, rows[0].password);
-
-                if (isCorrect) {
+    console.log(req.user);
 
 
-                    /**
-                     * @todo : passport authenication here
-                     */
+
+    // accountModel.login(email).then(async ([rows, fieldData]) => {
+    //     if (rows.length > 0) {
+    //         try {
+    //             let isCorrect = await bcrypt.compare(password, rows[0].password);
+
+    //             if (isCorrect) {
 
 
-                    res.send({
-                        message: "SUCCESS",
-                    })
-                } else {
-                    res.send({
-                        message: "FAILED"
-                    })
-                }
-            } catch (err) {
-                throw err;
-            }
-        } else {
-            res.send({
-                message: "FAILED"
-            })
-        }
+    //                 /**
+    //                  * @todo : passport authenication here
+    //                  */
 
 
-    }).catch((err) => {
-        console.log(err);
-    });
+    //                 res.send({
+    //                     message: "SUCCESS",
+    //                 })
+    //             } else {
+    //                 res.send({
+    //                     message: "FAILED"
+    //                 })
+    //             }
+    //         } catch (err) {
+    //             throw err;
+    //         }
+    //     } else {
+    //         res.send({
+    //             message: "FAILED"
+    //         })
+    //     }
+
+
+    // }).catch((err) => {
+    //     console.log(err);
+    // });
 
 
 });

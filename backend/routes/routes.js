@@ -10,6 +10,7 @@ const searchController = require('../controller/search');
 
 const router = express.Router();
 
+
 router.use('/account', accountController);
 
 router.use('/ads', adsController);

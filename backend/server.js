@@ -5,6 +5,8 @@ const express = require('express');
 const routes = require('./routes/routes');
 const path = require('path');
 const cors = require('cors');
+const passport = require('passport');
+const session = require('express-session');
 
 
 const app = express();
@@ -17,6 +19,16 @@ app.use(express.json({
 // allowing CORS requests
 app.use(cors())
 
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    expires: new Date(Date.now() + (30 * 86400 * 1000))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // apis route midllwares
