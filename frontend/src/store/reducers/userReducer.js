@@ -8,7 +8,7 @@ const userReducer = (state = null, action) => {
 
         // logout case
         case 'LOGOUT':
-            return action.payload
+            return null
 
         // default case
         default:
