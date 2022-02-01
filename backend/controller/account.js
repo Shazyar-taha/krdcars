@@ -6,21 +6,36 @@ const route = require('express').Router();
 
 
 route.post('/login', (req, res) => {
-    console.log('hello');
+
     const { email, password } = req.body;
-    console.log(req.body);
 
     accountModel.login(email).then(async ([rows, fieldData]) => {
         if (rows.length > 0) {
             try {
                 let isCorrect = await bcrypt.compare(password, rows[0].password);
-                res.send(isCorrect);
+
+                if (isCorrect) {
+
+
+                    /**
+                     * @todo : passport authenication here
+                     */
+
+
+                    res.send({
+                        message: "SUCCESS",
+                    })
+                } else {
+                    res.send({
+                        message: "FAILED"
+                    })
+                }
             } catch (err) {
                 throw err;
             }
         } else {
             res.send({
-                message: "Sorry We don't have the user with that email"
+                message: "FAILED"
             })
         }
 
@@ -35,16 +50,21 @@ route.post('/login', (req, res) => {
 // adding a new user to database
 route.post('/register', async (req, res) => {
 
-    const user = {
-        fullName: "Shazyar Taha Abdulla",
-        password: "shazyarth12",
-        email: "p.shazyar108@gmail.com",
-        permission: "ADMIN",
-        profileImg: "dsfiuewrim,cvndfiesd"
-    }
+    const user = req.body
+    user.permission = 'USER'
 
     let isAdded = await accountModel.addUser(user);
-    console.log(isAdded);
+
+    if (isAdded) {
+        res.send({
+            message: "SUCCESS"
+        })
+    }
+    else {
+        res.send({
+            message: "FAILED"
+        })
+    }
 });
 
 

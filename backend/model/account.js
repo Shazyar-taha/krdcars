@@ -27,14 +27,14 @@ exports.addUser = async (user) => {
     if (email[0].length == 0) {
         // you don't have that user with that email
         // create a insert statement
-        const sql = `INSERT INTO account(full_name, password, email, permission, profile_img) 
-        VALUES(?, ?, ?, ?, ?)`;
+        const sql = `INSERT INTO account(full_name, password, email, permission) 
+        VALUES(?, ?, ?, ?)`;
 
         // hashing the password 
         let hashPass = await bcrypt.hash(user.password, 12);
         console.log(hashPass);
         // insert a user 
-        return db.execute(sql, [user.fullName, hashPass, user.email, user.permission, user.profileImg])
+        return db.execute(sql, [user.fullName, hashPass, user.email, user.permission])
             .then(([rows, fieldData]) => {
                 return rows.affectedRows > 0;
             }).catch((err) => console.log(err));
