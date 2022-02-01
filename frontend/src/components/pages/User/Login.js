@@ -116,7 +116,10 @@ export default function Login() {
                 if (res.data.message === 'SUCCESS') {
 
                     // storing user if the login success
-                    await dispatch({ type: 'LOGIN', payload: res.data.user })
+                    await dispatch({
+                        type: 'LOGIN',
+                        payload: true
+                    })
 
                     // redirect to the profile page
                     history.push('/profile')

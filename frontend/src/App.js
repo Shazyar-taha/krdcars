@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
 
 import './components/partials/designs/stylesheets/main.scss'
 import { initLanguage } from './components/partials/helpers/language'
 import ScrollToTop from './components/partials/helpers/ScrollToTop'
+import UserCookieChech from './components/partials/helpers/UserCookieChech';
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
@@ -28,25 +27,6 @@ import Profile from './components/pages/User/Profile';
  */
 export default function App() {
 
-    const dispatch = useDispatch()
-
-    // getting user
-    useEffect(() => {
-        axios.get('/apis/account/user-cockie')
-            .then(res => {
-                if (res.data) {
-                    dispatch({
-                        type: 'LOGIN',
-                        payload: res.data
-                    })
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    })
-
-
     // initiating language cookie check
     initLanguage()
 
@@ -61,6 +41,9 @@ export default function App() {
 
     return (
         <Router>
+
+        {/* user cookie check */}
+        <UserCookieChech />
 
             {/* material ui css baselines */}
             <CssBaseline />
