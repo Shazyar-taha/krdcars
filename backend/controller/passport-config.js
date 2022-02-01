@@ -12,18 +12,15 @@ function initialize(passport) {
         db.execute(sql, [email]).then(async ([row, fields]) => {
             user = row[0];
             if (user == null) {
-                return done(null, false, {
-                    message: "We don't have a user with this email"
-                });
+                return done(null, user);
             }
 
             try {
                 if (await bcrypt.compare(password, user.password)) {
+                    delete user.password; // removing password to not be cached
                     return done(null, user);
                 } else {
-                    return done(null, false, {
-                        message: "Your password is incorrect"
-                    });
+                    return done(null, false);
                 }
             } catch (e) {
                 return done(e);

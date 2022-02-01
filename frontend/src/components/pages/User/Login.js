@@ -99,6 +99,8 @@ export default function Login() {
         })
             .then(function (res) {
 
+                console.log(res);
+
                 /**
                  * @todo : save authenicated user with redux
                  */

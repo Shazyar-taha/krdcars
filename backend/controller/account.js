@@ -11,51 +11,26 @@ const route = require('express').Router();
 exports.postLogin = passport.authenticate('local');
 
 
-route.post('/login', passport.authenticate('local'), (req, res) => {
+route.post('/login', (req, res, next) => {
 
-    // const { email, password } = req.body;
+    passport.authenticate('local', (err, user, info) => {
+        if (err) { console.log(err); }
 
-    console.log(req.user);
-
-
-
-    // accountModel.login(email).then(async ([rows, fieldData]) => {
-    //     if (rows.length > 0) {
-    //         try {
-    //             let isCorrect = await bcrypt.compare(password, rows[0].password);
-
-    //             if (isCorrect) {
-
-
-    //                 /**
-    //                  * @todo : passport authenication here
-    //                  */
-
-
-    //                 res.send({
-    //                     message: "SUCCESS",
-    //                 })
-    //             } else {
-    //                 res.send({
-    //                     message: "FAILED"
-    //                 })
-    //             }
-    //         } catch (err) {
-    //             throw err;
-    //         }
-    //     } else {
-    //         res.send({
-    //             message: "FAILED"
-    //         })
-    //     }
-
-
-    // }).catch((err) => {
-    //     console.log(err);
-    // });
-
-
+        if (user) {
+            res.send({
+                user: user,
+                message: "SUCCESS",
+            })
+        }
+        else {
+            res.send({
+                message: "FAILED"
+            })
+        }
+    })(req, res, next);
 });
+
+
 
 // adding a new user to database
 route.post('/register', async (req, res) => {
