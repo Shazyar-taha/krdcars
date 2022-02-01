@@ -9,6 +9,10 @@ exports.login = (email) => {
     return db.query(sql, [email]);
 }
 
+exports.user = (id) => {
+    const sql = "SELECT id, full_name, email FROM account WHERE id = ?";
+    return db.query(sql, [id]);
+}
 
 
 // check the email address if 

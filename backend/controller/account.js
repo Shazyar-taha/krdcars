@@ -18,6 +18,24 @@ route.get('/user-cockie', (req, res) => {
 })
 
 
+// get a user
+route.get('/user', (req, res) => {
+
+    if (req.user) {
+        accountModel.user(req.user.id).then(([rows, fieldData]) => {
+
+            res.send(rows[0]);
+
+        }).catch((err) => {
+            console.log(err);
+        });
+    } else {
+        res.send({
+            message: 'FAILED'
+        });
+    }
+});
+
 route.post('/login', (req, res, next) => {
 
     passport.authenticate('local', (err, user, info) => {
