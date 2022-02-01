@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Button, Checkbox, Container, FormControl, TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
 
 import './user.scoped.scss'
 import background from './background.jpg'
@@ -27,7 +29,7 @@ let componentContent = {
         registerQuestion: 'login.form.register_question',
         registerLink: 'login.form.register_link',
     },
-    status:{
+    status: {
         success: 'login.status.success',
         failed: 'login.status.failed',
     }
@@ -40,7 +42,18 @@ let componentContent = {
  */
 export default function Login() {
 
+    const history = useHistory()
+    const dispatch = useDispatch()
     const { t } = useTranslation()
+
+    // user state
+    const user = useSelector(state => state.user)
+
+    // if the user loged in, rerowting to profile
+    if (user) {
+        history.push('/profile')
+    }
+
 
     // flash message
     const [flash, setFlash] = useState(null)
@@ -97,25 +110,30 @@ export default function Login() {
             email: values.email,
             password: values.password
         })
-            .then(function (res) {
+            .then(async (res) => {
 
-                console.log(res);
+                // if the login was success
+                if (res.data.message === 'SUCCESS') {
 
-                /**
-                 * @todo : save authenicated user with redux
-                 */
-                
-                // setting flash message
-                setFlash(createFlash(
-                    t(componentContent.status[res.data.message.toLowerCase()]),
-                    res.data.message.toLowerCase(),
-                    t('configs.font_class_name')
-                ))
+                    // storing user if the login success
+                    await dispatch({ type: 'LOGIN', payload: res.data.user })
 
-                // remving flash message after 5s
-                setTimeout(() => {
-                    setFlash(null)
-                }, 5000)
+                    // redirect to the profile page
+                    history.push('/profile')
+                }
+                else {
+                    // setting flash message
+                    setFlash(createFlash(
+                        t(componentContent.status[res.data.message.toLowerCase()]),
+                        res.data.message.toLowerCase(),
+                        t('configs.font_class_name')
+                    ))
+
+                    // remving flash message after 5s
+                    setTimeout(() => {
+                        setFlash(null)
+                    }, 5000)
+                }
             })
             .catch(function (err) {
                 console.log(err);
@@ -242,7 +260,7 @@ export default function Login() {
  * @param {String} status : status of the flash message, {failed || success}
  * @param {String} className : class name of the flash message
  */
- function createFlash(message, status, className) {
+function createFlash(message, status, className) {
     return (
         <div className={classNames("contact-flash", status, className)}>{message}</div>
     )

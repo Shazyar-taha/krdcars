@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Checkbox, Container, FormControl, TextField, Typography } from '@mui/material';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import './user.scoped.scss'
 import CustomHelmet from '../../partials/helpers/CustomHelmet';
 import background from './background.jpg'
+import { useSelector } from 'react-redux';
 
 
 
@@ -49,7 +50,16 @@ let componentContent = {
  */
 export default function Register() {
 
+    const history = useHistory()
     const { t } = useTranslation()
+
+    // user state
+    const user = useSelector(state => state.user)
+
+    // if the user loged in, rerowting to profile
+    if (user) {
+        history.push('/profile')
+    }
 
     // flash message
     const [flash, setFlash] = useState(null)

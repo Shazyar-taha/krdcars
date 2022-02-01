@@ -11,15 +11,25 @@ const route = require('express').Router();
 exports.postLogin = passport.authenticate('local');
 
 
+
+// getting user
+route.get('/user-cockie', (req, res) => {
+    res.send(req.user)
+})
+
+
 route.post('/login', (req, res, next) => {
 
     passport.authenticate('local', (err, user, info) => {
         if (err) { console.log(err); }
 
         if (user) {
-            res.send({
-                user: user,
-                message: "SUCCESS",
+            req.logIn(user, (error) => {
+                if (error) { console.log(error); }
+                res.send({
+                    user: user,
+                    message: "SUCCESS",
+                })
             })
         }
         else {
@@ -29,6 +39,15 @@ route.post('/login', (req, res, next) => {
         }
     })(req, res, next);
 });
+
+// logout route
+route.post('/logout', (req, res) => {
+    req.logout();
+
+    res.send({
+        message: "SUCCESS"
+    })
+})
 
 
 

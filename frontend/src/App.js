@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
 
@@ -16,6 +18,7 @@ import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
 import Login from './components/pages/User/Login';
 import Register from './components/pages/User/Register';
+import Profile from './components/pages/User/Profile';
 
 
 
@@ -25,9 +28,27 @@ import Register from './components/pages/User/Register';
  */
 export default function App() {
 
+    const dispatch = useDispatch()
+
+    // getting user
+    useEffect(() => {
+        axios.get('/apis/account/user-cockie')
+            .then(res => {
+                if (res.data) {
+                    dispatch({
+                        type: 'LOGIN',
+                        payload: res.data
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
+
+
     // initiating language cookie check
     initLanguage()
-
 
     useEffect(() => {
         // removing the preload class from the body when the page is ready
@@ -78,11 +99,14 @@ export default function App() {
                     <SearchRoute />
                 </Route>
 
+                {/* profile route */}
+                <Route path='/profile' exact>
+                    <Profile />
+                </Route>
                 {/* login route */}
                 <Route path='/login' exact>
                     <Login />
                 </Route>
-
                 {/* register route */}
                 <Route path='/register' exact>
                     <Register />

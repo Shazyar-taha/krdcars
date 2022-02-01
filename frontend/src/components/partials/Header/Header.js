@@ -131,7 +131,7 @@ export default function Header() {
                         <div className={classNames("button", navColor)}>
                             <ThemeSwitcher />
                         </div>
-                        <Link to="/login" className={classNames("button", navColor)} onClick={closeDrawer}>
+                        <Link to="/profile" className={classNames("button", navColor)} onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>
@@ -170,7 +170,7 @@ export default function Header() {
                             <div className="button">
                                 <ThemeSwitcher />
                             </div>
-                            <Link to="/login" className="button" onClick={closeDrawer}>
+                            <Link to="/profile" className="button" onClick={closeDrawer}>
                                 <AccountCircleOutlinedIcon />
                             </Link>
                         </div>

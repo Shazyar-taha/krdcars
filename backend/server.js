@@ -22,9 +22,10 @@ app.use(cors())
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 900000 },
+    rolling: true,
     resave: true,
-    saveUninitialized: true,
-    expires: new Date(Date.now() + (30 * 86400 * 1000))
+    saveUninitialized: false,
 }));
 
 app.use(passport.initialize());

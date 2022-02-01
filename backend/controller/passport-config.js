@@ -17,8 +17,7 @@ function initialize(passport) {
 
             try {
                 if (await bcrypt.compare(password, user.password)) {
-                    delete user.password; // removing password to not be cached
-                    return done(null, user);
+                    return done(null, {id: row[0].id});
                 } else {
                     return done(null, false);
                 }
@@ -30,12 +29,6 @@ function initialize(passport) {
 
 
 
-
-
-
-
-
-
     passport.use(new LocalStrategy({
         usernameField: 'email'
     }, authenticateUser));
@@ -44,7 +37,7 @@ function initialize(passport) {
     passport.serializeUser((user, done) => done(null, user.id));
 
     passport.deserializeUser((id, done) => {
-        const sql = "SELECT id, password FROM account WHERE id = ?";
+        const sql = "SELECT id FROM account WHERE id = ?";
         db.execute(sql, [id]).then(([rows, fields]) => {
             return done(null, rows[0])
         }).catch((err) => {
