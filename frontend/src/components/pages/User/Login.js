@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
 import { Button, Checkbox, Container, FormControl, TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import './user.scoped.scss'
 import background from './background.jpg'
 import CustomHelmet from '../../partials/helpers/CustomHelmet'
-import { Link } from 'react-router-dom';
 
 
 
@@ -45,14 +45,6 @@ export default function Login() {
     const history = useHistory()
     const dispatch = useDispatch()
     const { t } = useTranslation()
-
-    // user state
-    const user = useSelector(state => state.user)
-
-    // if the user loged in, rerowting to profile
-    if (user) {
-        history.push('/profile')
-    }
 
 
     // flash message

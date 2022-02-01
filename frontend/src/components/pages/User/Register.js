@@ -8,7 +8,6 @@ import axios from 'axios';
 import './user.scoped.scss'
 import CustomHelmet from '../../partials/helpers/CustomHelmet';
 import background from './background.jpg'
-import { useSelector } from 'react-redux';
 
 
 
@@ -52,14 +51,6 @@ export default function Register() {
 
     const history = useHistory()
     const { t } = useTranslation()
-
-    // user state
-    const user = useSelector(state => state.user)
-
-    // if the user loged in, rerowting to profile
-    if (user) {
-        history.push('/profile')
-    }
 
     // flash message
     const [flash, setFlash] = useState(null)
@@ -143,21 +134,24 @@ export default function Register() {
         })
             .then(function (res) {
 
-                /**
-                 * @todo : reroute the user to login
-                 */
+                if (res.data.message === 'SUCCESS') {
 
-                // setting flash message
-                setFlash(createFlash(
-                    t(componentContent.status[res.data.message.toLowerCase()]),
-                    res.data.message.toLowerCase(),
-                    t('configs.font_class_name')
-                ))
+                    // redirect to the login page
+                    history.push('/login')
+                }
+                else {
+                    // setting flash message
+                    setFlash(createFlash(
+                        t(componentContent.status[res.data.message.toLowerCase()]),
+                        res.data.message.toLowerCase(),
+                        t('configs.font_class_name')
+                    ))
 
-                // remving flash message after 5s
-                setTimeout(() => {
-                    setFlash(null)
-                }, 5000)
+                    // remving flash message after 5s
+                    setTimeout(() => {
+                        setFlash(null)
+                    }, 5000)
+                }
             })
             .catch(function (err) {
                 console.log(err);

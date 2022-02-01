@@ -8,6 +8,7 @@ import './components/partials/designs/stylesheets/main.scss'
 import { initLanguage } from './components/partials/helpers/language'
 import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import UserCookieChech from './components/partials/helpers/UserCookieChech';
+import ProtectedRoute from './components/partials/helpers/ProtectedRoute';
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
@@ -42,8 +43,8 @@ export default function App() {
     return (
         <Router>
 
-        {/* user cookie check */}
-        <UserCookieChech />
+            {/* user cookie check */}
+            <UserCookieChech />
 
             {/* material ui css baselines */}
             <CssBaseline />
@@ -83,17 +84,17 @@ export default function App() {
                 </Route>
 
                 {/* profile route */}
-                <Route path='/profile' exact>
+                <ProtectedRoute path='/profile' condition="loggedIn" reroutePath="/login" exact>
                     <Profile />
-                </Route>
+                </ProtectedRoute>
                 {/* login route */}
-                <Route path='/login' exact>
+                <ProtectedRoute path='/login' condition="loggedOut" reroutePath="/profile" exact>
                     <Login />
-                </Route>
+                </ProtectedRoute>
                 {/* register route */}
-                <Route path='/register' exact>
+                <ProtectedRoute path='/register' condition="loggedOut" reroutePath="/profile" exact>
                     <Register />
-                </Route>
+                </ProtectedRoute>
 
             </Switch>
 
