@@ -152,6 +152,13 @@
             }
         }
     },
+    "profile": {
+        "title": "Profile",
+        "name": "Name",
+        "email": "Email",
+        "change_password": "Change Password",
+        "logout": "Logout"
+    },
     "login": {
         "head": {
             "title": "Login",

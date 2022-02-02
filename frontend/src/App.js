@@ -16,9 +16,9 @@ import InfoRoutes from './components/pages/Info/InfoRoutes';
 import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
+import Profile from './components/pages/User/Profile/Profile';
 import Login from './components/pages/User/Login';
 import Register from './components/pages/User/Register';
-import Profile from './components/pages/User/Profile';
 
 
 

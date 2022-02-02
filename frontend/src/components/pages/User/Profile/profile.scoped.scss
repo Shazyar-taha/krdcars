@@ -1,0 +1,27 @@
+/* profile */
+
+.user-datas {
+    margin-top: 3rem;
+
+    // each data
+    .profile-data {
+        margin-top: 1rem;
+        font-size: var(--large-font-size);
+        color: var(--body-text-color);
+
+        // change password, logout button
+        .change-password,
+        .logout-button {
+            margin-top: 3.5rem;
+            padding: 0.75rem;
+            width: 100%;
+            max-width: 15rem;
+            font-size: var(--medium-font-size);
+        }
+
+        // logout button margin
+        .logout-button{
+            margin-top: 1rem;
+        }
+    }
+}
