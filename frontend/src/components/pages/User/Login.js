@@ -113,8 +113,8 @@ export default function Login() {
                         payload: true
                     })
 
-                    // redirect to the profile page
-                    history.push('/profile')
+                    // redirect to the home page
+                    history.push('/')
                 }
                 else {
                     // setting flash message
