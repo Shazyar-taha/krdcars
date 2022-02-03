@@ -115,14 +115,14 @@ export default function ChangePassword() {
 
                 if (res.data.status === 'SUCCESS') {
 
-                    // redirect to the login page
-                    history.push('/profile')
+                    // redirect to the profile page
+                    history.push('/user/profile')
                 }
                 else {
                     // if the user is not logged in, redirecting them to login page
                     if (res.data.message === 'not_logged_in') {
                         // redirect to the login page
-                        history.push('/login')
+                        history.push('/user/login')
                     }
                     else {
                         // setting flash message

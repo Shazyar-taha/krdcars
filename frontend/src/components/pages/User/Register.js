@@ -137,7 +137,7 @@ export default function Register() {
                 if (res.data.message === 'SUCCESS') {
 
                     // redirect to the login page
-                    history.push('/login')
+                    history.push('/user/login')
                 }
                 else {
                     // setting flash message
@@ -361,7 +361,7 @@ export default function Register() {
                                 <Typography variant="body1" className={classNames("form-reroute-button", t('configs.font_class_name'))}>
                                     {t(componentContent.form.registerQuestion)}
                                     <span> </span>
-                                    <Link to="/login" className={classNames("link", t('configs.font_class_name'))}>
+                                    <Link to="/user/login" className={classNames("link", t('configs.font_class_name'))}>
                                         {t(componentContent.form.registerLink)}
                                     </Link>
                                 </Typography>

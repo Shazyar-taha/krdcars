@@ -35,7 +35,7 @@ let componentContent = {
         { title: 'partials.header.links.about', url: '/about' },
     ],
     whiteNavLinks: ['/'],
-    blackNavLinks: ['/login', '/register'],
+    blackNavLinks: ['/user/login', '/user/register'],
 }
 
 
@@ -131,7 +131,7 @@ export default function Header() {
                         <div className={classNames("button", navColor)}>
                             <ThemeSwitcher />
                         </div>
-                        <Link to="/profile" className={classNames("button", navColor)} onClick={closeDrawer}>
+                        <Link to="/user/profile" className={classNames("button", navColor)} onClick={closeDrawer}>
                             <AccountCircleOutlinedIcon />
                         </Link>
                     </div>
@@ -170,7 +170,7 @@ export default function Header() {
                             <div className="button">
                                 <ThemeSwitcher />
                             </div>
-                            <Link to="/profile" className="button" onClick={closeDrawer}>
+                            <Link to="/user/profile" className="button" onClick={closeDrawer}>
                                 <AccountCircleOutlinedIcon />
                             </Link>
                         </div>

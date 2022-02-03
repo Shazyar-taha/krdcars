@@ -93,7 +93,7 @@ export default function Profile() {
                         </Typography>
 
                         {/* change password link */}
-                        <Link to="/profile/change-password" className="profile-data">
+                        <Link to="/user/change-password" className="profile-data">
                             <Button
                                 variend="outlined"
                                 className={classNames("white-btn-outline change-password", t('configs.font_class_name'))}

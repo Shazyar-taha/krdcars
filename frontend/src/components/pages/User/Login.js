@@ -229,7 +229,7 @@ export default function Login() {
                                 <Typography variant="body1" className={classNames("form-reroute-button", t('configs.font_class_name'))}>
                                     {t(componentContent.form.registerQuestion)}
                                     <span> </span>
-                                    <Link to="/register" className={classNames("link", t('configs.font_class_name'))}>
+                                    <Link to="/user/register" className={classNames("link", t('configs.font_class_name'))}>
                                         {t(componentContent.form.registerLink)}
                                     </Link>
                                 </Typography>

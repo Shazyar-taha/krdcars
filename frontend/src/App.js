@@ -86,19 +86,19 @@ export default function App() {
 
 
                 {/* profile route */}
-                <ProtectedRoute path='/profile' condition="loggedIn" reroutePath="/login" exact>
+                <ProtectedRoute path='/user/profile' condition="loggedIn" reroutePath="/user/login" exact>
                     <Profile />
                 </ProtectedRoute>
                 {/* login route */}
-                <ProtectedRoute path='/login' condition="loggedOut" reroutePath="/profile" exact>
+                <ProtectedRoute path='/user/login' condition="loggedOut" reroutePath="/user/profile" exact>
                     <Login />
                 </ProtectedRoute>
                 {/* register route */}
-                <ProtectedRoute path='/register' condition="loggedOut" reroutePath="/profile" exact>
+                <ProtectedRoute path='/user/register' condition="loggedOut" reroutePath="/user/profile" exact>
                     <Register />
                 </ProtectedRoute>
                 {/* change password route */}
-                <ProtectedRoute path='/profile/change-password' condition="loggedIn" reroutePath="/login" exact>
+                <ProtectedRoute path='/user/change-password' condition="loggedIn" reroutePath="/user/login" exact>
                     <ChangePassword />
                 </ProtectedRoute>
 
