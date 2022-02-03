@@ -99,26 +99,49 @@ route.get('/update', (req, res) => {
 })
 
 // changing the user password
-route.post('/change-pass', async (req, res) => {
+route.post('/change-password', async (req, res) => {
 
-    const { email, oldPassword, newPassword } = req.body;
+    const user = req.user
+    const { password, newPassword } = req.body
 
-    let isUpdate = await accountModel.changePassword({
-        email: "p.shazyar108@gmail.com",
-        oldPass: 'shazyar14',
-        newPass: 'shazyarth12',
-        confirmPass: 'shazyarth12'
-    });
-
-    if (isUpdate) {
-        res.send({
-            message: 'change password'
-        });
-    } else {
-        res.send({
-            message: 'not changed'
-        });
+    if (!user) {
+        return res.send({
+            status: 'FAILED',
+            message: 'not_logged_in'
+        })
     }
+
+    /**
+     * @todo : ba pey aw useray la cookie wary agrit passwordaka bgora
+     */
+
+    console.log(user);
+    console.log(password);
+    console.log(newPassword);
+
+    res.send({
+        status: 'SUCCESS'
+    })
+
+
+    // const { email, oldPassword, newPassword } = req.body;
+
+    // let isUpdate = await accountModel.changePassword({
+    //     email: "p.shazyar108@gmail.com",
+    //     oldPass: 'shazyar14',
+    //     newPass: 'shazyarth12',
+    //     confirmPass: 'shazyarth12'
+    // });
+
+    // if (isUpdate) {
+    //     res.send({
+    //         message: 'change password'
+    //     });
+    // } else {
+    //     res.send({
+    //         message: 'not changed'
+    //     });
+    // }
 })
 
 module.exports = route;

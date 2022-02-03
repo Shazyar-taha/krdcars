@@ -19,6 +19,7 @@ import SearchRoute from './components/pages/Search/SearchRoute';
 import Profile from './components/pages/User/Profile/Profile';
 import Login from './components/pages/User/Login';
 import Register from './components/pages/User/Register';
+import ChangePassword from './components/pages/User/Profile/ChangePassword';
 
 
 
@@ -83,6 +84,7 @@ export default function App() {
                     <SearchRoute />
                 </Route>
 
+
                 {/* profile route */}
                 <ProtectedRoute path='/profile' condition="loggedIn" reroutePath="/login" exact>
                     <Profile />
@@ -94,6 +96,10 @@ export default function App() {
                 {/* register route */}
                 <ProtectedRoute path='/register' condition="loggedOut" reroutePath="/profile" exact>
                     <Register />
+                </ProtectedRoute>
+                {/* change password route */}
+                <ProtectedRoute path='/profile/change-password' condition="loggedIn" reroutePath="/login" exact>
+                    <ChangePassword />
                 </ProtectedRoute>
 
             </Switch>

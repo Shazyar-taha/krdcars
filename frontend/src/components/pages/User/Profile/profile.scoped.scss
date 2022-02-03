@@ -20,8 +20,88 @@
         }
 
         // logout button margin
-        .logout-button{
+        .logout-button {
             margin-top: 1rem;
         }
+    }
+}
+
+// change password form
+.change-password-form {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 25rem;
+    background-color: var(--body-bg-color-lighter);
+    border-radius: var(--xx-small-font-size);
+
+    // form title
+    .form-title {
+        text-align: center;
+        font-size: var(--xx-large-font-size);
+        color: var(--head-text-color);
+    }
+
+    // form fields
+    .form-fields {
+        margin-top: 3rem;
+
+        // each form field
+        .form-field {
+            margin-top: 1rem;
+            width: 100%;
+
+            // removing first ones margin
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        // form checkbox
+        .checkbox {
+            display: inline;
+            width: 100%;
+
+            // checkbox label
+            label {
+                color: var(--body-text-color);
+            }
+        }
+
+        // password validation
+        .password-validation {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--body-bg-color);
+            border-radius: var(--xx-small-font-size);
+
+            label {
+                font-size: var(--xx-small-font-size);
+                color: var(--body-text-color);
+            }
+        }
+    }
+}
+
+// contact flash message
+.contact-flash {
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    position: fixed;
+    bottom: 15px;
+    left: 20px;
+    font-size: var(--large-font-size);
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: calc(var(--small-font-size) / 3);
+    z-index: 1;
+
+    // success message
+    &.success {
+        background-color: var(--main-green-color);
+    }
+
+    // error message
+    &.failed {
+        background-color: var(--main-red-color);
     }
 }

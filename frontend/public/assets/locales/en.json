@@ -207,5 +207,29 @@
             "success": "Successfully registered",
             "failed": "Can't use previously registered emails"
         }
+    },
+    "change_password": {
+        "head": {
+            "title": "Change Password"
+        },
+        "form": {
+            "title": "Change Password",
+            "current_password": "Current Password",
+            "new_password": "New Password",
+            "confirm_password": "Confirm Password",
+            "show_password": "Show Password",
+            "submit": "Change Password",
+            "password_validation": {
+                "length": "Password length must be at least 8 characters",
+                "lowercase": "Password must contain at least one lowercase letter",
+                "uppercase": "Password must contain at least one uppercase letter",
+                "number": "Password must contain at least one number",
+                "symbols": "Password must contain at least one special character"
+            }
+        },
+        "status": {
+            "not_logged_in": "You are not logged in",
+            "failed": "Current password is wrong"
+        }
     }
 }
