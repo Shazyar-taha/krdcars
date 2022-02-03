@@ -35,7 +35,7 @@ export default function Profile() {
 
 
     // user datas
-    const [datas, setDatas] = useState({ full_name: 'profile', name: '', email: '' })
+    const [datas, setDatas] = useState({})
 
     // get user datas
     useEffect(() => {

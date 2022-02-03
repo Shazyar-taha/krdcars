@@ -8,7 +8,6 @@ import './components/partials/designs/stylesheets/main.scss'
 import { initLanguage } from './components/partials/helpers/language'
 import ScrollToTop from './components/partials/helpers/ScrollToTop'
 import UserCookieChech from './components/partials/helpers/UserCookieChech';
-import ProtectedRoute from './components/partials/helpers/ProtectedRoute';
 import Header from './components/partials/Header/Header';
 import Footer from './components/partials/Footer/Footer';
 import Home from './components/pages/Home/Home';
@@ -16,10 +15,7 @@ import InfoRoutes from './components/pages/Info/InfoRoutes';
 import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
-import Profile from './components/pages/User/Profile/Profile';
-import Login from './components/pages/User/Login';
-import Register from './components/pages/User/Register';
-import ChangePassword from './components/pages/User/Profile/ChangePassword';
+import UserRoutes from './components/pages/User/UserRoutes';
 
 
 
@@ -85,22 +81,10 @@ export default function App() {
                 </Route>
 
 
-                {/* profile route */}
-                <ProtectedRoute path='/user/profile' condition="loggedIn" reroutePath="/user/login" exact>
-                    <Profile />
-                </ProtectedRoute>
-                {/* login route */}
-                <ProtectedRoute path='/user/login' condition="loggedOut" reroutePath="/user/profile" exact>
-                    <Login />
-                </ProtectedRoute>
-                {/* register route */}
-                <ProtectedRoute path='/user/register' condition="loggedOut" reroutePath="/user/profile" exact>
-                    <Register />
-                </ProtectedRoute>
-                {/* change password route */}
-                <ProtectedRoute path='/user/change-password' condition="loggedIn" reroutePath="/user/login" exact>
-                    <ChangePassword />
-                </ProtectedRoute>
+                {/* user routes */}
+                <Route path='/user'>
+                    <UserRoutes />
+                </Route>
 
             </Switch>
 
