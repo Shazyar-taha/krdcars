@@ -18,6 +18,7 @@ default document styles
 
     // removing transition for unordered list and anything inside svg
     ul,
+    span,
     svg * {
         -webkit-transition: none !important;
         -moz-transition: none !important;
