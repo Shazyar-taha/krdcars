@@ -51,19 +51,19 @@ default theme settings
 // white buttons
 
 // white outlined buttons
-.white-btn-outline {
-    border: 1px solid var(--white-color) !important;
-    color: var(--white-color) !important;
+.opposite-btn-outline {
+    border: 1px solid var(--body-oposite-color) !important;
+    color: var(--body-oposite-color) !important;
 
     &:hover {
-        background-color: 1px solid var(--white-color) !important;
+        background-color: 1px solid var(--body-oposite-color) !important;
     }
 }
 
 // white contained buttons
-.white-btn-contained {
-    background-color: var(--white-color) !important;
-    color: var(--white-color) !important;
+.opposite-btn-contained {
+    background-color: var(--body-oposite-color) !important;
+    color: var(--body-oposite-color) !important;
 }
 
 // text field designs
