@@ -61,34 +61,28 @@ exports.update = async () => {
 }
 
 // this object pass the user{id, oldPassword, newPassword, confirm new Password}
-exports.changePassword = async ({ email, oldPassword, newPassword, confirmPassword }) => {
+exports.changePassword = async ({ id, oldPassword, newPassword }) => {
 
     // we get the user in database
-    return db.query('SELECT password FROM account WHERE email = ?', [email])
-        .then(([rows, fieldData]) => {
-            if (rows.length == 0) {
-                return 'not found the user'
-            } else {
-                try {
-                    return bcrypt.compare(oldPassword, rows[0].password).then(async (result) => {
-                        if (result && (newPassword == confirmPassword)) {
-                            // update the user password 
-                            let newPassword = await bcrypt.hash(user.newPass, 12);
-                            return db.execute('UPDATE account SET password = ? WHERE id = ? ', [newPassword, email])
-                                .then(([rows, fieldData]) => {
-                                    return rows.affectedRows > 0;
-                                }).catch(err => console.log(err));
-                        } else {
-                            return false;
-                        }
-                    })
-                } catch (err) {
-                    console.log(err);
-                }
-
+    return db.query('SELECT password FROM account WHERE id = ?', [id])
+        .then(async ([rows, fieldData]) => {
+            try {
+                return bcrypt.compare(oldPassword, rows[0].password).then(async (result) => {
+                    if (result) {
+                        // update the user password 
+                        let newPassword = await bcrypt.hash(user.newPass, 12);
+                        return db.execute('UPDATE account SET password = ? WHERE id = ? ', [newPassword, id])
+                            .then(([rows, fieldData]) => {
+                                return rows.affectedRows > 0;
+                            }).catch(err => console.log(err));
+                    } else {
+                        return false;
+                    }
+                })
+            } catch (err) {
+                console.log(err);
             }
 
         }).catch((err) => console.error(err));
-
 
 }

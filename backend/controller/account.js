@@ -119,29 +119,18 @@ route.post('/change-password', async (req, res) => {
     console.log(password);
     console.log(newPassword);
 
-    res.send({
-        status: 'SUCCESS'
-    })
 
 
-    // const { email, oldPassword, newPassword } = req.body;
+    let isUpdated = await accountModel.changePassword({ id: user.id, oldPassword: password, newPassword: newPassword });
 
-    // let isUpdate = await accountModel.changePassword({
-    //     email: "p.shazyar108@gmail.com",
-    //     oldPass: 'shazyar14',
-    //     newPass: 'shazyarth12',
-    //     confirmPass: 'shazyarth12'
-    // });
 
-    // if (isUpdate) {
-    //     res.send({
-    //         message: 'change password'
-    //     });
-    // } else {
-    //     res.send({
-    //         message: 'not changed'
-    //     });
-    // }
+    if (isUpdated) {
+        res.send({
+            status: 'SUCCESS'
+        })
+    }
+
+
 })
 
 module.exports = route;
