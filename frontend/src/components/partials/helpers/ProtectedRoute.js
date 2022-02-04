@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useHistory, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -18,35 +18,44 @@ import { useSelector } from 'react-redux';
  */
 export default function ProtectedRoute({ children, condition, reroutePath, ...rest }) {
 
+    const { pathname } = useLocation()
     const history = useHistory()
 
     // getting the current user state
     const user = useSelector(state => state.user)
 
+
+    // checking the condition
+    useEffect(() => {
+        switch (condition) {
+
+            // logged in condition, reroting user if no user logged in
+            case 'loggedIn':
+                if (!user) {
+                    history.push(reroutePath)
+                }
+                break
+
+            // logged out condition, reroting user if a user logged in
+            case 'loggedOut':
+                if (user) {
+                    history.push(reroutePath)
+                }
+                break
+
+            // nothing to show on bad conditions
+            default:
+                return null
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname])
+
+
+    // if no condition is provided returning null
     if (!condition) {
         return null
     }
 
-    switch (condition) {
-
-        // logged in condition, reroting user if no user logged in
-        case 'loggedIn':
-            if (!user) {
-                history.push(reroutePath)
-            }
-            break
-
-        // logged out condition, reroting user if a user logged in
-        case 'loggedOut':
-            if (user) {
-                history.push(reroutePath)
-            }
-            break
-
-        // nothing to show on bad conditions
-        default:
-            return null
-
-    }
     return <Route {...rest}>{children}</Route>;
 }
