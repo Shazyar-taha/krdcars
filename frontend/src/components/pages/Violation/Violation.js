@@ -18,17 +18,17 @@ let componentContent = {
         {
             title: "violation.index.links.slemani.title",
             description: "violation.index.links.slemani.description",
-            otherUrl: '',
+            otherUrl: 'https://www.sultraffic.com/Serpechi',
         },
         {
             title: "violation.index.links.hawler.title",
             description: "violation.index.links.hawler.description",
-            otherUrl: ''
+            otherUrl: 'https://www.hawlertp.com/fine_reuiqred_info_page'
         },
         {
             title: "violation.index.links.duhok.title",
             description: "violation.index.links.duhok.description",
-            otherUrl: ''
+            otherUrl: 'https://duhoktp.com/gharamat.php?lang=3'
         }
     ]
 }
