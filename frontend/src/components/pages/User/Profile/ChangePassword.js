@@ -190,7 +190,7 @@ export default function ChangePassword() {
                                     variant="outlined"
                                     name="newPassword"
                                     type={values.showPassword ? "text" : "password"}
-                                    label={t(componentContent.form.currentPassword)}
+                                    label={t(componentContent.form.newPassword)}
                                     value={values.newPassword}
                                     onChange={handleInput}
                                     onFocus={() => setValues({ ...values, showPasswordHint: true })}

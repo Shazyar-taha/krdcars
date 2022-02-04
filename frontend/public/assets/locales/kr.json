@@ -214,9 +214,9 @@
         },
         "form": {
             "title": "گۆڕینی تێپەڕەووشە",
-            "current_password": "تێپەڕەوشەی ئێستا",
+            "current_password": "تێپەڕەوشەی کۆن",
             "new_password": "تێپيڕەوشەی نوێ",
-            "confirm_password": "دڵنیابوونەوە لە تێپەڕەوشە",
+            "confirm_password": "دڵنیابوونەوە لە تێپەڕەوشەی نوێ",
             "show_password": "پشاندانی تێپەڕەوشە",
             "submit": "گۆڕینی تێپەڕەوشە",
             "password_validation": {
