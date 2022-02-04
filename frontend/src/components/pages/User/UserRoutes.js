@@ -13,25 +13,28 @@ import Register from './Register';
  */
 export default function UserRoutes() {
 
+    // this is a static route url, but cant use 'useRouteMatch' because it will carsh rerendering
+    const url = '/user'
+
     return (
         <>
             {/* profile root route */}
-            <ProtectedRoute path="/user/profile" condition="loggedIn" reroutePath="/user/login" exact>
+            <ProtectedRoute path={`${url}/profile`} condition="loggedIn" reroutePath={`${url}/login`} exact>
                 <Profile />
             </ProtectedRoute>
 
             {/* login route */}
-            <ProtectedRoute path="/user/login" condition="loggedOut" reroutePath="/user/profile" exact>
+            <ProtectedRoute path={`${url}/login`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
                 <Login />
             </ProtectedRoute>
 
             {/* register route */}
-            <ProtectedRoute path="/user/register" condition="loggedOut" reroutePath="/user/profile" exact>
+            <ProtectedRoute path={`${url}/register`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
                 <Register />
             </ProtectedRoute>
 
             {/* change password route */}
-            <ProtectedRoute path="/user/change-password" condition="loggedIn" reroutePath="/user/login" exact>
+            <ProtectedRoute path={`${url}/change-password`} condition="loggedIn" reroutePath={`${url}/login`} exact>
                 <ChangePassword />
             </ProtectedRoute>
         </>
