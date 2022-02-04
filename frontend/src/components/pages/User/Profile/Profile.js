@@ -96,7 +96,7 @@ export default function Profile() {
                         <Link to="/user/change-password" className="profile-data">
                             <Button
                                 variend="outlined"
-                                className={classNames("white-btn-outline change-password", t('configs.font_class_name'))}
+                                className={classNames("opposite-btn-outline change-password", t('configs.font_class_name'))}
                             >
                                 {t(componentContent.changePassword)}
                             </Button>

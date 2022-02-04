@@ -70,8 +70,8 @@ exports.changePassword = async ({ id, oldPassword, newPassword }) => {
                 return bcrypt.compare(oldPassword, rows[0].password).then(async (result) => {
                     if (result) {
                         // update the user password 
-                        let newPassword = await bcrypt.hash(user.newPass, 12);
-                        return db.execute('UPDATE account SET password = ? WHERE id = ? ', [newPassword, id])
+                        let newPass = await bcrypt.hash(newPassword, 12);
+                        return db.execute('UPDATE account SET password = ? WHERE id = ? ', [newPass, id])
                             .then(([rows, fieldData]) => {
                                 return rows.affectedRows > 0;
                             }).catch(err => console.log(err));
