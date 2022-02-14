@@ -31,7 +31,7 @@ let componentContent = {
             options: { isActive: (match, location) => location.pathname.startsWith('/info/cars') }
         },
         { title: 'partials.header.links.violation', url: '/violation' },
-        { title: 'partials.header.links.store', url: '/store' },
+        // { title: 'partials.header.links.store', url: '/store' },
         { title: 'partials.header.links.about', url: '/about' },
     ],
     whiteNavLinks: ['/'],
