@@ -54,7 +54,7 @@ export default function CarParts() {
 
                     {/* read more button */}
                     <Link to="/info/car-parts">
-                        <Button variant="outlined" className={classNames("details-read-more-btn white-btn-outline", t('configs.font_class_name'))}>
+                        <Button variant="outlined" className={classNames("details-read-more-btn opposite-btn-outline", t('configs.font_class_name'))}>
                             {t(componentContent.button)}
                         </Button>
                     </Link>
