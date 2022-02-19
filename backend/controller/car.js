@@ -35,7 +35,17 @@ router.get('/cars', (req, res) => {
             }
         });
 
-        res.send(brands);
+        // get count of brand to send page number
+        carModel.getCountBrand().then(([rows, fieldData]) => {
+            console.log(rows[0].count);
+            let pageCount = Math.ceil(rows[0].count / 20);
+
+            res.send({
+                pageCount: pageCount,
+                data: brands
+            });
+
+        }).catch((err) => console.log(err));
 
     }).catch((err) => {
         console.log(err);
@@ -45,12 +55,18 @@ router.get('/cars', (req, res) => {
 
 // get specific brands
 router.get('/cars/:brandUId', (req, res) => {
+    // brand url id
     const brandUid = req.params.brandUId;
+    // limit is 20
+    const page = parseInt(req.query.page || 1);
+    // offset
+    let offset = 20 * (page - 1);
+
     let models = [];
     let modelUrl = '';
     carModel.findBrandByUId(brandUid).then(([brandRows, fieldData]) => {
         if (brandRows.length != 0) {
-            carModel.findAllModelsByBrand(brandUid).then(([modelRows, fieldData]) => {
+            carModel.findAllModelsByBrand(brandUid, offset).then(([modelRows, fieldData]) => {
                 // get all models and merge the model name with language
                 modelRows.forEach(model => {
                     if (modelUrl.length == 0 || modelUrl != model.url_name) {
@@ -69,24 +85,36 @@ router.get('/cars/:brandUId', (req, res) => {
                     }
                 });
 
-                res.send({
-                    brand: {
-                        name: {
-                            en: brandRows.find(row => row.language_id == 1).brand_name,
-                            kr: brandRows.find(row => row.language_id == 2).brand_name
-                        },
-                        founder: {
-                            en: brandRows.find(row => row.language_id == 1).founder_name,
-                            kr: brandRows.find(row => row.language_id == 2).founder_name
-                        },
-                        founded: brandRows[0].founder_date,
-                        headquarters: {
-                            en: brandRows.find(row => row.language_id == 1).headquarters_location,
-                            kr: brandRows.find(row => row.language_id == 2).headquarters_location
+                // get count of models 
+                carModel.getCountModel(brandUid).then(([rows, fieldData]) => {
+                    let pageCount = Math.ceil(rows[0].count / 20);
+
+
+                    res.send({
+                        pageCount: pageCount,
+                        data: {
+
+                            brand: {
+                                name: {
+                                    en: brandRows.find(row => row.language_id == 1).brand_name,
+                                    kr: brandRows.find(row => row.language_id == 2).brand_name
+                                },
+                                founder: {
+                                    en: brandRows.find(row => row.language_id == 1).founder_name,
+                                    kr: brandRows.find(row => row.language_id == 2).founder_name
+                                },
+                                founded: brandRows[0].founder_date,
+                                headquarters: {
+                                    en: brandRows.find(row => row.language_id == 1).headquarters_location,
+                                    kr: brandRows.find(row => row.language_id == 2).headquarters_location
+                                }
+                            },
+                            models
                         }
-                    },
-                    models
-                });
+                    });
+
+                }).catch((err) => console.log(err));
+
 
             });
         } else {
@@ -115,32 +143,32 @@ router.get('/cars/:brandUid/:modelUid', async (req, res) => {
             .then(([rows, fieldData]) => {
                 if (rows.length != 0) {
                     carModel.findCarYearByModelByBrand(brandUid, modelUid).
-                    then(([modelYears, fieldData]) => {
+                        then(([modelYears, fieldData]) => {
 
-                        res.send({
-                            name: {
-                                en: rows.find(r => r.language_id == 1).car_name,
-                                kr: rows.find(r => r.language_id == 2).car_name
-                            },
-                            brandName: {
-                                en: rows.find(r => r.language_id == 1).brand_name,
-                                kr: rows.find(r => r.language_id == 2).brand_name
-                            },
-                            carInformation: {
-                                en: rows.find(r => r.language_id == 1).car_information,
-                                kr: rows.find(r => r.language_id == 2).car_information
-                            },
-                            image: rows.find(r => r.language_id == 1).img,
-                            carType: {
-                                en: rows.find(r => r.language_id == 1).car_type_name,
-                                kr: rows.find(r => r.language_id == 2).car_type_name
-                            },
-                            availableYears: modelYears.map(r => r.car_year)
+                            res.send({
+                                name: {
+                                    en: rows.find(r => r.language_id == 1).car_name,
+                                    kr: rows.find(r => r.language_id == 2).car_name
+                                },
+                                brandName: {
+                                    en: rows.find(r => r.language_id == 1).brand_name,
+                                    kr: rows.find(r => r.language_id == 2).brand_name
+                                },
+                                carInformation: {
+                                    en: rows.find(r => r.language_id == 1).car_information,
+                                    kr: rows.find(r => r.language_id == 2).car_information
+                                },
+                                image: rows.find(r => r.language_id == 1).img,
+                                carType: {
+                                    en: rows.find(r => r.language_id == 1).car_type_name,
+                                    kr: rows.find(r => r.language_id == 2).car_type_name
+                                },
+                                availableYears: modelYears.map(r => r.car_year)
 
+                            });
+                        }).catch(err => {
+                            console.log(err);
                         });
-                    }).catch(err => {
-                        console.log(err);
-                    });
                 } else {
                     res.send({
                         message: 'Sorry that brand with that model is not available'
@@ -154,32 +182,32 @@ router.get('/cars/:brandUid/:modelUid', async (req, res) => {
             .then(([rows, fieldData]) => {
                 if (rows.length != 0) {
                     carModel.findCarYearByModelByBrand(brandUid, modelUid).
-                    then(([modelYears, fieldData]) => {
+                        then(([modelYears, fieldData]) => {
 
-                        res.send({
-                            name: {
-                                en: rows.find(r => r.language_id == 1).car_name,
-                                kr: rows.find(r => r.language_id == 2).car_name
-                            },
-                            brandName: {
-                                en: rows.find(r => r.language_id == 1).brand_name,
-                                kr: rows.find(r => r.language_id == 2).brand_name
-                            },
-                            carInformation: {
-                                en: rows.find(r => r.language_id == 1).car_information,
-                                kr: rows.find(r => r.language_id == 2).car_information
-                            },
-                            image: rows.find(r => r.language_id == 1).img,
-                            carType: {
-                                en: rows.find(r => r.language_id == 1).car_type_name,
-                                kr: rows.find(r => r.language_id == 2).car_type_name
-                            },
-                            availableYears: modelYears.map(r => r.car_year)
+                            res.send({
+                                name: {
+                                    en: rows.find(r => r.language_id == 1).car_name,
+                                    kr: rows.find(r => r.language_id == 2).car_name
+                                },
+                                brandName: {
+                                    en: rows.find(r => r.language_id == 1).brand_name,
+                                    kr: rows.find(r => r.language_id == 2).brand_name
+                                },
+                                carInformation: {
+                                    en: rows.find(r => r.language_id == 1).car_information,
+                                    kr: rows.find(r => r.language_id == 2).car_information
+                                },
+                                image: rows.find(r => r.language_id == 1).img,
+                                carType: {
+                                    en: rows.find(r => r.language_id == 1).car_type_name,
+                                    kr: rows.find(r => r.language_id == 2).car_type_name
+                                },
+                                availableYears: modelYears.map(r => r.car_year)
 
+                            });
+                        }).catch(err => {
+                            console.log(err);
                         });
-                    }).catch(err => {
-                        console.log(err);
-                    });
                 } else {
                     res.send({
                         message: 'Please Check the model or year'

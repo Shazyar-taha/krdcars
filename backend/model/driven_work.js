@@ -18,6 +18,17 @@ exports.findAll = (offset) => {
     return db.query(sql, [offset]);
 }
 
+
+exports.getCountDriven = () => {
+    const sql = `SELECT 
+                COUNT(p.id) AS count
+            FROM 
+                driving_work p
+            INNER JOIN 
+                url u ON u.id = p.url_id`;
+    return db.query(sql, []);
+}
+
 // fetch the specific driving work by uId
 exports.findByUId = (uId) => {
     const sql = `SELECT 

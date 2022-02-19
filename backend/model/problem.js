@@ -19,6 +19,17 @@ exports.findAll = (offset) => {
     return db.query(sql, [offset]);
 }
 
+// get count of problem
+exports.getProblemCount = () => {
+    const sql = `SELECT 
+                    COUNT(p.id) AS count
+                FROM 
+                    problem p
+                INNER JOIN 
+                    url u ON u.id = p.url_id`;
+    return db.query(sql, []);
+}
+
 // fetch a problem using problem id 
 exports.findProblemByUId = (problemUId) => {
     const sql = `SELECT 

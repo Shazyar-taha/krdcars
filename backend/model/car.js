@@ -22,6 +22,19 @@ exports.findAllBrand = (offset) => {
     return db.query(sql, [offset]);
 }
 
+// get count of brand
+exports.getCountBrand = () => {
+    const sql = `SELECT 
+                    COUNT(b.id) AS count 
+                FROM 
+                    brand b
+                INNER JOIN 
+                    url u ON u.id = b.url_id
+                LEFT JOIN
+                    img i ON i.id = b.img_id`;
+    return db.query(sql, []);
+}
+
 // fetch the specific brand using url name
 exports.findBrandByUId = (uid) => {
     const sql = `SELECT
@@ -102,8 +115,10 @@ exports.findCarByModelByBrand = (brandUid, modelUid) => {
     return db.query(sql, [brandUid, modelUid]);
 }
 
+
+
 // fetch the models using model name url name
-exports.findAllModelsByBrand = (brandUId) => {
+exports.findAllModelsByBrand = (brandUId, offset) => {
     const sql = `SELECT 
                     u_model.name AS url_name,
                     m.model_name,
@@ -121,8 +136,35 @@ exports.findAllModelsByBrand = (brandUId) => {
                 WHERE 
                     u_brand.name = ?
                 ORDER BY 
-                    u_model.name, m.language_id ASC`;
-    return db.query(sql, [brandUId]);
+                    u_model.name, m.language_id ASC 
+                    LIMIT 20 OFFSET ?`;
+    return db.query(sql, [brandUId, offset]);
+}
+
+// get count of model
+exports.getCountModel = (brandUid) => {
+    const sql = `SELECT 
+	COUNT(e.model_name) AS count
+FROM 
+	(SELECT 
+		u_model.name AS url_name,
+		m.model_name,
+		m.language_id
+		FROM 
+		car 
+		INNER JOIN 
+		model m ON m.id = car.model_id
+		INNER JOIN 
+		url u_model ON u_model.id = m.url_id
+		INNER JOIN 
+		brand b ON b.id = car.brand_id
+		INNER JOIN 
+		url u_brand ON u_brand.id = b.url_id 
+		WHERE 
+		u_brand.name = ?
+		ORDER BY 
+		u_model.name, m.language_id ASC) e;`
+    return db.query(sql, [brandUid]);
 }
 
 // fetch the models

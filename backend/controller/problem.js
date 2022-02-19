@@ -38,7 +38,15 @@ router.get('/car-problems', (req, res) => {
                 }
             });
 
-            res.send(problem);
+            problemModel.getProblemCount().then(([rows, filedData]) => {
+                let pageCount = Math.ceil(rows[0].count / 20);
+
+                res.send({
+                    pageCount: pageCount,
+                    data: problem
+                });
+
+            }).catch((err) => console.log(err));
 
 
         } else {

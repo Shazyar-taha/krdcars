@@ -36,9 +36,15 @@ router.get('/car-parts', (req, res) => {
                     });
                 }
             });
+            partModel.getCountPart().then(([rows2, fieldData]) => {
 
+                let pageCount = Math.ceil(rows2[0].count / 20);
+                res.send({
+                    pageCount: pageCount,
+                    data: parts
+                });
+            }).catch((err) => console.log(err));
             // after that i send the parts
-            res.send(parts);
         } else {
             res.send({
                 message: 'you don\'t have any data in part of car'
@@ -64,6 +70,7 @@ router.get('/car-parts/:partUId', (req, res) => {
                     oldPartUid = row.name;
 
                     res.send({
+
                         name: {
                             en: rows.find(r => r.name == row.name && r.language_id == 1).part_name,
                             kr: rows.find(r => r.name == row.name && r.language_id == 2).part_name
@@ -73,7 +80,8 @@ router.get('/car-parts/:partUId', (req, res) => {
                             kr: rows.find(r => r.name == row.name && r.language_id == 2).about
                         },
                         image: row.img
-                    })
+
+                    });
                 }
             })
 

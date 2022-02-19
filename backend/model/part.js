@@ -17,6 +17,17 @@ exports.findAll = (offset) => {
     return db.query(sql, [offset]);
 }
 
+// get count of part
+exports.getCountPart = () => {
+    const sql = `SELECT 
+                COUNT(p.id) AS count
+            FROM 
+                part p
+            INNER JOIN 
+                url u ON u.id = p.url_id`;
+    return db.query(sql, []);
+}
+
 // fetch part by url id 
 exports.findPartByUId = (partUId) => {
     const sql = ` SELECT

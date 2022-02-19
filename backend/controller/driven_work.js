@@ -34,7 +34,14 @@ router.get('/driving-works', (req, res) => {
                 }
             });
 
-            res.send(driving);
+            drivenModel.getCountDriven().then(([rows, fieldData]) => {
+                let pageCount = Math.ceil(rows[0].count / 20);
+                res.send({
+                    pageCount: pageCount,
+                    data: driving
+                });
+            }).catch((err) => console.log(err));
+
         } else {
             res.send({
                 message: 'Sorry We don\'t have any driving works data'
