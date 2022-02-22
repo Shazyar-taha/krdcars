@@ -91,26 +91,23 @@ router.get('/cars/:brandUId', (req, res) => {
 
 
                     res.send({
-                        pageCount: pageCount,
-                        data: {
-
-                            brand: {
-                                name: {
-                                    en: brandRows.find(row => row.language_id == 1).brand_name,
-                                    kr: brandRows.find(row => row.language_id == 2).brand_name
-                                },
-                                founder: {
-                                    en: brandRows.find(row => row.language_id == 1).founder_name,
-                                    kr: brandRows.find(row => row.language_id == 2).founder_name
-                                },
-                                founded: brandRows[0].founder_date,
-                                headquarters: {
-                                    en: brandRows.find(row => row.language_id == 1).headquarters_location,
-                                    kr: brandRows.find(row => row.language_id == 2).headquarters_location
-                                }
+                        brand: {
+                            name: {
+                                en: brandRows.find(row => row.language_id == 1).brand_name,
+                                kr: brandRows.find(row => row.language_id == 2).brand_name
                             },
-                            models
-                        }
+                            founder: {
+                                en: brandRows.find(row => row.language_id == 1).founder_name,
+                                kr: brandRows.find(row => row.language_id == 2).founder_name
+                            },
+                            founded: brandRows[0].founder_date,
+                            headquarters: {
+                                en: brandRows.find(row => row.language_id == 1).headquarters_location,
+                                kr: brandRows.find(row => row.language_id == 2).headquarters_location
+                            }
+                        },
+                        pageCount: pageCount,
+                        models
                     });
 
                 }).catch((err) => console.log(err));

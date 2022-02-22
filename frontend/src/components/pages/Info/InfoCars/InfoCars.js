@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router'
-import { Container } from '@mui/material'
+import { useRouteMatch, useHistory, useLocation } from 'react-router'
+import { Container, Pagination } from '@mui/material'
 import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
@@ -25,23 +25,33 @@ let componentContent = {
  */
 export default function InfoCars() {
 
-    // this route path
     const { url } = useRouteMatch()
+    const history = useHistory()
+    const { search } = useLocation()
+
+    // getting query string
+    const query = new URLSearchParams(search).get('page')
 
 
-    // brands list
-    const [datas, setDatas] = useState([]);
+    // brands list datas
+    const [datas, setDatas] = useState({ pageCount: 0, data: [] });
 
     // fetching the brands list
     useEffect(() => {
-        axios.get('/apis/info/cars')
+        axios.get(`/apis/info/cars${search}`)
             .then(res => {
                 setDatas(res.data)
             })
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    }, [search])
+
+
+    // pagination handler
+    function handlePagination(event, value) {
+        history.push(`${url}?page=${value}`)
+    }
 
 
     return (
@@ -57,8 +67,19 @@ export default function InfoCars() {
                     <PageTitle title={componentContent.title} />
 
                     {/* page list */}
-                    <CenteredGrid list={datas} fullUrl={url} external />
+                    <CenteredGrid className="long-element" list={datas.data} fullUrl={url} external />
 
+                    {/* pagination */}
+                    <div className="pagination" dir="ltr">
+                        <Pagination
+                            variant="outlined"
+                            shape="rounded"
+                            size="large"
+                            count={datas.pageCount}
+                            defaultPage={+query || 1}
+                            onChange={handlePagination}
+                        />
+                    </div>
                 </Container>
             </div>
         </>

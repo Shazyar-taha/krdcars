@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useRouteMatch } from 'react-router'
-import { Container } from '@mui/material'
+import { useParams, useRouteMatch, useHistory, useLocation } from 'react-router'
+import { Container, Pagination } from '@mui/material'
 import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
@@ -15,16 +15,20 @@ import detailsFixer from '../../../partials/helpers/detailsFixer'
  */
 export default function InfoCarsBrandsPreview() {
 
-    // this route url
     const { url } = useRouteMatch()
-
-    // brand name from the request params
     const { brandUid } = useParams()
+    const history = useHistory()
+    const { search } = useLocation()
+
+    // getting query string
+    const query = new URLSearchParams(search).get('page')
+
 
     // page datas
     const [datas, setDatas] = useState({
         brand: { name: { en: '', kr: '' } },
-        models: []
+        models: [],
+        pageCount: 0
     });
 
 
@@ -44,6 +48,12 @@ export default function InfoCarsBrandsPreview() {
     }, [brandUid])
 
 
+    // pagination handler
+    function handlePagination(event, value) {
+        history.push(`${url}?page=${value}`)
+    }
+
+
     return (
         <>
             {/* overriding document head */}
@@ -57,8 +67,19 @@ export default function InfoCarsBrandsPreview() {
                     <PageTitle title={datas.brand.name} details={datas.brand.details} external />
 
                     {/* page list */}
-                    <OutlinedGrid list={datas.models} fullUrl={url} external />
+                    <OutlinedGrid className="long-element" list={datas.models} fullUrl={url} external />
 
+                    {/* pagination */}
+                    <div className="pagination" dir="ltr">
+                        <Pagination
+                            variant="outlined"
+                            shape="rounded"
+                            size="large"
+                            count={datas.pageCount}
+                            defaultPage={+query || 1}
+                            onChange={handlePagination}
+                        />
+                    </div>
                 </Container>
             </div>
         </>

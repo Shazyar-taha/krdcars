@@ -101,3 +101,31 @@ default theme settings
         }
     }
 }
+
+// paginations
+
+.pagination {
+    margin: auto;
+    width: fit-content;
+
+    // mui pagination
+    .MuiPagination-ul {
+        // each pagination item
+        .MuiPaginationItem-root {
+            color: var(--body-text-color) !important;
+        }
+
+        // pagination buttons
+        button {
+            color: var(--body-oposite-color) !important;
+            border-color: var(--body-text-color) !important;
+            font-size: var(--x-small-font-size);
+
+            // selected pagination item
+            &.Mui-selected {
+                font-size: var(--medium-font-size);
+                background-color: var(--body-bg-color-lighter) !important;
+            }
+        }
+    }
+}

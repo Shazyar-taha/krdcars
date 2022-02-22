@@ -1,6 +1,6 @@
-import { Container } from '@mui/material'
+import { Container, Pagination } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router'
+import { useRouteMatch, useHistory, useLocation } from 'react-router'
 import axios from 'axios'
 
 import PageTitle from '../../../partials/helpers/PageTitle/PageTitle'
@@ -25,23 +25,33 @@ let componentContent = {
  */
 export default function InfoDrivingWorks() {
 
-    // this route url
     const { url } = useRouteMatch()
+    const history = useHistory()
+    const { search } = useLocation()
 
+    // getting query string
+    const query = new URLSearchParams(search).get('page')
 
-    // page datas
-    const [datas, setDatas] = useState([]);
+    // parts datas
+    const [datas, setDatas] = useState({ pageCount: 0, data: [] });
 
-    // fetching the works list
+    // fetching the parts list
     useEffect(() => {
-        axios.get('/apis/info/driving-works')
+        axios.get(`/apis/info/car-parts${search}`)
             .then(res => {
-                setDatas(res.data)
+                console.log(res.data);
+                setDatas(res.data);
             })
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    }, [search])
+
+
+    // pagination handler
+    function handlePagination(event, value) {
+        history.push(`${url}?page=${value}`)
+    }
 
 
     return (
@@ -57,8 +67,20 @@ export default function InfoDrivingWorks() {
                     <PageTitle title={componentContent.title} />
 
                     {/* info list */}
-                    <OutlinedGrid list={datas} fullUrl={url} external />
+                    <OutlinedGrid className="long-element" list={datas.data} fullUrl={url} external />
 
+
+                    {/* pagination */}
+                    <div className="pagination" dir="ltr">
+                        <Pagination
+                            variant="outlined"
+                            shape="rounded"
+                            size="large"
+                            count={datas.pageCount}
+                            defaultPage={+query || 1}
+                            onChange={handlePagination}
+                        />
+                    </div>
                 </Container>
             </div>
         </>
