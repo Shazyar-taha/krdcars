@@ -1,6 +1,6 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
-import ProtectedRoute from '../../partials/helpers/ProtectedRoute';
 import Login from './Login';
 import ChangePassword from './Profile/ChangePassword';
 import Profile from './Profile/Profile';
@@ -19,24 +19,24 @@ export default function UserRoutes() {
     return (
         <>
             {/* profile root route */}
-            <ProtectedRoute path={`${url}/profile`} condition="loggedIn" reroutePath={`${url}/login`} exact>
+            <Route path={`${url}/profile`} condition="loggedIn" reroutePath={`${url}/login`} exact>
                 <Profile />
-            </ProtectedRoute>
+            </Route>
 
             {/* login route */}
-            <ProtectedRoute path={`${url}/login`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
+            <Route path={`${url}/login`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
                 <Login />
-            </ProtectedRoute>
+            </Route>
 
             {/* register route */}
-            <ProtectedRoute path={`${url}/register`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
+            <Route path={`${url}/register`} condition="loggedOut" reroutePath={`${url}/profile`} exact>
                 <Register />
-            </ProtectedRoute>
+            </Route>
 
             {/* change password route */}
-            <ProtectedRoute path={`${url}/change-password`} condition="loggedIn" reroutePath={`${url}/login`} exact>
+            <Route path={`${url}/change-password`} condition="loggedIn" reroutePath={`${url}/login`} exact>
                 <ChangePassword />
-            </ProtectedRoute>
+            </Route>
         </>
     );
 }

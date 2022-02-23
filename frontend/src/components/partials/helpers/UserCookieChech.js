@@ -1,7 +1,18 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
+
+
+
+
+// protected routes
+const protectedRoutes = [
+    { path: '/user/profile', condition: 'loggedIn', reroutePath: '/user/login' },
+    { path: '/user/login', condition: 'loggedOut', reroutePath: '/user/profile' },
+    { path: '/user/register', condition: 'loggedOut', reroutePath: '/user/profile' },
+    { path: '/user/change-password', condition: 'loggedIn', reroutePath: '/user/login' }
+]
 
 
 
@@ -13,14 +24,29 @@ import { useLocation } from "react-router-dom"
  */
 export default function UserCookieChech() {
 
-    // getting the current route url
     const { pathname } = useLocation()
-
-
+    const history = useHistory()
     const dispatch = useDispatch()
 
     // user state
     const user = useSelector(state => state.user)
+
+
+    // checking route
+    function checkRoute() {
+
+        // checking for the protected routes
+        protectedRoutes.forEach(route => {
+            if (pathname === route.path) {
+
+                // if the condition is not met, redirecting to the login page
+                if ((route.condition === 'loggedIn' && !user) || (route.condition === 'loggedOut' && user)) {
+                    history.push(route.reroutePath)
+                }
+            }
+        })
+    }
+
 
     // scrolling to top when the path changes
     useEffect(() => {
@@ -46,9 +72,12 @@ export default function UserCookieChech() {
             .catch(err => {
                 console.log(err)
             })
+
+        checkRoute()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
 
+    checkRoute()
 
     return null
 }
