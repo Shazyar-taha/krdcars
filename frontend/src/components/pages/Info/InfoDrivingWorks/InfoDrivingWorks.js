@@ -39,7 +39,6 @@ export default function InfoDrivingWorks() {
     useEffect(() => {
         axios.get(`/apis/info/driving-works${search}`)
             .then(res => {
-                console.log(res.data);
                 setDatas(res.data);
             })
             .catch(err => {

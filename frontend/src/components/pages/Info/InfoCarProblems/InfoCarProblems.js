@@ -40,7 +40,6 @@ export default function InfoCarProblems() {
     useEffect(() => {
         axios.get(`/apis/info/car-parts${search}`)
             .then(res => {
-                console.log(res.data);
                 setDatas(res.data);
             })
             .catch(err => {
