@@ -35,9 +35,9 @@ export default function InfoDrivingWorks() {
     // parts datas
     const [datas, setDatas] = useState({ pageCount: 0, data: [] });
 
-    // fetching the parts list
+    // fetching the datas list
     useEffect(() => {
-        axios.get(`/apis/info/car-parts${search}`)
+        axios.get(`/apis/info/driving-works${search}`)
             .then(res => {
                 console.log(res.data);
                 setDatas(res.data);
