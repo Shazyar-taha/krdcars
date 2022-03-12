@@ -70,16 +70,15 @@ export default function App() {
                     <Violation />
                 </Route>
 
-                {/* contact route */}
-                <Route path='/contact' exact>
-                    <ContactRoutes />
-                </Route>
-
                 {/* search route */}
                 <Route path='/search' exact>
                     <SearchRoute />
                 </Route>
 
+                {/* contact route */}
+                <Route path='/contact'>
+                    <ContactRoutes />
+                </Route>
 
                 {/* user routes */}
                 <Route path='/user'>
