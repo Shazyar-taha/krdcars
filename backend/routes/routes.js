@@ -26,6 +26,22 @@ router.use('/info', drivingController);
 router.get('/search', searchController.search);
 
 
+router.get('/contact/get-details', (req, res) => {
+    res.send({
+        brands: [{ id: 1, name: { kr: 'بمو', en: 'bmw' } }],
+        carTypes: [{ id: 1, name: { kr: 'سپۆرت', en: 'sports' } }],
+    })
+})
+router.get('/contact/get-models', (req, res) => {
+
+    const { brandId } = req.body
+
+    res.send({
+        brands: [{ id: 1, name: { kr: 'بمو', en: 'bmw' } }],
+    })
+})
+
+
 
 
 module.exports = router;
