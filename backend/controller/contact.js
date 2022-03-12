@@ -2,6 +2,10 @@ const router = require('express').Router()
 const contact = require('../model/contact');
 
 
+// NOTE I AM USING url_id TO brand and Model so 
+// WE USE URL_ID IN THE object 
+
+
 router.get("/get-details", (req, res) => {
     const brands = [];
     const carTypes = [];

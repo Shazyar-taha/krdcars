@@ -1,6 +1,6 @@
 const db = require('./db');
 
-
+// NOTE I AM USING url_id INSTEAD OF id
 
 // get brands 
 exports.getBrands = () => {
@@ -23,7 +23,16 @@ exports.getCarType = () => {
 
 // get models by brand
 exports.getModelsByBrand = (brandId) => {
-    const sql = "SELECT url_id, model_name, language_id FROM model WHERE brand_id = ?";
+    const sql = `SELECT 
+                    m.model_name,
+                    m.language_id,
+                    m.url_id
+                FROM
+                    model m
+                INNER JOIN 
+                    brand b ON b.id = m.brand_id
+                WHERE 
+                    b.url_id = ?`;
     return db.execute(sql, [brandId]);
 }
 
