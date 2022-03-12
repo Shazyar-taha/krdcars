@@ -24,10 +24,10 @@ let componentContent = {
         {
             title: 'partials.footer.content.contact.title',
             links: [
-                { name: 'partials.footer.content.contact.links.feedback', url: '/contact/feedback' },
+                // { name: 'partials.footer.content.contact.links.feedback', url: '/contact/feedback' },
                 { name: 'partials.footer.content.contact.links.add_info', url: '/contact/add-info' },
-                { name: 'partials.footer.content.contact.links.create_ad', url: '/contact/create-ad' },
-                { name: 'partials.footer.content.contact.links.ask_for_app', url: '/contact/create-ad' },
+                // { name: 'partials.footer.content.contact.links.create_ad', url: '/contact/create-ad' },
+                // { name: 'partials.footer.content.contact.links.ask_for_app', url: '/contact/create-ad' },
             ]
         }
     ],
