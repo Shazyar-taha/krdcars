@@ -73,7 +73,7 @@ export default function ContactIndex() {
     return (
         <div>
             {/* overriding document head */}
-            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
+            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} external />
 
 
             {/* contact inex page */}
@@ -81,10 +81,10 @@ export default function ContactIndex() {
                 <Container>
 
                     {/* contact title */}
-                    <PageTitle title={componentContent.title} />
+                    <PageTitle title={componentContent.title} external />
 
                     {/* contact grid */}
-                    <OutlinedGrid list={componentContent.infos} fullUrl={url} />
+                    <OutlinedGrid list={componentContent.infos} fullUrl={url} external />
 
                 </Container>
             </div>
