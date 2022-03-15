@@ -59,9 +59,9 @@ router.get("/get-details", (req, res) => {
 });
 
 
-router.get("/get-models", (req, res) => {
+router.get("/get-models/:brandId", (req, res) => {
 
-    const { brandId } = req.body;
+    const { brandId } = req.params;
     console.log(brandId);
     const models = [];
     let urlId = 0;
