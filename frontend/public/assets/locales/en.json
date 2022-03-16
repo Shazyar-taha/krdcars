@@ -231,5 +231,23 @@
             "not_logged_in": "You are not logged in",
             "failed": "Current password is wrong"
         }
+    },
+    "contact": {
+        "add_info": {
+            "head": {
+                "title": "Add information"
+            },
+            "form": {
+                "title": "Add information",
+                "description": "Add information to the website",
+                "brands": "Brands",
+                "car_types": "Car Types",
+                "models": "Models",
+                "year": "Model Year",
+                "kurdish_info": "Informations in Kurdish",
+                "english_info": "Informations in English",
+                "submit": "Submit"
+            }
+        }
     }
 }
