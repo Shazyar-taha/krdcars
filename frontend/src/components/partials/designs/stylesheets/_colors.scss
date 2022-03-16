@@ -17,6 +17,7 @@
 :root {
     --body-bg-color: #fcfcfc; // document background color
     --nav-bg-color-rgb: 252, 252, 252; // navigation drawer background color
+    --body-bg-color-light: #bfbfbf; // lighter document background color
     --body-bg-color-lighter: #dfdfdf; // lighter document background color
     --body-oposite-color: #000; // oposite of body background color
 
@@ -29,6 +30,7 @@
 [theme-color="dark"] {
     --body-bg-color: #303030;
     --nav-bg-color-rgb: 48, 48, 48;
+    --body-bg-color-light: #3a3a3a;
     --body-bg-color-lighter: #494949;
     --body-oposite-color: #fff;
 
