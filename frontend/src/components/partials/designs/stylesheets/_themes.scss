@@ -67,11 +67,13 @@ default theme settings
 }
 
 // text field designs
-.textfield {
+.textfield,
+.textarea {
     label:not(.Mui-error) {
         color: var(--body-text-color) !important;
     }
-    input {
+    input,
+    textarea {
         color: var(--head-text-color) !important;
     }
     *:not(.Mui-error) {
@@ -96,8 +98,38 @@ default theme settings
     &.kurdish-font {
         label,
         input,
+        textarea,
         fieldset {
             font-family: var(--kurdish-font-family) !important;
+        }
+    }
+}
+
+// react select
+.react-select {
+    position: relative;
+
+    // select background color
+    div div:first-of-type {
+        z-index: 2;
+        background-color: var(--body-bg-color) !important;
+        border-color: var(--body-oposite-color) !important;
+        div {
+            background-color: transparent !important;
+        }
+    }
+    // al textboxes
+    div {
+        color: var(--head-text-color) !important;
+    }
+
+    // disabled select
+    &.disabled {
+        div div:first-of-type {
+            background-color: var(--body-bg-color-light) !important;
+        }
+        div {
+            color: var(--body-text-color) !important;
         }
     }
 }
