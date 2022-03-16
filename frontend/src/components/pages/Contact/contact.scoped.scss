@@ -1,0 +1,64 @@
+/* contact forms */
+.contact {
+    // contact form
+    .contact-form {
+        margin: auto;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 500px;
+        background-color: var(--body-bg-color-lighter);
+        border-radius: var(--xx-small-font-size);
+
+        // form headers
+        .form-header {
+            text-align: center;
+
+            // form header title
+            .form-title {
+                font-size: var(--xx-huge-font-size);
+                color: var(--head-text-color);
+            }
+
+            // form header title
+            .form-description {
+                margin-top: 0.5rem;
+                font-size: var(--x-small-font-size);
+                color: var(--body-text-color);
+            }
+        }
+
+        // form inputs
+        .form-fields {
+            margin-top: 3rem;
+            position: relative;
+            
+            // each form field
+            .form-field {
+                margin-top: 1rem;
+                width: 100%;
+
+                // removing first ones margin
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                // form field label
+                .form-field-label{
+                    font-family: var(--x-small-font-size);
+                    color: var(--body-text-color);
+                }
+            }
+
+            // form checkbox
+            .checkbox {
+                display: inline;
+                width: 100%;
+
+                // checkbox label
+                label {
+                    color: var(--body-text-color);
+                }
+            }
+        }
+    }
+}

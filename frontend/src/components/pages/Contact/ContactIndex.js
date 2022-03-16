@@ -24,14 +24,14 @@ let componentContent = {
         kr: 'پەیوەندی'
     },
     infos: [
-        {
-            title: { en: 'Feedback', kr: 'فیدباک' },
-            description: {
-                en: 'Give our feedback or suggestions about the website',
-                kr: 'فیدباک و پێشنیارەکانی بخەرە ڕوو دەربارەی وێبسایتەکە'
-            },
-            url: 'feedback'
-        },
+        // {
+        //     title: { en: 'Feedback', kr: 'فیدباک' },
+        //     description: {
+        //         en: 'Give our feedback or suggestions about the website',
+        //         kr: 'فیدباک و پێشنیارەکانی بخەرە ڕوو دەربارەی وێبسایتەکە'
+        //     },
+        //     url: 'feedback'
+        // },
         {
             title: { en: 'Add Info', kr: 'زیادکردنی زانیاری' },
             description: {
@@ -40,22 +40,22 @@ let componentContent = {
             },
             url: 'add-info'
         },
-        {
-            title: { en: 'Request Application', kr: 'داواکردنی پڕۆگرام' },
-            description: {
-                en: 'Ask for an application for your company or work',
-                kr: 'داوای ئەپلیکەیشن بکە بۆ کۆمپانیا یاخود کارەکەت'
-            },
-            url: 'request-for-app'
-        },
-        {
-            title: { en: 'Publish Ad', kr: 'ڕیکلام بکە' },
-            description: {
-                en: 'Publish your ad on the website',
-                kr: 'ڕیکلامەکەت لەم وێبسایتە بڵاوبکەرەوە'
-            },
-            url: 'create-ad'
-        },
+        // {
+        //     title: { en: 'Request Application', kr: 'داواکردنی پڕۆگرام' },
+        //     description: {
+        //         en: 'Ask for an application for your company or work',
+        //         kr: 'داوای ئەپلیکەیشن بکە بۆ کۆمپانیا یاخود کارەکەت'
+        //     },
+        //     url: 'request-for-app'
+        // },
+        // {
+        //     title: { en: 'Publish Ad', kr: 'ڕیکلام بکە' },
+        //     description: {
+        //         en: 'Publish your ad on the website',
+        //         kr: 'ڕیکلامەکەت لەم وێبسایتە بڵاوبکەرەوە'
+        //     },
+        //     url: 'create-ad'
+        // },
     ]
 }
 
