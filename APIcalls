@@ -219,3 +219,26 @@ pageakany page numbery haya
     pageCount: -----,
     datas: [{ ... }]
 }
+
+
+
+///////////////////////////
+
+/apis/contact/get-details
+
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "BMW"
+      }
+    }
+  ],
+  "carTypes": [
+    {
+      "id": 1,
+      "name": "Sedan"
+      }
+    },
+  ]
+}
