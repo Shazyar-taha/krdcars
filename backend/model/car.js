@@ -5,52 +5,97 @@ const db = require('./db');
 // fetch all brands from brand table 
 exports.findAllBrand = (offset) => {
     const sql = `SELECT 
-                    url.id,
-                    url.name AS url_name,
-                    br.brand_name AS title,
-                    br.language_id,
-                    i.img
-                FROM 
-                    brand br
-                INNER JOIN 
-                    url ON url.id = br.url_id
-                LEFT JOIN 
-                    img i ON i.id = br.img_id
-                ORDER BY 
-                    url.name, br.language_id ASC 
-                LIMIT  20 OFFSET ?`;
+                        b.url_id AS url,
+                        b.brand_name AS title,
+                        b.img AS image
+                    FROM
+                    brand b
+                    ORDER BY 
+                    b.brand_name
+                    LIMIT 20 OFFSET ?;`;
     return db.query(sql, [offset]);
 }
 
 // get count of brand
 exports.getCountBrand = () => {
     const sql = `SELECT 
-                    COUNT(b.id) AS count 
+                    COUNT(id) AS count
                 FROM 
-                    brand b
-                INNER JOIN 
-                    url u ON u.id = b.url_id
-                LEFT JOIN
-                    img i ON i.id = b.img_id`;
+                    brand;`;
     return db.query(sql, []);
 }
 
 // fetch the specific brand using url name
 exports.findBrandByUId = (uid) => {
-    const sql = `SELECT
-                    br.brand_name,
-                    br.founder_name,
-                    br.founder_date,
-                    br.headquarters_location,
-                    br.language_id
-                FROM
-                    brand br
-                INNER JOIN 
-                    url ON url.id = br.url_id
+    const sql = `SELECT 
+                    b.brand_name,
+                    CONCAT( '[',
+                        GROUP_CONCAT(DISTINCT
+                                JSON_OBJECT(
+                                'founder_id', fd.founder_id,
+                                'founder_name',  fd.founder_name,
+                                'language_id', fd.language_id
+                                )
+                        )
+                        , ']'
+                    )AS founder
+                    ,
+                    b.found_date,
+                    GROUP_CONCAT(DISTINCT
+                        JSON_OBJECT(
+                            'headquarter', bd.headquarters_location,
+                            'language_id', bd.language_id
+                            )
+                    ) AS headquarter 
+                FROM 
+                    brand b
+                INNER JOIN
+                    brand_detail bd ON bd.brand_id = b.id
+                INNER JOIN
+                    founder_detail fd ON fd.brand_id = b.id
                 WHERE 
-                    url.name = ?
-                ORDER BY br.language_id`;
+                    b.url_id = ?`;
     return db.query(sql, [uid]);
+}
+
+exports.findFounderByBrandUid = (brandUid) =>{
+    const sql = `(SELECT 
+                CONCAT('[',
+                        GROUP_CONCAT( JSON_OBJECT('founder_id',
+                                    fd.founder_id,
+                                    'founder_name',
+                                    fd.founder_name,
+                                    'language_id',
+                                    fd.language_id)),
+                        ']') AS founder_name_en,
+                        '' as founder_name_kr
+            FROM 
+                founder_detail fd 
+            INNER JOIN 
+                brand b ON b.id = fd.brand_id
+            WHERE 
+                b.url_id = ? AND fd.language_id = 1
+            ORDER BY fd.founder_id asc)
+            UNION
+            (SELECT 
+                '' AS founder_name_en,
+                CONCAT('[',
+                        GROUP_CONCAT( JSON_OBJECT('founder_id',
+                                    fd.founder_id,
+                                    'founder_name',
+                                    fd.founder_name,
+                                    'language_id',
+                                    fd.language_id)),
+                        ']') AS founder_name_kr
+                        
+            FROM 
+                founder_detail fd 
+            INNER JOIN 
+                brand b ON b.id = fd.brand_id
+            WHERE 
+                b.url_id = ? AND fd.language_id = 2
+            ORDER BY fd.founder_id asc);`
+    return db.query(sql, [brandUid, brandUid]);
 }
 
 // fetch the some brand by searching name
@@ -120,50 +165,28 @@ exports.findCarByModelByBrand = (brandUid, modelUid) => {
 // fetch the models using model name url name
 exports.findAllModelsByBrand = (brandUId, offset) => {
     const sql = `SELECT 
-                    u_model.name AS url_name,
-                    m.model_name,
-                    m.language_id
+                    m.url_id AS url,
+                    m.model_name
                 FROM 
-                    car 
-                INNER JOIN 
-                    model m ON m.id = car.model_id
-                INNER JOIN 
-                    url u_model ON u_model.id = m.url_id
-                INNER JOIN 
-                    brand b ON b.id = car.brand_id
-                INNER JOIN 
-                    url u_brand ON u_brand.id = b.url_id 
+                    model m 
+                INNER JOIN
+                    brand b ON b.id = m.brand_id
                 WHERE 
-                    u_brand.name = ?
-                ORDER BY 
-                    u_model.name, m.language_id ASC 
-                    LIMIT 20 OFFSET ?`;
+                    b.url_id = ?
+                LIMIT 20 OFFSET ?`;
     return db.query(sql, [brandUId, offset]);
 }
 
 // get count of model
 exports.getCountModel = (brandUid) => {
     const sql = `SELECT 
-	COUNT(e.model_name) AS count
-FROM 
-	(SELECT 
-		u_model.name AS url_name,
-		m.model_name,
-		m.language_id
-		FROM 
-		car 
-		INNER JOIN 
-		model m ON m.id = car.model_id
-		INNER JOIN 
-		url u_model ON u_model.id = m.url_id
-		INNER JOIN 
-		brand b ON b.id = car.brand_id
-		INNER JOIN 
-		url u_brand ON u_brand.id = b.url_id 
-		WHERE 
-		u_brand.name = ?
-		ORDER BY 
-		u_model.name, m.language_id ASC) e;`
+                    COUNT(m.id) AS count
+                FROM 
+                    model m
+                INNER JOIN 	
+                    brand b ON b.id = m.brand_id
+                WHERE 
+                    b.url_id = ?`
     return db.query(sql, [brandUid]);
 }
 
