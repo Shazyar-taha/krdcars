@@ -3,86 +3,79 @@ const drivenModel = require('../model/driven_work');
 
 
 // get all driven works
-router.get('/driving-works', (req, res) => {
+router.get('/driving-works', async (req, res) => {
     // get the page in query
     const page = parseInt(req.query.page || 1);
     // the limit is 20
     let offset = 20 * (page - 1);
-    // to merge the data
-    let drivingUid = '';
 
-    drivenModel.findAll(offset).then(([rows, fieldData]) => {
-        // declare the driving array
-        if (rows.length != 0) {
-            let driving = [];
+    // get driven work
+    let [dWorks, dWorkField] = await drivenModel.findAll(offset);
 
-            rows.forEach(row => {
-                if (drivingUid.length == 0 || row.name != drivingUid) {
-                    drivingUid = row.name;
+    // get count of driven work
 
-                    driving.push({
-                        url: row.name,
-                        title: {
-                            en: rows.find(r => r.name == drivingUid && r.language_id == 1).title,
-                            kr: rows.find(r => r.name == drivingUid && r.language_id == 2).title
-                        },
-                        description: {
-                            en: rows.find(r => r.name == drivingUid && r.language_id == 1).information,
-                            kr: rows.find(r => r.name == drivingUid && r.language_id == 2).information
-                        }
-                    })
-                }
-            });
+    let [count, countField] = await drivenModel.getCountDriven();
 
-            drivenModel.getCountDriven().then(([rows, fieldData]) => {
-                let pageCount = Math.ceil(rows[0].count / 20);
-                res.send({
-                    pageCount: pageCount,
-                    data: driving
-                });
-            }).catch((err) => console.log(err));
+    let pageCount = Math.ceil(count[0].count / 20);
 
-        } else {
-            res.send({
-                message: 'Sorry We don\'t have any driving works data'
-            });
-        }
-    }).catch((err) => console.log(err));
+    if (dWorks.length == 0 || dWorks[0].url_id == null) {
+        return res.send({
+            message: 'Sorry We don\'t have any driving works data'
+        });
+    }
+
+    let dWorkSend = [];
+
+    dWorks.forEach(d => {
+        dWorkSend.push({
+            url: d.url_id,
+            title: {
+                en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
+                kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
+            },
+            description: {
+                en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
+                kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
+            }
+        })
+    });
+
+    //sending data 
+    res.send({
+        data: dWorkSend,
+        pageCount: pageCount
+    });
 
 })
 
-router.get('/driving-works/:uId', (req, res) => {
 
-    drivenModel.findByUId(req.params.uId).then(([rows, fieldData]) => {
 
-        if (rows.length > 0) {
+router.get('/driving-works/:uId', async (req, res) => {
+    
+    let [dWorks, dWorkField] = await drivenModel.findByUId(req.params.uId);
 
-            let drivingWorks = {
+    if (dWorks.length == 0 || dWorks[0].url_id == null) {
+        return res.send({
+            message: 'Not Found That Data'
+        });
+    }
 
-                title: {
-                    en: rows.find(r => r.language_id == 1).title,
-                    kr: rows.find(r => r.language_id == 2).title
-                },
-                description: {
-                    en: rows.find(r => r.language_id == 1).info,
-                    kr: rows.find(r => r.language_id == 2).info
-                }
-
-            };
-
-            res.send(drivingWorks);
-
-        } else {
-            res.send({
-                message: 'Sorry We don\'t have this data'
-            });
-        }
+    res.send({
+        url: dWorks[0].url_id,
+        image: dWorks[0].img,
+            title: {
+                en: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
+                kr: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
+            },
+            description: {
+                en: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
+                kr: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
+            }
+    });
 
 
 
-    }).catch((err) => console.log(err));
-
-});
+})
 
 // search 
 

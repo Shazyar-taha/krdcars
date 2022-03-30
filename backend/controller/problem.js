@@ -3,100 +3,76 @@ const problemModel = require('../model/problem');
 
 
 // get all problems
-router.get('/car-problems', (req, res) => {
+router.get('/car-problems', async (req, res) => {
     // get the page in query
     const page = parseInt(req.query.page || 1);
     // the limit is 20
     let offset = 20 * (page - 1);
-    // to merge the data
-    let problemUid = '';
 
-    problemModel.findAll(offset).then(([rows, fieldData]) => {
-        if (rows.length != 0) {
+    // get the problems
+    let [problems, problemField] = await problemModel.findAll(offset);
+    // get the count of problem
+    let [problemCount, countField] = await problemModel.getProblemCount();
+    // prepare the page count
+    let pageCount = Math.ceil(problemCount[0].count / 20);
 
-            // declare the array
-            let problem = [];
+    
+    if (problems.length == 0 || problems[0].url_id == null) {
+        return res.send({
+            message: 'Sorry We don\'t have any problem data'
+        });
+    }
 
-            rows.forEach((row) => {
+    let problemSend = [];
 
-                if (problemUid.length == 0 || row.name != problemUid) {
-                    problemUid = row.name;
+    problems.forEach(p => {
+        problemSend.push({
+            url_id: p.url_id,
+            title: {
+                en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_name,
+                kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_name
+            },
+            description: {
+                en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_info,
+                kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_info
+            }
+        });
+    });
 
-
-                    problem.push({
-                        url: row.name,
-                        title: {
-                            en: rows.find(r => r.name == problemUid && r.language_id == 1).problem_name,
-                            kr: rows.find(r => r.name == problemUid && r.language_id == 2).problem_name
-                        },
-                        description: {
-                            en: rows.find(r => r.name == problemUid && r.language_id == 1).about,
-                            kr: rows.find(r => r.name == problemUid && r.language_id == 2).about
-                        }
-                    })
-
-                }
-            });
-
-            problemModel.getProblemCount().then(([rows, filedData]) => {
-                let pageCount = Math.ceil(rows[0].count / 20);
-
-                res.send({
-                    pageCount: pageCount,
-                    data: problem
-                });
-
-            }).catch((err) => console.log(err));
-
-
-        } else {
-            res.send({
-                message: 'Sorry We don\'t have any problem data'
-            });
-        }
-
-    }).catch((err) => {
-        console.log(err);
-    })
+    // sending the data
+    res.send({
+        data: problemSend,
+        pageCount: pageCount
+    });
 
 });
 
 // get a problem by problem u id
-router.get('/car-problems/:problemUId', (req, res) => {
-    // get
+router.get('/car-problems/:problemUId', async (req, res) => {
+    // get the parameter
     const problemUid = req.params.problemUId;
+    // get the problem
+    let [problems, problemField] = await problemModel.findProblemByUId(problemUid);
 
-    problemModel.findProblemByUId(problemUid).then(([rows, fieldData]) => {
 
-        if (rows.length != 0) {
+    if (problems.length == 0 || problems[0].url_id == null) {
+        return  res.send({
+            message: 'Not found that problem'
+        });
+    }
 
-            let problem = {
-                title: {
-                    en: rows.find(r => r.language_id == 1).problem_name,
-                    kr: rows.find(r => r.language_id == 2).problem_name
-                },
-                description: {
-                    en: rows.find(r => r.language_id == 1).about,
-                    kr: rows.find(r => r.language_id == 2).about
-                },
-                author: {
-                    accountType: rows[0].permission,
-                    name: rows[0].full_name,
-                },
-                image: rows[0].img
-            }
-
-            res.send(problem);
-        } else {
-            res.send({
-                message: 'Not Found'
-            })
+    res.send({
+        url_id: problems[0].url_id,
+        image: problems[0].img,
+        title: {
+            en: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 1).problem_name,
+            kr: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 2).problem_name
+        },
+        description: {
+            en: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 1).problem_info,
+            kr: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 2).problem_info
         }
-
-    }).catch((err) => {
-        console.log(err);
-    })
-
+    });
 });
 
 

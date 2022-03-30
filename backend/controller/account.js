@@ -74,7 +74,7 @@ route.post('/register', async (req, res) => {
 
     const user = req.body
     user.permission = 'USER'
-
+    console.log(req.body);
     let isAdded = await accountModel.addUser(user);
 
     if (isAdded) {
