@@ -29,74 +29,33 @@ exports.getCountBrand = () => {
 exports.findBrandByUId = (uid) => {
     const sql = `SELECT 
                     b.brand_name,
-                    CONCAT( '[',
-                        GROUP_CONCAT(DISTINCT
-                                JSON_OBJECT(
-                                'founder_id', fd.founder_id,
-                                'founder_name',  fd.founder_name,
-                                'language_id', fd.language_id
-                                )
-                        )
-                        , ']'
-                    )AS founder
-                    ,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('founder_id',
+                                        fd.founder_id,
+                                        'founder_name',
+                                        fd.founder_name,
+                                        'language_id',
+                                        fd.language_id)),
+                            ']') AS founder,
                     b.found_date,
-                    GROUP_CONCAT(DISTINCT
-                        JSON_OBJECT(
-                            'headquarter', bd.headquarters_location,
-                            'language_id', bd.language_id
-                            )
-                    ) AS headquarter 
-                FROM 
+                    CONCAT('[',
+                    GROUP_CONCAT(DISTINCT JSON_OBJECT('headquarter',
+                                bd.headquarters_location,
+                                'language_id',
+                                bd.language_id)
+                                ), ']'
+                            ) AS headquarter
+                FROM
                     brand b
-                INNER JOIN
-                    brand_detail bd ON bd.brand_id = b.id
-                INNER JOIN
+                        INNER JOIN
                     founder_detail fd ON fd.brand_id = b.id
-                WHERE 
+                        INNER JOIN
+                    brand_detail bd ON bd.brand_id = b.id
+                WHERE
                     b.url_id = ?`;
     return db.query(sql, [uid]);
 }
 
-exports.findFounderByBrandUid = (brandUid) =>{
-    const sql = `(SELECT 
-                CONCAT('[',
-                        GROUP_CONCAT( JSON_OBJECT('founder_id',
-                                    fd.founder_id,
-                                    'founder_name',
-                                    fd.founder_name,
-                                    'language_id',
-                                    fd.language_id)),
-                        ']') AS founder_name_en,
-                        '' as founder_name_kr
-            FROM 
-                founder_detail fd 
-            INNER JOIN 
-                brand b ON b.id = fd.brand_id
-            WHERE 
-                b.url_id = ? AND fd.language_id = 1
-            ORDER BY fd.founder_id asc)
-            UNION
-            (SELECT 
-                '' AS founder_name_en,
-                CONCAT('[',
-                        GROUP_CONCAT( JSON_OBJECT('founder_id',
-                                    fd.founder_id,
-                                    'founder_name',
-                                    fd.founder_name,
-                                    'language_id',
-                                    fd.language_id)),
-                        ']') AS founder_name_kr
-                        
-            FROM 
-                founder_detail fd 
-            INNER JOIN 
-                brand b ON b.id = fd.brand_id
-            WHERE 
-                b.url_id = ? AND fd.language_id = 2
-            ORDER BY fd.founder_id asc);`
-    return db.query(sql, [brandUid, brandUid]);
-}
 
 // fetch the some brand by searching name
 exports.findBrandBySearch = (search) => {
@@ -126,40 +85,6 @@ exports.findBrandBySearch = (search) => {
 
 
 
-// fetch the all models of a specific brand
-exports.findCarByModelByBrand = (brandUid, modelUid) => {
-    const sql = `SELECT 
-                    br.brand_name,
-                    c.car_name,
-                    c.car_information,
-                    ct.car_type_name,
-                    c.language_id, 
-                    i.img,
-                    MAX(c.car_year) AS car_year
-                FROM
-                    car c
-                INNER JOIN
-                    car_type ct ON ct.id = c.car_type_id
-                        AND ct.language_id = c.language_id
-                INNER JOIN 
-                    brand br ON br.id = c.brand_id 
-                        AND br.language_id = c.language_id
-                INNER JOIN 
-                    model m ON m.id = c.model_id
-                INNER JOIN 
-                    url u_brand ON u_brand.id = br.url_id
-                INNER JOIN 
-                    url u_model ON u_model.id = m.url_id
-                LEFT JOIN
-                    img i ON i.id = c.img_id
-                WHERE
-                    (u_brand.name = ? AND u_model.name = ?)
-                GROUP BY
-                    c.car_name`;
-
-    return db.query(sql, [brandUid, modelUid]);
-}
-
 
 
 // fetch the models using model name url name
@@ -175,6 +100,20 @@ exports.findAllModelsByBrand = (brandUId, offset) => {
                     b.url_id = ?
                 LIMIT 20 OFFSET ?`;
     return db.query(sql, [brandUId, offset]);
+}
+
+// available years of car models
+exports.findAvailableYearsByModel = (modelUid) =>{
+    const sql = `SELECT 
+                        c.car_year
+                    FROM 
+                        car c 
+                    INNER JOIN 
+                        model m ON m.id = c.model_id
+                    WHERE 
+                        m.url_id = ?
+                    ORDER BY c.car_year ASC`;
+    return db.query(sql, [modelUid]);
 }
 
 // get count of model
@@ -221,53 +160,114 @@ exports.findModelBySearch = (search) => {
 
 // fetch all years of the specific model and brand
 exports.findCarYearByModelByBrand = (brandUid, modelUid) => {
-    const sql = `SELECT DISTINCT
-                    c.car_year
+    const sql = `SELECT 
+                        b.brand_name,
+                        c.car_year,
+                        c.img,
+                        CONCAT('[',
+                                GROUP_CONCAT(DISTINCT JSON_OBJECT('type_name',
+                                            ctd.type_name,
+                                            'language_id',
+                                            ctd.language_id)),
+                                ']') AS car_info,
+                        CONCAT('[',
+                                GROUP_CONCAT(DISTINCT JSON_OBJECT('car_name',
+                                            cd.car_name,
+                                            'car_info',
+                                            cd.car_info,
+                                            'language_id',
+                                            cd.language_id)),
+                                ']') AS car_info
+                    FROM
+                        car c
+                            INNER JOIN
+                        model m ON m.id = c.model_id
+                            INNER JOIN
+                        brand b ON b.id = m.brand_id
+                            INNER JOIN
+                        car_detail cd ON cd.car_id = c.id
+                    INNER JOIN 
+                        car_type ct ON ct.id = c.car_type_id
+                    INNER JOIN 
+                        car_type_detail ctd ON ctd.car_type_id = ct.id
+                    WHERE 
+                        (m.url_id = ? AND b.url_id = ?);`;
+    return db.query(sql, [modelUid, brandUid]);
+}
+
+// fetch the max year of car by model and brand 
+exports.findCarByModelByBrand = (brandUid, modelUid) => {
+    const sql = `SELECT 
+                    b.brand_name,
+                    MAX(c.car_year) AS car_year,
+                    c.img,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('type_name',
+                                        ctd.type_name,
+                                        'language_id',
+                                        ctd.language_id)),
+                            ']') AS car_type,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('car_name',
+                                        cd.car_name,
+                                        'car_info',
+                                        cd.car_info,
+                                        'language_id',
+                                        cd.language_id)),
+                            ']') AS car_info
                 FROM
                     car c
                         INNER JOIN
-                    brand br ON br.id = c.brand_id
-                        INNER JOIN
                     model m ON m.id = c.model_id
                         INNER JOIN
-                    url u_brand ON u_brand.id = br.url_id
+                    brand b ON b.id = m.brand_id
                         INNER JOIN
-                    url u_model ON u_model.id = m.url_id
-                WHERE
-                    (u_brand.name = ?
-                        AND u_model.name = ?);`;
-    return db.query(sql, [brandUid, modelUid]);
+                    car_detail cd ON cd.car_id = c.id
+                INNER JOIN 
+                    car_type ct ON ct.id = c.car_type_id
+                INNER JOIN 
+                    car_type_detail ctd ON ctd.car_type_id = ct.id
+                WHERE 
+                    (m.url_id = ? AND b.url_id = ?)
+                GROUP BY 
+                    c.id;`;
+
+    return db.query(sql, [modelUid, brandUid]);
 }
-
-
 // fetch a car by year, model and brand
 exports.findCarByYear = (brandUid, modelUid, year) => {
     const sql = `SELECT 
-                    br.brand_name,
-                    c.car_name,
-                    c.car_information,
-                    ct.car_type_name,
-                    c.language_id, 
-                    i.img
+                    b.brand_name,
+                    c.car_year,
+                    c.img,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('type_name',
+                                        ctd.type_name,
+                                        'language_id',
+                                        ctd.language_id)),
+                            ']') AS car_type,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('car_name',
+                                        cd.car_name,
+                                        'car_info',
+                                        cd.car_info,
+                                        'language_id',
+                                        cd.language_id)),
+                            ']') AS car_info
                 FROM
                     car c
-                INNER JOIN
-                    car_type ct ON ct.id = c.car_type_id
-                        AND ct.language_id = c.language_id
-                INNER JOIN 
-                    brand br ON br.id = c.brand_id
-                        AND br.language_id = c.language_id
-                INNER JOIN 
+                        INNER JOIN
                     model m ON m.id = c.model_id
+                        INNER JOIN
+                    brand b ON b.id = m.brand_id
+                        INNER JOIN
+                    car_detail cd ON cd.car_id = c.id
                 INNER JOIN 
-                    url u_brand ON u_brand.id = br.url_id
+                    car_type ct ON ct.id = c.car_type_id
                 INNER JOIN 
-                    url u_model ON u_model.id = m.url_id
-                LEFT JOIN 
-                    img i ON i.id = c.img_id
-                WHERE
-                    (u_brand.name = ? AND u_model.name = ?)
-                    AND c.car_year = ?`;
-    return db.query(sql, [brandUid, modelUid, year]);
+                    car_type_detail ctd ON ctd.car_type_id = ct.id
+                WHERE 
+                    (m.url_id = ? AND b.url_id = ?) AND (c.car_year = ?)`;
+    return db.query(sql, [modelUid, brandUid, year]);
 
 }
