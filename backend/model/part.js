@@ -3,49 +3,45 @@ const db = require('./db');
 
 // fetch all parts from part table
 exports.findAll = (offset) => {
-    const sql = ` SELECT
-                    u.name,
-                    p.part_name,
-                    p.about,
-                    p.language_id
+    const sql = ` SELECT 
+                    p.url_id,
+                    p.img,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('part_name',
+                                        pd.part_name,
+                                        'part_info',
+                                        pd.part_info,
+                                        'language_id',
+                                        pd.language_id)),
+                            ']') AS part_detail
                 FROM
-                    part p 
-                INNER JOIN 
-                    url u ON u.id = p.url_id
-                ORDER BY u.name, p.language_id
+                    part p
+                        INNER JOIN
+                    part_detail pd ON pd.part_id = p.id
                 LIMIT 20 OFFSET ?`;
     return db.query(sql, [offset]);
 }
 
-// get count of part
-exports.getCountPart = () => {
-    const sql = `SELECT 
-                COUNT(p.id) AS count
-            FROM 
-                part p
-            INNER JOIN 
-                url u ON u.id = p.url_id`;
-    return db.query(sql, []);
-}
 
 // fetch part by url id 
 exports.findPartByUId = (partUId) => {
-    const sql = ` SELECT
-                    u.name,
-                    p.part_name,
-                    p.about,
-                    p.language_id,
-                    i.img
+    const sql = ` SELECT 
+                    p.url_id,
+                    p.img,
+                    CONCAT('[',
+                            GROUP_CONCAT(DISTINCT JSON_OBJECT('part_name',
+                                        pd.part_name,
+                                        'part_info',
+                                        pd.part_info,
+                                        'language_id',
+                                        pd.language_id)),
+                            ']') AS part_detail
                 FROM
-                    part p 
-                INNER JOIN 
-                    url u ON u.id = p.url_id
-                LEFT JOIN 
-                    img i ON i.id = p.img_id
+                    part p
+                        INNER JOIN
+                    part_detail pd ON pd.part_id = p.id
                 WHERE 
-                    u.name = ?
-                ORDER BY 
-                    u.name, p.language_id`;
+                    p.url_id = ?`;
 
     return db.query(sql, [partUId]);
 
@@ -71,5 +67,15 @@ exports.findPartUsingSearch = (search) => {
                     p.part_name LIKE '%${search}%' OR
                     u.name LIKE '%${search}%'
                 LIMIT 20 OFFSET 0`;
+    return db.query(sql, []);
+}
+
+
+// get count of part
+exports.getCountPart = () => {
+    const sql = `SELECT 
+                        COUNT(p.id) AS count
+                    FROM
+                        part p;`;
     return db.query(sql, []);
 }
