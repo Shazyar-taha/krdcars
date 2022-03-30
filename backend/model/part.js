@@ -5,7 +5,7 @@ const db = require('./db');
 exports.findAll = (offset) => {
     const sql = ` SELECT 
                     p.url_id,
-                    p.img,
+                    
                     CONCAT('[',
                             GROUP_CONCAT(DISTINCT JSON_OBJECT('part_name',
                                         pd.part_name,

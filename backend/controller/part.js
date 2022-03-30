@@ -38,8 +38,8 @@ router.get('/car-parts', async (req, res) => {
             description: {
                 en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_info,
                 kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_info
-            },
-            image: p.img    
+            }
+             
         })        
 
     });
