@@ -20,8 +20,8 @@ router.get('/car-parts', async (req, res) => {
 
     let pageCount = Math.ceil(countPart[0].count / 20);
 
-    if(parts.length == 0){
-        res.send({
+    if(parts.length == 0 || parts[0].url_id == null){
+       return res.send({
             message: 'you don\'t have any data in part of car'
         });
 
@@ -63,8 +63,8 @@ router.get('/car-parts/:partUId', async (req, res) => {
 
     let [parts, partField] = await partModel.findPartByUId(partUId);
 
-    if(parts.length == 0){
-        res.send({
+    if(parts.length == 0 || parts[0].url_id == null) {
+        return res.send({
             message: 'you don\'t have any data in part of car'
         });
     }
