@@ -26,12 +26,12 @@ export default function CustomHelmet(props) {
             {/* titles */}
             <title>
                 {
-                    typeof props.title === 'string' ? props.title :
+                    typeof props.title === 'string' ? t(props.title) :
                         props.external ? props.title?.[i18n.language] : t(props.title)
                 } | KrdCars
             </title>
             <meta property="og:title"
-                content={`${typeof props.title === 'string' ? props.title :
+                content={`${typeof props.title === 'string' ? t(props.title) :
                     props.external ? props.title?.[i18n.language] : t(props.title)
                     } | KrdCars`}
             />
@@ -39,13 +39,13 @@ export default function CustomHelmet(props) {
             {/* descriptions */}
             <meta property="og:description"
                 content={
-                    typeof props.description === 'string' ? props.description :
+                    typeof props.description === 'string' ? t(props.description) :
                         props.external ? props.description?.[i18n.language] : t(props.description)
                 }
             />
             <meta name="description"
                 content={
-                    typeof props.description === 'string' ? props.description :
+                    typeof props.description === 'string' ? t(props.description) :
                         props.external ? props.description?.[i18n.language] : t(props.description)
                 }
             />
