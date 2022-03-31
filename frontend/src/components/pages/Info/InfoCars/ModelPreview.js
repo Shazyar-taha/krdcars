@@ -25,7 +25,7 @@ export default function ModelPreview() {
 
     // brand and model datas
     const [datas, setDatas] = useState({
-        name: { en: '', kr: '' },
+        name: '',
         details: [],
         carInformation: { en: '', kr: '' },
         image: '',
@@ -36,8 +36,12 @@ export default function ModelPreview() {
     useEffect(() => {
         axios.get(`/apis/info/cars/${brandUid}/${modelUid}${search}`)
             .then(res => {
-                res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'image'])
-                setDatas(res.data)
+                // if there was any data, showing them
+                if (!res.data.message) {
+
+                    res.data = DetailsFixer(res.data, 'configs.keywords.', ['name', 'availableYears', 'carInformation', 'image'])
+                    setDatas(res.data)
+                }
             })
             .catch(err => {
                 console.log(err)

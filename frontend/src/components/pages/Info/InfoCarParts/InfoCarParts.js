@@ -40,7 +40,8 @@ export default function InfoCarParts() {
     useEffect(() => {
         axios.get(`/apis/info/car-parts${search}`)
             .then(res => {
-                setDatas(res.data);
+                // if there was any data, showing them
+                if (!res.data.message) setDatas(res.data);
             })
             .catch(err => {
                 console.log(err)

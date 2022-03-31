@@ -40,7 +40,8 @@ export default function InfoCars() {
     useEffect(() => {
         axios.get(`/apis/info/cars${search}`)
             .then(res => {
-                setDatas(res.data)
+                // if there was any data, showing them
+                if (!res.data.message) setDatas(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -67,7 +68,7 @@ export default function InfoCars() {
                     <PageTitle title={componentContent.title} />
 
                     {/* page list */}
-                    <CenteredGrid className="long-element" list={datas.data} fullUrl={url} external />
+                    <CenteredGrid className="long-element" list={datas.data} fullUrl={url} external oneLang='english-font' />
 
                     {/* pagination */}
                     <div className="pagination" dir="ltr">
