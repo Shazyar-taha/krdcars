@@ -24,12 +24,31 @@ export default function CustomHelmet(props) {
     return (
         <Helmet>
             {/* titles */}
-            <title>{props.external ? props.title?.[i18n.language] : t(props.title)} | KrdCars</title>
-            <meta property="og:title" content={`${props.external ? props.title?.[i18n.language] : t(props.title)} | KrdCars`} />
+            <title>
+                {
+                    typeof props.title === 'string' ? props.title :
+                        props.external ? props.title?.[i18n.language] : t(props.title)
+                } | KrdCars
+            </title>
+            <meta property="og:title"
+                content={`${typeof props.title === 'string' ? props.title :
+                    props.external ? props.title?.[i18n.language] : t(props.title)
+                    } | KrdCars`}
+            />
 
             {/* descriptions */}
-            <meta property="og:description" content={props.external ? props.description?.[i18n.language] : t(props.description)} />
-            <meta name="description" content={props.external ? props.description?.[i18n.language] : t(props.description)} />
+            <meta property="og:description"
+                content={
+                    typeof props.description === 'string' ? props.description :
+                        props.external ? props.description?.[i18n.language] : t(props.description)
+                }
+            />
+            <meta name="description"
+                content={
+                    typeof props.description === 'string' ? props.description :
+                        props.external ? props.description?.[i18n.language] : t(props.description)
+                }
+            />
 
             {/* other metas */}
             <meta name="keywords" content={`KrdCars, cars, car pars, car shop, kurdstan cars, ${props.keywords?.join(', ')}`} />
