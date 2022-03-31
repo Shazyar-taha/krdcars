@@ -14,9 +14,11 @@ import './page-grid.scoped.scss'
  * 
  * @param {Object} props : properties of the element
  *      @param {String} props.external : determines if the details is external or not
+ *      @param {String} props.oneLang : determines if the grid items has one language
  *      @param {String} props.className : custom class name for the list
  *      @param {String} props.style : custom style name for the list
  *      @param {Array} props.list : page list
+ *      @param {Array} props.titleKeyName : key name for the title of each item
  *      @param {String} props.fullUrl : full url path to the card link
  *      @param {Object} props.gridConfigs : grid configurations
  *          @param {Number} props.gridConfigs.spacing : grid element spacing
@@ -27,6 +29,8 @@ import './page-grid.scoped.scss'
  *  @return {Element} : Outlined grid element
  */
 export function OutlinedGrid(props) {
+
+    let titleKeyName = props.titleKeyName || 'title'
 
     // translation hook
     const { t } = useTranslation()
@@ -62,8 +66,13 @@ export function OutlinedGrid(props) {
                             <CardContent>
 
                                 {/* card title */}
-                                <Typography variant="h5" className={classNames("card-title", t('configs.font_class_name'))}>
-                                    {props.external ? item.title?.[i18n.language] : t(item.title)}
+                                <Typography variant="h5"
+                                    className={classNames("card-title", props.oneLang ? props.oneLang : t('configs.font_class_name'))}
+                                >
+                                    {
+                                        props.oneLang ? t(item[titleKeyName]) :
+                                            props.external ? item[titleKeyName]?.[i18n.language] : t(item[titleKeyName])
+                                    }
                                 </Typography>
 
                                 {/* card description */}
@@ -95,6 +104,7 @@ export function OutlinedGrid(props) {
  * 
  * @param {Object} props : properties of the element
  *      @param {String} props.external : determines if the details is external or not
+ *      @param {String} props.oneLang : determines if the grid items has one language
  *      @param {String} props.className : custom class name for the list
  *      @param {String} props.style : custom style name for the list
  *      @param {Array} props.list : page list
@@ -109,8 +119,6 @@ export function OutlinedGrid(props) {
  *  @return {Element} : centered grid element
  */
 export function CenteredGrid(props) {
-
-    const imagePrefix = props.imagePrefix || 'data:image/png;base64,'
 
     // translation hook
     const { t } = useTranslation()
@@ -144,11 +152,14 @@ export function CenteredGrid(props) {
                     >
 
                         {/* item image */}
-                        <img src={imagePrefix + item.image} alt={props.external ? item.title?.[i18n.language] : t(item.title)} className="item-image" />
+                        <img src={props.imagePrefix || '' + item.image} alt={item.title} className="item-image" />
 
                         {/* item title */}
-                        <Typography variant="h5" className={classNames("item-title", t('configs.font_class_name'))}>
-                            {props.external ? item.title?.[i18n.language] : t(item.title)}
+                        <Typography variant="h5" className="item-title english-font">
+                            {
+                                props.oneLang ? item.title :
+                                    props.external ? item.title?.[i18n.language] : t(item.title)
+                            }
                         </Typography>
                     </Link>
                 </Grid>
