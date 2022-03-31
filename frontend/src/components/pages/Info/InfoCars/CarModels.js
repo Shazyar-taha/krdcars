@@ -36,11 +36,13 @@ export default function InfoCarsBrandsPreview() {
     useEffect(() => {
         axios.get(`/apis/info/cars/${brandUid}${search}`)
             .then(res => {
+                // if there was any data, showing them
+                if (!res.data.message) {
+                    // fixing the details for brand
+                    res.data.brand = detailsFixer(res.data.brand, 'configs.keywords.',)
 
-                // fixing the details for brand
-                res.data.brand = detailsFixer(res.data.brand, 'configs.keywords.',)
-
-                setDatas(res.data)
+                    setDatas(res.data)
+                }
             })
             .catch(err => {
                 console.log(err)
