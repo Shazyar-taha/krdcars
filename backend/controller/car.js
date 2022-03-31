@@ -8,7 +8,7 @@ router.get('/cars', async (req, res) => {
     // limit is 20
     const page = parseInt(req.query.page || 1);
     // offset
-    let offset = 20 * (page - 1);
+    let offset = 18 * (page - 1);
     // get the brands
     let [brands, brandField] = await carModel.findAllBrand(offset);
     // get the count of brands
@@ -32,7 +32,7 @@ router.get('/cars/:brandUId', async (req, res) => {
     // limit is 20
     const page = parseInt(req.query.page || 1);
     // offset
-    let offset = 20 * (page - 1);
+    let offset = 18 * (page - 1);
     // get the a brand
     let [brands, brandField] = await carModel.findBrandByUId(brandUid);
     // get models of the specific brand
@@ -48,25 +48,25 @@ router.get('/cars/:brandUId', async (req, res) => {
     founders.forEach(founder => {
         if (founder.language_id == 1) {
             foundersSend.push({
-                founderName: {
-                    en: founder.founder_name,
-                    kr: founders.find(f => f.founder_id == founder.founder_id && f.language_id == 2).founder_name
-                }
+                en: founder.founder_name,
+                kr: founders.find(f => f.founder_id == founder.founder_id && f.language_id == 2).founder_name
             });
         }
     });
 
     let brandSend = {
 
-        brand: brands[0].brand_name,
-        founder: foundersSend,
-        founder_date: brands[0].found_date,
-        headquarters: {
-            en: JSON.parse(brands[0].headquarter).find(h => h.language_id == 1).headquarter,
-            kr: JSON.parse(brands[0].headquarter).find(h => h.language_id == 2).headquarter
+        brand: {
+            name: brands[0].brand_name,
+            founder: foundersSend,
+            founded: brands[0].found_date,
+            headquarters: {
+                en: JSON.parse(brands[0].headquarter).find(h => h.language_id == 1).headquarter,
+                kr: JSON.parse(brands[0].headquarter).find(h => h.language_id == 2).headquarter
+            },
         },
         models: models,
-        pageCount: count[0].count
+        pageCount: Math.ceil(count[0].count / 18)
 
     }
     // sending data
@@ -122,7 +122,7 @@ router.get('/cars/:brandUid/:modelUid', async (req, res) => {
 
         let [availableYears, availableYearsField] = await carModel.findAvailableYearsByModel(modelUid);
 
-        
+
 
         let carSend;
 

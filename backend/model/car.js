@@ -12,7 +12,7 @@ exports.findAllBrand = (offset) => {
                     brand b
                     ORDER BY 
                     b.brand_name
-                    LIMIT 20 OFFSET ?;`;
+                    LIMIT 18 OFFSET ?;`;
     return db.query(sql, [offset]);
 }
 
@@ -79,7 +79,7 @@ exports.findBrandBySearch = (search) => {
                 WHERE
                     b.brand_name LIKE '%${search}%'
                         OR u.name LIKE '%${search}%'
-                LIMIT 20 OFFSET 0;`;
+                LIMIT 18 OFFSET 0;`;
     return db.query(sql, []);
 }
 
@@ -98,7 +98,7 @@ exports.findAllModelsByBrand = (brandUId, offset) => {
                     brand b ON b.id = m.brand_id
                 WHERE 
                     b.url_id = ?
-                LIMIT 20 OFFSET ?`;
+                LIMIT 18 OFFSET ?`;
     return db.query(sql, [brandUId, offset]);
 }
 
@@ -153,7 +153,7 @@ exports.findModelBySearch = (search) => {
                 WHERE 
                     m.model_name LIKE '%${search}%' 
                     OR um.name LIKE '%${search}%'
-                LIMIT 20 OFFSET 0;`;
+                LIMIT 18 OFFSET 0;`;
 
     return db.query(sql, []);
 }

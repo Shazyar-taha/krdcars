@@ -18,7 +18,7 @@ exports.findAll = (offset) => {
                         problem p
                             INNER JOIN
                         problem_detail pd ON pd.problem_id = p.id
-                    LIMIT 20 OFFSET ?`;
+                    LIMIT 18 OFFSET ?`;
 
     return db.query(sql, [offset]);
 }
@@ -66,7 +66,7 @@ exports.findProblemUsingSearch = (search) => {
                 WHERE 
                     p.problem_name LIKE '%${search}%' OR
                     u.name LIKE '%${search}%'
-                LIMIT 20 OFFSET 0`;
+                LIMIT 18 OFFSET 0`;
 
     return db.query(sql, []);
 }
