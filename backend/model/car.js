@@ -84,9 +84,6 @@ exports.findBrandBySearch = (search) => {
 }
 
 
-
-
-
 // fetch the models using model name url name
 exports.findAllModelsByBrand = (brandUId, offset) => {
     const sql = `SELECT 
