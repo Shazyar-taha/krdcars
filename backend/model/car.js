@@ -59,28 +59,16 @@ exports.findBrandByUId = (uid) => {
 
 // fetch the some brand by searching name
 exports.findBrandBySearch = (search) => {
-    const sql = `SELECT DISTINCT
-                    u.name AS url,
-                    b1.brand_name AS english,
-                    b2.brand_name AS kurdish,
-                    i.img AS image
+    const sql = `SELECT 
+                    b.url_id AS url,
+                    b.brand_name AS title,
+                    b.img AS image 
                 FROM
-                    brand b
-                        INNER JOIN
-                    url u ON u.id = b.url_id
-                        INNER JOIN
-                    img i ON i.id = b.img_id
-                        LEFT JOIN
-                    brand b1 ON (b1.url_id = b.url_id
-                        AND b1.language_id = 1)
-                        LEFT JOIN
-                    brand b2 ON (b2.url_id = b.url_id
-                        AND b2.language_id = 2)
-                WHERE
-                    b.brand_name LIKE '%${search}%'
-                        OR u.name LIKE '%${search}%'
-                LIMIT 18 OFFSET 0;`;
-    return db.query(sql, []);
+                    brand b 
+                WHERE 
+                    b.brand_name LIKE ? OR b.url_id LIKE ?
+                LIMIT 18 OFFSET 0`;
+    return db.query(sql, [search, search]);
 }
 
 
@@ -93,6 +81,8 @@ exports.findAllModelsByBrand = (brandUId, offset) => {
                     model m 
                 INNER JOIN
                     brand b ON b.id = m.brand_id
+                INNER JOIN 
+                    car c ON c.model_id = m.id
                 WHERE 
                     b.url_id = ?
                 LIMIT 18 OFFSET ?`;
@@ -128,31 +118,23 @@ exports.getCountModel = (brandUid) => {
 
 // fetch the models
 exports.findModelBySearch = (search) => {
-    const sql = `SELECT DISTINCT
-                    um.name AS modelUrl,
-                    ub.name AS brandUrl,
-                    m1.model_name AS english,
-                    m2.model_name AS kurdish
-                FROM 
-                    model m 
-                INNER JOIN 
-                    car c ON c.model_id = m.id
-                INNER JOIN 
-                    brand b ON b.id = c.brand_id
-                INNER JOIN 
-                    url um ON um.id = m.url_id
-                INNER JOIN 
-                    url ub ON ub.id = b.url_id
-                LEFT JOIN 
-                    model m1 ON (m1.url_id = m.url_id AND m1.language_id = 1)
-                LEFT JOIN 
-                    model m2 ON (m2.url_id = m.url_id AND m2.language_id = 2)
-                WHERE 
-                    m.model_name LIKE '%${search}%' 
-                    OR um.name LIKE '%${search}%'
-                LIMIT 18 OFFSET 0;`;
+    const sql = `SELECT 
+            m.url_id AS url,
+            b.url_id AS brandUid,
+            m.model_name AS title
+        FROM
+            model m
+        INNER JOIN 
+            brand b ON b.id = m.brand_id
+        INNER JOIN 
+            car c ON c.model_id = m.id
+        WHERE 
+            m.url_id LIKE ? OR m.model_name LIKE ?
+        ORDER BY 
+            m.model_name
+        LIMIT 18 OFFSET 0`;
 
-    return db.query(sql, []);
+    return db.query(sql, [search, search]);
 }
 
 // fetch all years of the specific model and brand

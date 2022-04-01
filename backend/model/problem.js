@@ -49,26 +49,25 @@ exports.findProblemByUId = (problemUId) => {
 
 // fetch some problem using search
 exports.findProblemUsingSearch = (search) => {
-    const sql = `SELECT DISTINCT
-                    u.name As url,
-                    p1.problem_name AS english,
-                    p2.problem_name AS kurdish,
-                    p1.about AS english_about,
-                    p2.about AS kurdish_about
+    const sql = `SELECT 
+                    p.url_id,
+                CONCAT('[',
+                    GROUP_CONCAT( JSON_OBJECT('problem_name',
+                                pd.problem_name,
+                                'problem_info',
+                                pd.problem_info,
+                                'language_id',
+                                pd.language_id)),
+                    ']') AS problem_detail
                 FROM 
-                    problem p
+                    problem p 
                 INNER JOIN 
-                    url u ON u.id = p.url_id
-                LEFT JOIN 
-                    problem p1 ON (p1.url_id = p.url_id AND p1.language_id = 1)
-                LEFT JOIN 
-                    problem p2 ON (p2.url_id = p.url_id AND p2.language_id = 2)
+                    problem_detail pd ON pd.problem_id = p.id
                 WHERE 
-                    p.problem_name LIKE '%${search}%' OR
-                    u.name LIKE '%${search}%'
+                    p.url_id LIKE ? OR pd.problem_name LIKE ?
                 LIMIT 18 OFFSET 0`;
 
-    return db.query(sql, []);
+    return db.query(sql, [search, search]);
 }
 
 

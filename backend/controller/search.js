@@ -16,92 +16,91 @@ exports.search = async (req, res) => {
         drivingWorks: []
     };
 
-    if (query != '') {
 
+
+    if (query != '') {
+        // fixing query
+        query = '%' + query + '%';
         // get brand    
         let [brands, brandField] = await carModel.findBrandBySearch(query);
 
-        // push all brand to the result
-        brands.forEach((row) => {
-            results.brands.push({
-                url: row.url,
-                title: {
-                    en: row.english,
-                    kr: row.kurdish
-                },
-                image: row.image
-            });
-        });
-
-
         // get models 
         let [models, modelFiled] = await carModel.findModelBySearch(query);
-        // push all model to the results
-        models.forEach(row => {
-            results.models.push({
-                url: row.modelUrl,
-                brandUid: row.brandUrl,
-                title: {
-                    en: row.english,
-                    kr: row.kurdish
-                }
-            });
-        });
+
 
         // get parts
         let [parts, partField] = await partModel.findPartUsingSearch(query);
-        // push the all part to the result
-        parts.forEach((row) => {
-            results.parts.push({
-                url: row.url,
+        // declare partSend array
+        let partSend = [];
+
+        // flexing the data
+        parts.forEach((p, i) => {
+            partSend.push({
+                url: p.url_id,
                 title: {
-                    en: row.english,
-                    kr: row.kurdish
+                    en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_name,
+                    kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_name
                 },
                 description: {
-                    en: row.english_about,
-                    kr: row.kurdish_about
+                    en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_info,
+                    kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_info
                 }
-            });
+
+            })
+
         });
+
 
         // get problems 
         let [problems, problemField] = await problemModel.findProblemUsingSearch(query);
-        // push the problems to the result
-        problems.forEach((row) => {
-            results.problems.push({
-                url: row.url,
+        // declare problemSend array
+        let problemSend = [];
+        // flexing the data
+        problems.forEach(p => {
+            problemSend.push({
+                url_id: p.url_id,
                 title: {
-                    en: row.english,
-                    kr: row.kurdish
+                    en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_name,
+                    kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_name
                 },
                 description: {
-                    en: row.english_about,
-                    kr: row.kurdish_about
+                    en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_info,
+                    kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_info
                 }
             });
         });
 
-        // get all driving works
-        let [drivings, drivingFiled] = await drivenModel.findDrivingUsingSearch(query);
 
-        // push all the driving to the result
-        drivings.forEach((row) => {
-            results.drivingWorks.push({
-                url: row.url,
+
+
+        // get all driving works
+        let [dWorks, dWorkField] = await drivenModel.findDrivingUsingSearch(query);
+        // declare dWorkSend array
+        let dWorkSend = [];
+        // flexing the data
+        dWorks.forEach(d => {
+            dWorkSend.push({
+                url: d.url_id,
                 title: {
-                    en: row.english,
-                    kr: row.kurdish
+                    en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
+                    kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
                 },
                 description: {
-                    en: row.english_des,
-                    kr: row.kurdish_des
+                    en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
+                    kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
                 }
             })
         });
 
+        // send the result
+        res.send({
+            brands: brands,
+            models: models,
+            parts: partSend,
+            problems: problemSend,
+            drivingWorks: dWorkSend
+        });
 
-        res.send(results);
     } else {
         res.send({
             message: 'please write the query to fetch the data'
