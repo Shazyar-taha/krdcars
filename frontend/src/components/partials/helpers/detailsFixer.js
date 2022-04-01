@@ -26,7 +26,10 @@ export default function DetailsFixer(details, keyPrefix = '', skipKeys = ['name'
         // push the details to details array
         detailsArray.push({
             key: keyPrefix + key,
-            value: fixDate ? fixDateString(details[key]) : details[key],
+            value: Array.isArray(details[key]) ?
+                { en: details[key].map(value => value.en).toString(), kr: details[key].map(value => value.kr).toString() } :
+                fixDate ? fixDateString(details[key]) : details[key],
+
             // if the value was an object, then it is not a single value
             singleValue: typeof details[key] === 'object' ? false : true
         });

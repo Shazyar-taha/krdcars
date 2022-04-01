@@ -28,7 +28,8 @@ export default function ProblemPreview() {
     useEffect(() => {
         axios.get(`/apis/info/driving-works/${workUid}`)
             .then(res => {
-                setDatas(res.data)
+                // if there was any data, showing them
+                if (!res.data.message) setDatas(res.data)
             })
             .catch(err => {
                 console.log(err)

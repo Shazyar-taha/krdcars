@@ -6,8 +6,8 @@ const problemModel = require('../model/problem');
 router.get('/car-problems', async (req, res) => {
     // get the page in query
     const page = parseInt(req.query.page || 1);
-    // the limit is 20
-    let offset = 20 * (page - 1);
+    // the limit is 18
+    let offset = 18 * (page - 1);
 
     // get the problems
     let [problems, problemField] = await problemModel.findAll(offset);

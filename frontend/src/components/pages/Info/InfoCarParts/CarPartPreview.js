@@ -20,7 +20,7 @@ export default function PartPreview() {
 
     // part datas
     const [datas, setDatas] = useState({
-        name: { en: '', kr: '' },
+        title: { en: '', kr: '' },
         description: { en: '', kr: '' },
         image: '',
     });
@@ -29,7 +29,8 @@ export default function PartPreview() {
     useEffect(() => {
         axios.get(`/apis/info/car-parts/${partUid}`)
             .then(res => {
-                setDatas(res.data)
+                // if there was any data, showing them
+                if (!res.data.message) setDatas(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -40,20 +41,20 @@ export default function PartPreview() {
     return (
         <>
             {/* overriding document head */}
-            <CustomHelmet title={datas.name} description={datas.name} external />
+            <CustomHelmet title={datas.title} description={datas.title} external />
 
 
             <div className="info-route long-element vertical-margin" dir="auto">
                 <Container>
 
                     {/* page title */}
-                    <PageTitle title={datas.name} external />
+                    <PageTitle title={datas.title} external />
 
                     {/* page infos */}
                     <InfoPreview
                         description={datas.description}
                         image={`data:image/jpg;base64,${datas.image}`}
-                        imageAlt={datas.name}
+                        imageAlt={datas.title}
                         external
                     />
 

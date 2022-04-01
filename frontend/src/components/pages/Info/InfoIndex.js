@@ -66,7 +66,7 @@ export default function InfoIndex() {
                     <PageTitle title={componentContent.title} />
 
                     {/* info grid */}
-                    <OutlinedGrid list={componentContent.infos} fullUrl={url} />
+                    <OutlinedGrid list={componentContent.infos} fullUrl={url} oneLang="kurdish-font" />
 
                 </Container>
             </div>

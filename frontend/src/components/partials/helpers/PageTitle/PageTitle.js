@@ -35,7 +35,10 @@ export default function PageTitle(props) {
 
             {/* page title */}
             <Typography variant="h1" className={classNames("title-h1", t('configs.font_class_name'))}>
-                {props.external ? props.title?.[i18n.language] : t(props.title)}
+                {
+                    typeof props.title === 'string' ? t(props.title) :
+                        props.external ? props.title?.[i18n.language] : t(props.title)
+                }
             </Typography>
 
             {/* page details */}

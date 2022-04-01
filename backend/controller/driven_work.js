@@ -7,7 +7,7 @@ router.get('/driving-works', async (req, res) => {
     // get the page in query
     const page = parseInt(req.query.page || 1);
     // the limit is 20
-    let offset = 20 * (page - 1);
+    let offset = 18 * (page - 1);
 
     // get driven work
     let [dWorks, dWorkField] = await drivenModel.findAll(offset);
