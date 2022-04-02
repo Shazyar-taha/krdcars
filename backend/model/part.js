@@ -3,43 +3,45 @@ const db = require('./db');
 
 // fetch all parts from part table
 exports.findAll = (offset) => {
-    const sql = ` SELECT 
-                    p.url_id,
-                    
-                    CONCAT('[',
-                            GROUP_CONCAT(DISTINCT JSON_OBJECT('part_name',
-                                        pd.part_name,
-                                        'part_info',
-                                        pd.part_info,
-                                        'language_id',
-                                        pd.language_id)),
-                            ']') AS part_detail
-                FROM
-                    part p
-                        INNER JOIN
-                    part_detail pd ON pd.part_id = p.id
-                LIMIT 18 OFFSET ?`;
+    const sql = `SELECT 
+                        p.url_id,
+                        (SELECT 
+                                JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                    pd.language_id,
+                                                    'part_name',
+                                                    pd.part_name,
+                                                    'part_info',
+                                                    pd.part_info))
+                            FROM
+                                part_detail pd
+                            WHERE
+                                pd.part_id = p.id) AS part_detail
+                    FROM
+                        part p
+                    ORDER BY p.id
+                    LIMIT 18 OFFSET ?`;
     return db.query(sql, [offset]);
 }
 
 
 // fetch part by url id 
 exports.findPartByUId = (partUId) => {
-    const sql = ` SELECT 
+    const sql = `SELECT 
                     p.url_id,
                     p.img,
-                    CONCAT('[',
-                            GROUP_CONCAT(DISTINCT JSON_OBJECT('part_name',
-                                        pd.part_name,
-                                        'part_info',
-                                        pd.part_info,
-                                        'language_id',
-                                        pd.language_id)),
-                            ']') AS part_detail
+                    (SELECT 
+                            JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                pd.language_id,
+                                                'part_name',
+                                                pd.part_name,
+                                                'part_info',
+                                                pd.part_info))
+                        FROM
+                            part_detail pd
+                        WHERE
+                            pd.part_id = p.id) AS part_detail
                 FROM
                     part p
-                        INNER JOIN
-                    part_detail pd ON pd.part_id = p.id
                 WHERE 
                     p.url_id = ?`;
 
@@ -49,23 +51,25 @@ exports.findPartByUId = (partUId) => {
 
 // fetch the part by search
 exports.findPartUsingSearch = (search) => {
-    const sql = `SELECT 
+    const sql = `SELECT
                         p.url_id,
-                    CONCAT('[',
-                        GROUP_CONCAT( JSON_OBJECT('part_name',
-                                    pd.part_name,
-                                    'part_info',
-                                    pd.part_info,
-                                    'language_id',
-                                    pd.language_id)),
-                        ']') AS part_detail
-                    FROM 
-                        part p 
-                    INNER JOIN 
-                        part_detail pd ON pd.part_id = p.id
+                        (SELECT 
+                                JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                    pd.language_id,
+                                                    'part_name',
+                                                    pd.part_name,
+                                                    'part_info',
+                                                    pd.part_info))
+                            FROM
+                                part_detail pd
+                            WHERE
+                                pd.part_id = p.id) AS part_detail
+                    FROM
+                        part p
                     WHERE 
-                        p.url_id LIKE ? OR pd.part_name LIKE ?
-                    LIMIT 18 OFFSET 0`;
+                        p.url_id LIKE ? 
+                    ORDER BY p.url_id 
+                    LIMIT 18 OFFSET 0;`;
     return db.query(sql, [search, search]);
 }
 

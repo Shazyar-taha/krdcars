@@ -6,17 +6,8 @@ const partModel = require('../model/part');
 
 
 exports.search = async (req, res) => {
-    const query = req.query.query || '';
-    // declare the result of the array
-    let results = {
-        brands: [],
-        models: [],
-        parts: [],
-        problems: [],
-        drivingWorks: []
-    };
-
-
+    let query = req.query.query || '';
+    
 
     if (query != '') {
         // fixing query
@@ -38,12 +29,12 @@ exports.search = async (req, res) => {
             partSend.push({
                 url: p.url_id,
                 title: {
-                    en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_name,
-                    kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_name
+                    en: p.part_detail.find(pd => pd.language_id == 1).part_name,
+                    kr: p.part_detail.find(pd => pd.language_id == 2).part_name
                 },
                 description: {
-                    en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_info,
-                    kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_info
+                    en: p.part_detail.find(pd => pd.language_id == 1).part_info,
+                    kr: p.part_detail.find(pd => pd.language_id == 2).part_info
                 }
 
             })
@@ -60,16 +51,15 @@ exports.search = async (req, res) => {
             problemSend.push({
                 url_id: p.url_id,
                 title: {
-                    en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_name,
-                    kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_name
+                    en: p.problem_detail.find(pd => pd.language_id == 1).problem_name,
+                    kr: p.problem_detail.find(pd => pd.language_id == 2).problem_name
                 },
                 description: {
-                    en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_info,
-                    kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_info
+                    en: p.problem_detail.find(pd => pd.language_id == 1).problem_info,
+                    kr: p.problem_detail.find(pd => pd.language_id == 2).problem_info
                 }
             });
         });
-
 
 
 
@@ -82,12 +72,12 @@ exports.search = async (req, res) => {
             dWorkSend.push({
                 url: d.url_id,
                 title: {
-                    en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
-                    kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
+                    en: d.driven_work_detail.find(dd => dd.language_id == 1).driven_work_name,
+                    kr: d.driven_work_detail.find(dd => dd.language_id == 2).driven_work_name
                 },
                 description: {
-                    en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
-                    kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
+                    en: d.driven_work_detail.find(dd => dd.language_id == 1).driven_work_info,
+                    kr: d.driven_work_detail.find(dd => dd.language_id == 2).driven_work_info
                 }
             })
         });

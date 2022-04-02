@@ -9,9 +9,9 @@ exports.findAllBrand = (offset) => {
                         b.brand_name AS title,
                         b.img AS image
                     FROM
-                    brand b
+                        brand b
                     ORDER BY 
-                    b.brand_name
+                         b.brand_name
                     LIMIT 18 OFFSET ?;`;
     return db.query(sql, [offset]);
 }

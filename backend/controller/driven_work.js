@@ -30,12 +30,12 @@ router.get('/driving-works', async (req, res) => {
         dWorkSend.push({
             url: d.url_id,
             title: {
-                en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
-                kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
+                en: d.driven_work_detail.find(dd => dd.language_id == 1).driven_work_name,
+                kr: d.driven_work_detail.find(dd => dd.language_id == 2).driven_work_name
             },
             description: {
-                en: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
-                kr: JSON.parse(d.driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
+                en: d.driven_work_detail.find(dd => dd.language_id == 1).driven_work_info,
+                kr: d.driven_work_detail.find(dd => dd.language_id == 2).driven_work_info
             }
         })
     });
@@ -64,12 +64,12 @@ router.get('/driving-works/:uId', async (req, res) => {
         url: dWorks[0].url_id,
         image: dWorks[0].img,
             title: {
-                en: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 1).driven_work_name,
-                kr: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 2).driven_work_name
+                en: dWorks[0].driven_work_detail.find(dd => dd.language_id == 1).driven_work_name,
+                kr: dWorks[0].driven_work_detail.find(dd => dd.language_id == 2).driven_work_name
             },
             description: {
-                en: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 1).driven_work_info,
-                kr: JSON.parse(dWorks[0].driven_work_detail).find(dd => dd.language_id == 2).driven_work_info
+                en: dWorks[0].driven_work_detail.find(dd => dd.language_id == 1).driven_work_info,
+                kr: dWorks[0].driven_work_detail.find(dd => dd.language_id == 2).driven_work_info
             }
     });
 

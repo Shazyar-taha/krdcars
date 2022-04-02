@@ -29,12 +29,12 @@ router.get('/car-problems', async (req, res) => {
         problemSend.push({
             url_id: p.url_id,
             title: {
-                en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_name,
-                kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_name
+                en: p.problem_detail.find(pd => pd.language_id == 1).problem_name,
+                kr: p.problem_detail.find(pd => pd.language_id == 2).problem_name
             },
             description: {
-                en: JSON.parse(p.problem_detail).find(pd => pd.language_id == 1).problem_info,
-                kr: JSON.parse(p.problem_detail).find(pd => pd.language_id == 2).problem_info
+                en: p.problem_detail.find(pd => pd.language_id == 1).problem_info,
+                kr: p.problem_detail.find(pd => pd.language_id == 2).problem_info
             }
         });
     });
@@ -65,12 +65,12 @@ router.get('/car-problems/:problemUId', async (req, res) => {
         url_id: problems[0].url_id,
         image: problems[0].img,
         title: {
-            en: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 1).problem_name,
-            kr: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 2).problem_name
+            en: problems[0].problem_detail.find(pd => pd.language_id == 1).problem_name,
+            kr: problems[0].problem_detail.find(pd => pd.language_id == 2).problem_name
         },
         description: {
-            en: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 1).problem_info,
-            kr: JSON.parse(problems[0].problem_detail).find(pd => pd.language_id == 2).problem_info
+            en: problems[0].problem_detail.find(pd => pd.language_id == 1).problem_info,
+            kr: problems[0].problem_detail.find(pd => pd.language_id == 2).problem_info
         }
     });
 });

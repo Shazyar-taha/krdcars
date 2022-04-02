@@ -32,12 +32,12 @@ router.get('/car-parts', async (req, res) => {
         partSend.push({
             url: p.url_id,
             title: { 
-                en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_name,
-                kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_name
+                en: p.part_detail.find(pd => pd.language_id == 1).part_name,
+                kr: p.part_detail.find(pd => pd.language_id == 2).part_name
             },
             description: {
-                en: JSON.parse(p.part_detail).find(pd => pd.language_id == 1).part_info,
-                kr: JSON.parse(p.part_detail).find(pd => pd.language_id == 2).part_info
+                en: p.part_detail.find(pd => pd.language_id == 1).part_info,
+                kr: p.part_detail.find(pd => pd.language_id == 2).part_info
             }
              
         })        
@@ -72,12 +72,12 @@ router.get('/car-parts/:partUId', async (req, res) => {
     res.send({
             url: parts[0].url_id,
             title: { 
-                en: JSON.parse(parts[0].part_detail).find(pd => pd.language_id == 1).part_name,
-                kr: JSON.parse(parts[0].part_detail).find(pd => pd.language_id == 2).part_name
+                en: parts[0].part_detail.find(pd => pd.language_id == 1).part_name,
+                kr: parts[0].part_detail.find(pd => pd.language_id == 2).part_name
             },
             description: {
-                en: JSON.parse(parts[0].part_detail).find(pd => pd.language_id == 1).part_info,
-                kr: JSON.parse(parts[0].part_detail).find(pd => pd.language_id == 2).part_info
+                en: parts[0].part_detail.find(pd => pd.language_id == 1).part_info,
+                kr: parts[0].part_detail.find(pd => pd.language_id == 2).part_info
             },
             image: parts[0].img    
     });

@@ -4,21 +4,22 @@ const db = require('./db');
 // fetch all problem from problem table
 exports.findAll = (offset) => {
     const sql = `SELECT 
-                        p.url_id,
-                        
-                        CONCAT('[',
-                                GROUP_CONCAT(DISTINCT JSON_OBJECT('problem_name',
-                                            pd.problem_name,
-                                            'problem_info',
-                                            pd.problem_info,
-                                            'language_id',
-                                            pd.language_id)),
-                                ']') AS problem_detail
-                    FROM
-                        problem p
-                            INNER JOIN
-                        problem_detail pd ON pd.problem_id = p.id
-                    LIMIT 18 OFFSET ?`;
+                    p.url_id,
+                    (SELECT 
+                            JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                pd.language_id,
+                                                'problem_name',
+                                                pd.problem_name,
+                                                'problem_info',
+                                                pd.problem_info))
+                        FROM
+                            problem_detail pd
+                        WHERE
+                            pd.problem_id = p.id) AS problem_detail
+                FROM
+                    problem p
+                ORDER BY p.id
+                LIMIT 18 OFFSET 0;`;
 
     return db.query(sql, [offset]);
 }
@@ -29,18 +30,19 @@ exports.findProblemByUId = (problemUId) => {
     const sql = `SELECT 
                     p.url_id,
                     p.img,
-                    CONCAT('[',
-                            GROUP_CONCAT(DISTINCT JSON_OBJECT('problem_name',
-                                        pd.problem_name,
-                                        'problem_info',
-                                        pd.problem_info,
-                                        'language_id',
-                                        pd.language_id)),
-                            ']') AS problem_detail
+                    (SELECT 
+                            JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                pd.language_id,
+                                                'problem_name',
+                                                pd.problem_name,
+                                                'problem_info',
+                                                pd.problem_info))
+                        FROM
+                            problem_detail pd
+                        WHERE
+                            pd.problem_id = p.id) AS problem_detail
                 FROM
                     problem p
-                        INNER JOIN
-                    problem_detail pd ON pd.problem_id = p.id
                 WHERE 
                     p.url_id = ?`;
 
@@ -50,22 +52,26 @@ exports.findProblemByUId = (problemUId) => {
 // fetch some problem using search
 exports.findProblemUsingSearch = (search) => {
     const sql = `SELECT 
-                    p.url_id,
-                CONCAT('[',
-                    GROUP_CONCAT( JSON_OBJECT('problem_name',
-                                pd.problem_name,
-                                'problem_info',
-                                pd.problem_info,
-                                'language_id',
-                                pd.language_id)),
-                    ']') AS problem_detail
-                FROM 
-                    problem p 
-                INNER JOIN 
-                    problem_detail pd ON pd.problem_id = p.id
-                WHERE 
-                    p.url_id LIKE ? OR pd.problem_name LIKE ?
-                LIMIT 18 OFFSET 0`;
+                        p.url_id,
+                        p.img,
+                        (SELECT 
+                                JSON_ARRAYAGG(JSON_OBJECT('language_id',
+                                                    pd.language_id,
+                                                    'problem_name',
+                                                    pd.problem_name,
+                                                    'problem_info',
+                                                    pd.problem_info))
+                            FROM
+                                problem_detail pd
+                            WHERE
+                                pd.problem_id = p.id) AS problem_detail
+                    FROM
+                        problem p
+                    WHERE 
+                        p.url_id LIKE  ?
+                    ORDER BY 
+                        p.url_id
+                    LIMIT 18 OFFSET 0`;
 
     return db.query(sql, [search, search]);
 }
