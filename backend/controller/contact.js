@@ -53,9 +53,21 @@ router.post('/send-contact', async (req, res) => {
     /**
      * @TODO : post datas from ad information
      */
+    // must be like this:
+    /* 
+    {
+        brand: 1,
+        carType: 1,
+        model: 19,
+        year: '325325',
+        kurdishInfo: 'dsvsgdsvsd',
+        englishInfo: 'dsvsdvdsvsdv'
+    }
+    */
 
     console.log(req.body);
     console.log(req.user);
+    
 
 
     res.send({
