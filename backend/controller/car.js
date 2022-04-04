@@ -5,7 +5,7 @@ const carModel = require('../model/car');
 
 // get car brands
 router.get('/cars', async (req, res) => {
-    // limit is 20
+    // limit is 18
     const page = parseInt(req.query.page || 1);
     // offset
     let offset = 18 * (page - 1);
@@ -15,7 +15,7 @@ router.get('/cars', async (req, res) => {
     let [count, countField] = await carModel.getCountBrand();
 
     // calculate the total page
-    let pageCount = Math.ceil(count[0].count / 20);
+    let pageCount = Math.ceil(count[0].count / 18);
 
     res.send({
         pageCount: pageCount,
@@ -29,7 +29,7 @@ router.get('/cars', async (req, res) => {
 router.get('/cars/:brandUId', async (req, res) => {
     // brand url id
     const brandUid = req.params.brandUId;
-    // limit is 20
+    // limit is 18
     const page = parseInt(req.query.page || 1);
     // offset
     let offset = 18 * (page - 1);
@@ -67,8 +67,9 @@ router.get('/cars/:brandUId', async (req, res) => {
         },
         models: models,
         pageCount: Math.ceil(count[0].count / 18)
-
     }
+
+
     // sending data
     res.send(brandSend);
 });
