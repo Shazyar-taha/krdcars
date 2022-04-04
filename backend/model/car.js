@@ -111,6 +111,8 @@ exports.getCountModel = (brandUid) => {
                     model m
                 INNER JOIN 	
                     brand b ON b.id = m.brand_id
+                INNER JOIN 
+                    car c ON c.model_id = m.id
                 WHERE 
                     b.url_id = ?`
     return db.query(sql, [brandUid]);
