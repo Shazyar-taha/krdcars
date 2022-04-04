@@ -30,7 +30,6 @@ export default function ProblemPreview() {
     useEffect(() => {
         axios.get(`/apis/info/car-problems/${problemUid}`)
             .then(res => {
-
                 // if the author was not an admin or anonymous, we show it in details
                 if (res.data.author.accountType.toUpperCase() !== 'ADMIN' && res.data.author.accountType.toUpperCase() !== 'ANONYMOUS') {
                     res.data.details = [{
