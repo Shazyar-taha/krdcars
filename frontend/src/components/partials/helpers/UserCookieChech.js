@@ -11,7 +11,8 @@ const protectedRoutes = [
     { path: '/user/profile', condition: 'loggedIn', reroutePath: '/user/login' },
     { path: '/user/login', condition: 'loggedOut', reroutePath: '/user/profile' },
     { path: '/user/register', condition: 'loggedOut', reroutePath: '/user/profile' },
-    { path: '/user/change-password', condition: 'loggedIn', reroutePath: '/user/login' }
+    { path: '/user/change-password', condition: 'loggedIn', reroutePath: '/user/login' },
+    { path: '/contact/add-info', condition: 'loggedIn', reroutePath: '/user/login' }
 ]
 
 
