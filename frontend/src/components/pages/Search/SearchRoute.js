@@ -86,7 +86,7 @@ export default function SearchRoute() {
                                 <Typography variant="h4" className={classNames("result-title", t('configs.font_class_name'))}>
                                     {t('configs.keywords.brands')}
                                 </Typography>
-                                <CenteredGrid style={{ marginTop: '1rem' }} list={datas.brands} fullUrl="info/cars" external />
+                                <CenteredGrid style={{ marginTop: '1rem' }} list={datas.brands} fullUrl="info/cars" external oneLang='en' />
                             </div>
                         }
 
