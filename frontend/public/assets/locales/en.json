@@ -247,6 +247,11 @@
                 "kurdish_info": "Informations in Kurdish",
                 "english_info": "Informations in English",
                 "submit": "Submit"
+            },
+            "status": {
+                "success": "Infos sent successfuly",
+                "failed": "Infos couldn't be sent",
+                "error": "Info fields has not been filled properly"
             }
         }
     }
