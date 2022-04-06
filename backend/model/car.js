@@ -12,7 +12,7 @@ exports.findAllBrand = (offset) => {
                         brand b
                     ORDER BY 
                          b.brand_name
-                    LIMIT 18 OFFSET ?;`;
+                    LIMIT 16 OFFSET ?;`;
     return db.query(sql, [offset]);
 }
 
