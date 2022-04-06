@@ -30,7 +30,11 @@ export default function InfoPreview(props) {
     const { t } = useTranslation()
 
     return (
-        <div className={classNames("info-preview", { 'single-side': (!props.SubText && !props.image) }, props.className)} style={props.style}>
+        <div
+            className={classNames("info-preview", { 'single-side': (!props.SubText && !props.image) }, props.className)}
+            style={props.style}
+            dir={i18n.language === 'kr' ? 'rtl' : 'ltr'}
+        >
 
             {/* side */}
             <div className="side-1">
@@ -38,6 +42,7 @@ export default function InfoPreview(props) {
                 {/* description */}
                 <div className="info-description">
                     <p
+                        dir='auto'
                         className={classNames("description", t('configs.font_class_name'))}
                         dangerouslySetInnerHTML={{ __html: props.external ? props.description[i18n.language] : t(props.description) }}
                     />

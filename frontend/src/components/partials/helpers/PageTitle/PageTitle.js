@@ -43,7 +43,7 @@ export default function PageTitle(props) {
 
             {/* page details */}
             {props.details ?
-                <ul className={classNames("details", t('configs.font_class_name'))}>
+                <ul className={classNames("details", t('configs.font_class_name'))} dir="auto">
                     {props.details.map((detail, i) =>
                         <li key={i} className="detail">
                             {detail.externalKey ? detail.key[i18n.language] : t(detail.key)}
