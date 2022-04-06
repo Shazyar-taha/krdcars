@@ -64,7 +64,7 @@ export default function ModelPreview() {
                     {/* page infos */}
                     <InfoPreview
                         description={datas.carInformation}
-                        image={`data:image/jpg;base64,${datas.image}`}
+                        image={datas.image}
                         imageAlt={datas.name}
                         subText={datas.availableYears}
                         subTextLinkTemplate={pathname}

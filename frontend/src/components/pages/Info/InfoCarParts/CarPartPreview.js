@@ -53,7 +53,7 @@ export default function PartPreview() {
                     {/* page infos */}
                     <InfoPreview
                         description={datas.description}
-                        image={`data:image/jpg;base64,${datas.image}`}
+                        image={datas.image}
                         imageAlt={datas.title}
                         external
                     />
