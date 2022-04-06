@@ -8,14 +8,14 @@ router.get('/cars', async (req, res) => {
     // limit is 18
     const page = parseInt(req.query.page || 1);
     // offset
-    let offset = 18 * (page - 1);
+    let offset = 16 * (page - 1);
     // get the brands
     let [brands, brandField] = await carModel.findAllBrand(offset);
     // get the count of brands
     let [count, countField] = await carModel.getCountBrand();
 
     // calculate the total page
-    let pageCount = Math.ceil(count[0].count / 18);
+    let pageCount = Math.ceil(count[0].count / 16);
 
     res.send({
         pageCount: pageCount,
