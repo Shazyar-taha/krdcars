@@ -37,12 +37,12 @@ app.use('/apis', routes);
 
 
 
-// // static files for frontend
-// app.use(express.static(path.resolve(__dirname, '../frontend/build')))
-// // serving app frontend
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'))
-// });
+// static files for frontend
+app.use(express.static(path.resolve(__dirname, '../frontend/build')))
+// serving app frontend
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'))
+});
 
 
 
