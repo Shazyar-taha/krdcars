@@ -65,14 +65,45 @@ router.post('/send-contact', async (req, res) => {
     }
     */
 
-    console.log(req.body);
-    console.log(req.user);
-    
+    let [carInfo, carInfoField] = await contact.addInfo(req.user, {
+        brandId: req.body.brand,
+        carTypeId: req.body.carType,
+        modelId: req.body.model,
+        carYear: req.body.year,
+        img: ""
+    });
+
+    if (carInfo.affectedRows > 0) {
+        //  english
+        let [carDetail, carDetailField] = await contact.addCarInfo({
+            sendCarId: carInfo.insertId,
+            carInfo: req.body.englishInfo,
+            languageId: 1
+        });
+
+        //  kurdish
+        let [carDetail2, carDetailField2] = await contact.addCarInfo({
+            sendCarId: carInfo.insertId,
+            carInfo: req.body.kurdishInfo,
+            languageId: 2
+        });
+
+        if (carDetail.affectedRows > 0 && carDetail2.affectedRows > 0) {
+            res.send({
+
+                message: "SUCCESS"
+            });
+        } else {
+            res.send({
+                message: "FAILED"
+            });
+        }
+    }
 
 
-    res.send({
-        message: 'SUCCESS' || 'FAILED'
-    })
+
+
+
 })
 
 
