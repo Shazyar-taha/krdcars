@@ -27,7 +27,7 @@ router.get('/car-problems', async (req, res) => {
 
     problems.forEach(p => {
         problemSend.push({
-            url_id: p.url_id,
+            url: p.url_id,
             title: {
                 en: p.problem_detail.find(pd => pd.language_id == 1).problem_name,
                 kr: p.problem_detail.find(pd => pd.language_id == 2).problem_name

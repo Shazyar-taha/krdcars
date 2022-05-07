@@ -17,8 +17,19 @@ exports.search = async (req, res) => {
 
         // get models 
         let [models, modelFiled] = await carModel.findModelBySearch(query);
+        let modelsSend = []
 
-
+        // quick fix for models preview in search
+        modelsSend = models.map(model => {
+            return {
+                ...model,
+                title:{
+                    en: model.title,
+                    kr: model.title,
+                }
+            }
+        })
+        
         // get parts
         let [parts, partField] = await partModel.findPartUsingSearch(query);
         // declare partSend array
@@ -49,7 +60,7 @@ exports.search = async (req, res) => {
         // flexing the data
         problems.forEach(p => {
             problemSend.push({
-                url_id: p.url_id,
+                url: p.url_id,
                 title: {
                     en: p.problem_detail.find(pd => pd.language_id == 1).problem_name,
                     kr: p.problem_detail.find(pd => pd.language_id == 2).problem_name
@@ -85,7 +96,7 @@ exports.search = async (req, res) => {
         // send the result
         res.send({
             brands: brands,
-            models: models,
+            models: modelsSend,
             parts: partSend,
             problems: problemSend,
             drivingWorks: dWorkSend
