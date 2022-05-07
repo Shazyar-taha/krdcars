@@ -1,0 +1,20 @@
+/* about page */
+
+.about-route {
+    // page itle
+    .title {
+        color: var(--head-text-color);
+        font-size: var(--xx-huge-font-size);
+    }
+
+    // brand logo
+    .brand{
+        margin:  var(--large-font-size) 0 var(--xx-huge-font-size);
+        max-width: 35rem;
+    }
+
+    .description{
+        color: var(--body-text-color);
+        font-size: var(--medium-font-size);
+    }
+}

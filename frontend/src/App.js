@@ -16,6 +16,7 @@ import Violation from './components/pages/Violation/Violation';
 import ContactRoutes from './components/pages/Contact/ContactRoutes';
 import SearchRoute from './components/pages/Search/SearchRoute';
 import UserRoutes from './components/pages/User/UserRoutes';
+import About from './components/pages/About/About';
 
 
 
@@ -83,6 +84,11 @@ export default function App() {
                 {/* user routes */}
                 <Route path='/user'>
                     <UserRoutes />
+                </Route>
+
+                {/* user routes */}
+                <Route path='/about'>
+                    <About />
                 </Route>
 
             </Switch>
