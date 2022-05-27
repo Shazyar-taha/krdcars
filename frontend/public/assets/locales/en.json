@@ -254,5 +254,13 @@
                 "error": "Info fields has not been filled properly"
             }
         }
+    },
+    "about": {
+        "head": {
+            "title": "About Us",
+            "description": "About 'KrdCars' website"
+        },
+        "title": "About Us",
+        "description": "We as the team of 'KrdCars' website team privided this project to provide informations about Cars that is the main transportation of the world. so we help anyone that needs information about any car brand and model or car parts or anything else.<br />In this project you can help us with your feedbacks and suggestions or providing informations<br /><br />Stay safe."
     }
 }

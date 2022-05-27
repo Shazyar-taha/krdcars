@@ -11,19 +11,11 @@ import CustomHelmet from '../../partials/helpers/CustomHelmet'
 // component content
 let componentContent = {
     head: {
-        title: {
-            en: 'About Us',
-            kr: 'دەربارەی ئێمە'
-        },
-        description: {
-            en: 'About Us',
-            kr: 'دەربارەی تیمی KrdCars'
-        }
+        title: "about.head.title",
+        description: "about.head.description",
     },
-    title: {
-        en: 'About Us',
-        kr: 'دەربارەی ئێمە'
-    },
+    title: "about.title",
+    description: "about.description",
 }
 
 
@@ -40,14 +32,14 @@ export default function About() {
     return (
         <div>
             {/* overriding document head */}
-            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} external />
+            <CustomHelmet title={componentContent.head.title} description={componentContent.head.description} />
 
             <div className="about-route long-element vertical-margin" dir="auto" align="center">
                 <Container>
 
                     {/* page title */}
                     <Typography variant="h1" className={classNames("title", t('configs.font_class_name'))}>
-                        دەربارەی ئێمە
+                        {t(componentContent.title)}
                     </Typography>
 
                     {/* website brand */}
@@ -56,16 +48,8 @@ export default function About() {
                     </div>
 
                     {/* page description */}
-                    <Typography variant="body1" className={classNames("description", t('configs.font_class_name'))}>
-                        ئێمە وەک تیمی وێبسایتی <span className='english-font'>KrdCars</span> هەستاوین بە ئامادەکردنی ئەم وێبسایتە بە مەبەستی پێشکەشکردنی
-                        زانیاری دەربارەی ئوتومبێلەکان کە هۆکارێکی زۆر گرنگی گواستنەوەیە لە ژیانی ڕۆژانەماندا، بۆیە لێرەوە ئێمە هاوکاری هەموو ئەو کەسانە ئەکەین کە 
-                        پێویستیان بە هەر زانیاریەک هەبێت دەربارەی هەر ئوتومبێلێک یاخود هەر پارچەیەک یان هەرشتێکی تر.
-                        <br />
-                        لەم پڕۆژەیەدا ئەتوانین هەموومان سوودمەند بین و ئەتوانن ئێوەش هاوکارمان ببن بە پێدانی زانیاری گونجاو.
-                        <br />
-                        <br />
-                        هەمیشە سەلامەت بن.
-                    </Typography>
+                    <Typography variant="body1" className={classNames("description", t('configs.font_class_name'))}
+                        dangerouslySetInnerHTML={{ __html: t(componentContent.description) }} dir='auto' />
 
                 </Container>
             </div>
