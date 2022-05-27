@@ -46,7 +46,7 @@
 
     // each grid item
     .grid-item {
-        padding: 0.5rem;
+        padding: 0 0.5rem 2rem;
         background-color: var(--body-bg-color);
         transition: transform 0.2s ease;
         text-align: center;
@@ -59,7 +59,7 @@
 
         // item title
         .item-title {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             color: var(--body-text-color);
         }
 
