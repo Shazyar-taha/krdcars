@@ -90,13 +90,6 @@ route.post('/register', async (req, res) => {
 });
 
 
-route.get('/update', (req, res) => {
-    accountModel.update().then(([rows, field]) => {
-        console.log(rows);
-    }).catch((err) => {
-        console.log(err);
-    })
-})
 
 // changing the user password
 route.post('/change-password', async (req, res) => {

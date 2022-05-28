@@ -52,13 +52,6 @@ exports.addUser = async (user) => {
 }
 
 
-exports.update = async () => {
-    const sql = "UPDATE account SET password = ? WHERE id = ?";
-
-    let hashPassword = await bcrypt.hash("shazyar12", 12);
-
-    return db.query(sql, [hashPassword, 1]);
-}
 
 // this object pass the user{id, oldPassword, newPassword, confirm new Password}
 exports.changePassword = async ({ id, oldPassword, newPassword }) => {
